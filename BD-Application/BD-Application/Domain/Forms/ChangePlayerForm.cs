@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace BD_Application.Domain {
+    public partial class ChangePlayerForm : Form {
+        private List<Player> players;
+        private List<Team> teams;
+        private int currentID;
+
+        public ChangePlayerForm() {
+            InitializeComponent();
+            players = GetAllPlayers();
+            teams = GetAllTeams();
+            FillPlayerBox();
+            FillTeamBox();
+        }
+
+        private List<Player> GetAllPlayers() {
+            List<Player> players = new List<Player>();
+
+            if (false) { //Get all players from DB
+                return null;
+            }
+
+            return players;
+        }
+
+        private void FillPlayerBox() {
+            PlayerBox.Items.Clear();
+            foreach (Player player in players) {
+                PlayerBox.Items.Add(player.Id + ", " + player.NickName + " (" + player.Name + ")");
+            }
+        }
+
+        private List<Team> GetAllTeams() {
+            List<Team> teams = new List<Team>();
+
+            if (false) { //Get all teams from DB
+                return null;
+            }
+
+            return teams;
+
+        }
+
+        private void FillTeamBox() {
+            TeamBox.Items.Clear();
+            foreach (Team team in teams) {
+                TeamBox.Items.Add(team.Id + ", " + team.Name);
+            }
+        }
+
+        private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (PlayerBox.SelectedValue != null) {
+                if (int.TryParse(PlayerBox.SelectedText.Substring(0, PlayerBox.SelectedText.IndexOf(", ")), out currentID)) {
+                    Player player = players.Find(x => x.Id == currentID);
+                    panel1.Visible = true;
+
+                    if (player != null) {
+                        NickNameBox.Text = player.NickName;
+                        NameBox.Text = player.Name;
+                        BirthDayBox.Value = player.BirthDay;
+                        TeamBox.SelectedValue = player.Team;
+                    } else {
+                        MessageBox.Show("Can`t found player by ID", "Error!");
+                    }
+                } else {
+                    MessageBox.Show("Can`t get ID", "Error!");
+                }
+            }
+        }
+
+        private void ChangePlayerButton_Click(object sender, EventArgs e) {
+            if (PlayerBox.SelectedValue != null) {
+                try {
+                    string nickName = NickNameBox.Text;
+                    string name = NameBox.Text;
+                    DateTime birthDay = BirthDayBox.Value;
+                    Team team = teams.Find(x => x.Id == Convert.ToInt32(TeamBox.SelectedText.Substring(0, TeamBox.SelectedText.IndexOf(", "))));
+
+                    Player player = new Player(nickName, name, birthDay, team);
+
+                    //Change player by ID
+
+                } catch (Exception) {
+                    MessageBox.Show("You entered wrong info", "Message!");
+                }
+            } else {
+                MessageBox.Show("You didn`t choice the player", "Message!");
+            }
+        }
+    }
+}

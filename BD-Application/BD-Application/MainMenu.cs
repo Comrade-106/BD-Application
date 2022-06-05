@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BD_Application.Domain {
-    public partial class AllPlayerForm : Form {
-        public AllPlayerForm() {
+namespace BD_Application {
+    public partial class MainMenu : Form {
+        public MainMenu() {
             InitializeComponent();
         }
     }

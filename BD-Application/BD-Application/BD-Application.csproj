@@ -47,20 +47,47 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\DBRepository.cs" />
-    <Compile Include="Domain\AllPlayerForm.cs">
+    <Compile Include="Domain\Forms\AddPlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\AllPlayerForm.Designer.cs">
-      <DependentUpon>AllPlayerForm.cs</DependentUpon>
+    <Compile Include="Domain\Forms\AddPlayerForm.Designer.cs">
+      <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Domain\Forms\ChangePlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Domain\Forms\ChangePlayerForm.Designer.cs">
+      <DependentUpon>ChangePlayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Coach.cs" />
+    <Compile Include="Domain\Forms\DeletePlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\DeletePlayerForm.Designer.cs">
+      <DependentUpon>DeletePlayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Organizer.cs" />
+    <Compile Include="Domain\Person.cs" />
+    <Compile Include="Domain\Player.cs" />
+    <Compile Include="Domain\Team.cs" />
+    <Compile Include="Domain\Tournament.cs" />
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Domain\Forms\AddPlayerForm.resx">
+      <DependentUpon>AddPlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\ChangePlayerForm.resx">
+      <DependentUpon>ChangePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\DeletePlayerForm.resx">
+      <DependentUpon>DeletePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
