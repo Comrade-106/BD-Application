@@ -30,8 +30,6 @@ namespace BD_Application.Domain {
             this.NameLabel = new System.Windows.Forms.Label();
             this.BirthDayBox = new System.Windows.Forms.DateTimePicker();
             this.BirthdayLabel = new System.Windows.Forms.Label();
-            this.TeamLabel = new System.Windows.Forms.Label();
-            this.TeamBox = new System.Windows.Forms.ComboBox();
             this.AddPlayerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -91,30 +89,11 @@ namespace BD_Application.Domain {
             this.BirthdayLabel.Text = "Birthday";
             this.BirthdayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TeamLabel
-            // 
-            this.TeamLabel.Location = new System.Drawing.Point(12, 96);
-            this.TeamLabel.Name = "TeamLabel";
-            this.TeamLabel.Size = new System.Drawing.Size(60, 22);
-            this.TeamLabel.TabIndex = 6;
-            this.TeamLabel.Text = "Team";
-            this.TeamLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TeamBox
-            // 
-            this.TeamBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeamBox.FormattingEnabled = true;
-            this.TeamBox.Location = new System.Drawing.Point(96, 97);
-            this.TeamBox.Name = "TeamBox";
-            this.TeamBox.Size = new System.Drawing.Size(309, 23);
-            this.TeamBox.TabIndex = 7;
-            // 
             // AddPlayerButton
             // 
             this.AddPlayerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddPlayerButton.Location = new System.Drawing.Point(15, 126);
+            this.AddPlayerButton.Location = new System.Drawing.Point(15, 127);
             this.AddPlayerButton.Name = "AddPlayerButton";
             this.AddPlayerButton.Size = new System.Drawing.Size(390, 32);
             this.AddPlayerButton.TabIndex = 8;
@@ -128,8 +107,6 @@ namespace BD_Application.Domain {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 171);
             this.Controls.Add(this.AddPlayerButton);
-            this.Controls.Add(this.TeamBox);
-            this.Controls.Add(this.TeamLabel);
             this.Controls.Add(this.BirthdayLabel);
             this.Controls.Add(this.BirthDayBox);
             this.Controls.Add(this.NameBox);
@@ -154,8 +131,6 @@ namespace BD_Application.Domain {
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.DateTimePicker BirthDayBox;
         private System.Windows.Forms.Label BirthdayLabel;
-        private System.Windows.Forms.Label TeamLabel;
-        private System.Windows.Forms.ComboBox TeamBox;
         private System.Windows.Forms.Button AddPlayerButton;
     }
 }

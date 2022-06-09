@@ -26,8 +26,7 @@
             this.PlayerBox = new System.Windows.Forms.ComboBox();
             this.PlayerLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TeamBox = new System.Windows.Forms.ComboBox();
-            this.TeamLabel = new System.Windows.Forms.Label();
+            this.ConcractButton = new System.Windows.Forms.Button();
             this.BirthdayLabel = new System.Windows.Forms.Label();
             this.BirthDayBox = new System.Windows.Forms.DateTimePicker();
             this.NameBox = new System.Windows.Forms.TextBox();
@@ -35,6 +34,7 @@
             this.NickNameBox = new System.Windows.Forms.TextBox();
             this.NickNameLabel = new System.Windows.Forms.Label();
             this.ChangePlayerButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +63,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.TeamBox);
-            this.panel1.Controls.Add(this.TeamLabel);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.ConcractButton);
             this.panel1.Controls.Add(this.BirthdayLabel);
             this.panel1.Controls.Add(this.BirthDayBox);
             this.panel1.Controls.Add(this.NameBox);
@@ -73,28 +73,19 @@
             this.panel1.Controls.Add(this.NickNameLabel);
             this.panel1.Location = new System.Drawing.Point(12, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(442, 132);
+            this.panel1.Size = new System.Drawing.Size(442, 133);
             this.panel1.TabIndex = 4;
             this.panel1.Visible = false;
             // 
-            // TeamBox
+            // ConcractButton
             // 
-            this.TeamBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeamBox.FormattingEnabled = true;
-            this.TeamBox.Location = new System.Drawing.Point(69, 95);
-            this.TeamBox.Name = "TeamBox";
-            this.TeamBox.Size = new System.Drawing.Size(368, 23);
-            this.TeamBox.TabIndex = 15;
-            // 
-            // TeamLabel
-            // 
-            this.TeamLabel.Location = new System.Drawing.Point(3, 94);
-            this.TeamLabel.Name = "TeamLabel";
-            this.TeamLabel.Size = new System.Drawing.Size(60, 22);
-            this.TeamLabel.TabIndex = 14;
-            this.TeamLabel.Text = "Team";
-            this.TeamLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ConcractButton.Location = new System.Drawing.Point(253, 94);
+            this.ConcractButton.Name = "ConcractButton";
+            this.ConcractButton.Size = new System.Drawing.Size(184, 29);
+            this.ConcractButton.TabIndex = 14;
+            this.ConcractButton.Text = "Change Contract";
+            this.ConcractButton.UseVisualStyleBackColor = true;
+            this.ConcractButton.Click += new System.EventHandler(this.ConcractButton_Click);
             // 
             // BirthdayLabel
             // 
@@ -156,7 +147,7 @@
             // 
             this.ChangePlayerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChangePlayerButton.Location = new System.Drawing.Point(15, 178);
+            this.ChangePlayerButton.Location = new System.Drawing.Point(15, 186);
             this.ChangePlayerButton.Name = "ChangePlayerButton";
             this.ChangePlayerButton.Size = new System.Drawing.Size(439, 32);
             this.ChangePlayerButton.TabIndex = 5;
@@ -164,11 +155,20 @@
             this.ChangePlayerButton.UseVisualStyleBackColor = true;
             this.ChangePlayerButton.Click += new System.EventHandler(this.ChangePlayerButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 29);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Add Contract";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ChangePlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 222);
+            this.ClientSize = new System.Drawing.Size(466, 230);
             this.Controls.Add(this.ChangePlayerButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PlayerBox);
@@ -189,13 +189,13 @@
         private System.Windows.Forms.Label PlayerLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button ChangePlayerButton;
-        private System.Windows.Forms.ComboBox TeamBox;
-        private System.Windows.Forms.Label TeamLabel;
         private System.Windows.Forms.Label BirthdayLabel;
         private System.Windows.Forms.DateTimePicker BirthDayBox;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox NickNameBox;
         private System.Windows.Forms.Label NickNameLabel;
+        private System.Windows.Forms.Button ConcractButton;
+        private System.Windows.Forms.Button button1;
     }
 }
