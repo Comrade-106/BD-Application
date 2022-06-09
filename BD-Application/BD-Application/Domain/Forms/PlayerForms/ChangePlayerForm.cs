@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BD_Application.Domain {
-    public partial class ChangePlayerForm : Form {
+namespace BD_Application.Domain.Forms.PlayerForms {
+    public partial class ChangeCoachForm : Form {
         private List<Player> players;
-        private int currentID;
+        private Player currentPlayer;
 
-        public ChangePlayerForm() {
+        public ChangeCoachForm() {
             InitializeComponent();
             players = GetAllPlayers();
             FillPlayerBox();
@@ -32,14 +32,14 @@ namespace BD_Application.Domain {
 
         private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (PlayerBox.SelectedValue != null) {
-                if (int.TryParse(PlayerBox.SelectedText.Substring(0, PlayerBox.SelectedText.IndexOf(", ")), out currentID)) {
-                    Player player = players.Find(x => x.Id == currentID);
+                if (int.TryParse(PlayerBox.SelectedText.Substring(0, PlayerBox.SelectedText.IndexOf(", ")), out int id)) {
+                    currentPlayer = players.Find(x => x.Id == id);
                     panel1.Visible = true;
 
-                    if (player != null) {
-                        NickNameBox.Text = player.NickName;
-                        NameBox.Text = player.Name;
-                        BirthDayBox.Value = player.BirthDay;
+                    if (currentPlayer != null) {
+                        NickNameBox.Text = currentPlayer.NickName;
+                        NameBox.Text = currentPlayer.Name;
+                        BirthDayBox.Value = currentPlayer.BirthDay;
                     } else {
                         MessageBox.Show("Can`t found player by ID", "Error!");
                     }
@@ -50,18 +50,20 @@ namespace BD_Application.Domain {
         }
 
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
-            if (PlayerBox.SelectedValue != null) {
-                try {
-                    string nickName = NickNameBox.Text;
-                    string name = NameBox.Text;
-                    DateTime birthDay = BirthDayBox.Value;
-                
-                    Player player = new Player(nickName, name, birthDay);
+            if (currentPlayer != null) {
+                if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthDayBox.Value != null) {
+                    try {
+                        currentPlayer.NickName = NickNameBox.Text;
+                        currentPlayer.Name = NameBox.Text;
+                        currentPlayer.BirthDay = BirthDayBox.Value;
 
-                    //Change player by ID
+                        //Change player by ID
 
-                } catch (Exception) {
-                    MessageBox.Show("You entered wrong info", "Message!");
+                    } catch (Exception) {
+                        MessageBox.Show("You entered wrong info", "Message!");
+                    }
+                } else {
+                    MessageBox.Show("You didn`t enter all info", "Message!");
                 }
             } else {
                 MessageBox.Show("You didn`t choice the player", "Message!");
@@ -70,6 +72,14 @@ namespace BD_Application.Domain {
 
         private void ConcractButton_Click(object sender, EventArgs e) {
             //Conctacts
+        }
+
+        private void DeletePlayerButton_Click(object sender, EventArgs e) {
+            if (currentPlayer != null) {//Add check contract
+
+
+                //Delete Player
+            }
         }
     }
 }

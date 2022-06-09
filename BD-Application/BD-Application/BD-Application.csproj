@@ -47,24 +47,66 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\DBRepository.cs" />
-    <Compile Include="Domain\Forms\AddPlayerForm.cs">
+    <Compile Include="Domain\Coach.cs" />
+    <Compile Include="Domain\Forms\CoachForms\AddCoachForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\Forms\AddPlayerForm.Designer.cs">
+    <Compile Include="Domain\Forms\CoachForms\AddCoachForm.Designer.cs">
+      <DependentUpon>AddCoachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\CoachForms\ChangeCoachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\CoachForms\ChangeCoachForm.Designer.cs">
+      <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\AddOrganizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\AddOrganizerForm.Designer.cs">
+      <DependentUpon>AddOrganizerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\ChangeOrganizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\ChangeOrganizerForm.Designer.cs">
+      <DependentUpon>ChangeOrganizerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\PlayerForms\AddPlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\PlayerForms\AddPlayerForm.Designer.cs">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Forms\ChangePlayerForm.cs">
+    <Compile Include="Domain\Forms\PlayerForms\ChangePlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\Forms\ChangePlayerForm.Designer.cs">
+    <Compile Include="Domain\Forms\PlayerForms\ChangePlayerForm.Designer.cs">
       <DependentUpon>ChangePlayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Coach.cs" />
-    <Compile Include="Domain\Forms\DeletePlayerForm.cs">
+    <Compile Include="Domain\Forms\TeamForms\AddTeamForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\Forms\DeletePlayerForm.Designer.cs">
-      <DependentUpon>DeletePlayerForm.cs</DependentUpon>
+    <Compile Include="Domain\Forms\TeamForms\AddTeamForm.Designer.cs">
+      <DependentUpon>AddTeamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\TeamForms\ChangeTeamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\TeamForms\ChangeTeamForm.Designer.cs">
+      <DependentUpon>ChangeTeamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\AddTournamentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\AddTournamentForm.Designer.cs">
+      <DependentUpon>AddTournamentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\ChangeTournamentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\ChangeTournamentForm.Designer.cs">
+      <DependentUpon>ChangeTournamentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Organizer.cs" />
     <Compile Include="Domain\Person.cs" />
@@ -79,14 +121,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Domain\Forms\AddPlayerForm.resx">
+    <EmbeddedResource Include="Domain\Forms\CoachForms\AddCoachForm.resx">
+      <DependentUpon>AddCoachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\CoachForms\ChangeCoachForm.resx">
+      <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\OrganizerForms\AddOrganizerForm.resx">
+      <DependentUpon>AddOrganizerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\OrganizerForms\ChangeOrganizerForm.resx">
+      <DependentUpon>ChangeOrganizerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\PlayerForms\AddPlayerForm.resx">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\ChangePlayerForm.resx">
+    <EmbeddedResource Include="Domain\Forms\PlayerForms\ChangePlayerForm.resx">
       <DependentUpon>ChangePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\DeletePlayerForm.resx">
-      <DependentUpon>DeletePlayerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Domain\Forms\TeamForms\AddTeamForm.resx">
+      <DependentUpon>AddTeamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TeamForms\ChangeTeamForm.resx">
+      <DependentUpon>ChangeTeamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TournamentForms\AddTournamentForm.resx">
+      <DependentUpon>AddTournamentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TournamentForms\ChangeTournamentForm.resx">
+      <DependentUpon>ChangeTournamentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
