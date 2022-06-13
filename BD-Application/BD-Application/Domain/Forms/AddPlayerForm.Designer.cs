@@ -1,4 +1,4 @@
-﻿namespace BD_Application.Domain.Forms.PlayerForms {
+﻿namespace BD_Application.Domain.Forms {
     partial class AddCoachForm {
         /// <summary>
         /// Required designer variable.

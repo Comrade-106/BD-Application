@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BD_Application.Domain.Forms.PlayerForms {
+namespace BD_Application.Domain.Forms {
     public partial class ChangeCoachForm : Form {
         private List<Player> players;
         private Player currentPlayer;

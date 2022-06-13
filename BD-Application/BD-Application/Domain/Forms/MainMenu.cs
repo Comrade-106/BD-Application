@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BD_Application.Domain.Forms.CoachForms;
 
 namespace BD_Application.Domain.Forms {
     public partial class MainMenu : Form {
@@ -17,22 +18,22 @@ namespace BD_Application.Domain.Forms {
             if (comboBox1.SelectedItem != null) {
                 switch (comboBox1.SelectedValue.ToString()) {
                     case "Player":
-                        AddPlayerForm form = new AddPlayerForm();
-                        form.ShowDialog();
+                      
                         break;
-                    case "Coach":
-                        AddCoachForm form = new AddCoachFormForm();
+
+                    /*case "Coach":
+                        CoachForms.AddCoachForm form = new CoachForms.AddCoachFormForm();
                         form.ShowDialog();
                         break;
                     case "Team":
-                        AddTeamForm form = new AddTeamForm();
+                        TeamForms.AddTeamForm form = new AddTeamForm();
                         form.ShowDialog();
                         break;
                     case "Tournament":
                         AddTournamentForm form = new AddTournamentForm();
                         form.ShowDialog();
                         break;
-                        default: return;
+                        default: return;*/
                 }
             }
         }
