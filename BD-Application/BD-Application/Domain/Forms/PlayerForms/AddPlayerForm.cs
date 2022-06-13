@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BD_Application.Domain.Forms{
-    public partial class AddCoachForm : Form {
-        public AddCoachForm() {
+namespace BD_Application.Domain.Forms.PlayerForms {
+    public partial class AddPlayerForm : Form {
+        public AddPlayerForm() {
             InitializeComponent();
         }
 

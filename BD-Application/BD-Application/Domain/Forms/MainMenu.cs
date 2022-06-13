@@ -1,6 +1,11 @@
-﻿using System;
+﻿using BD_Application.Domain.Forms.CoachForms;
+using BD_Application.Domain.Forms.OrganizerForms;
+using BD_Application.Domain.Forms.PlayerForms;
+using BD_Application.Domain.Forms.TeamForms;
+using BD_Application.Domain.Forms.TournamentForms;
+using System;
 using System.Windows.Forms;
-using BD_Application.Domain.Forms.CoachForms;
+
 
 namespace BD_Application.Domain.Forms {
     public partial class MainMenu : Form {
@@ -16,24 +21,29 @@ namespace BD_Application.Domain.Forms {
 
         private void AddButton_Click(object sender, EventArgs e) {
             if (comboBox1.SelectedItem != null) {
-                switch (comboBox1.SelectedValue.ToString()) {
+                switch (comboBox1.SelectedItem) {
                     case "Player":
-                      
+                        AddPlayerForm addPlayerForm = new AddPlayerForm();
+                        addPlayerForm.ShowDialog();
                         break;
 
-                    /*case "Coach":
-                        CoachForms.AddCoachForm form = new CoachForms.AddCoachFormForm();
+                    case "Coach":
+                        AddCoachForm form = new AddCoachForm();
                         form.ShowDialog();
                         break;
                     case "Team":
-                        TeamForms.AddTeamForm form = new AddTeamForm();
-                        form.ShowDialog();
+                        AddTeamForm teamForm = new AddTeamForm();
+                        teamForm.ShowDialog();
+                        break;
+                    case "Organizer":
+                        AddOrganizerForm organizerForm = new AddOrganizerForm();
+                        organizerForm.ShowDialog();
                         break;
                     case "Tournament":
-                        AddTournamentForm form = new AddTournamentForm();
-                        form.ShowDialog();
+                        AddTournamentForm tournamentForm = new AddTournamentForm();
+                        tournamentForm.ShowDialog();
                         break;
-                        default: return;*/
+                    default: return;
                 }
             }
         }

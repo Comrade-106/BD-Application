@@ -6,7 +6,7 @@ namespace BD_Application.Domain.Forms.CoachForms {
     public partial class ChangeCoachForm : Form {
         private List<Coach> coaches = new List<Coach>();
         private Coach currentCoach = null;
-        private int currentId = -1;
+
         public ChangeCoachForm() {
             InitializeComponent();
             coaches = GetAllCoaches();

@@ -5,8 +5,6 @@ D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Appli
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.MainMenu.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.OrganizerForms.AddOrganizerForm.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.OrganizerForms.ChangeOrganizerForm.resources
-D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.PlayerForms.AddCoachForm.resources
-D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.PlayerForms.ChangeCoachForm.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.TeamForms.AddTeamForm.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.TeamForms.ChangeTeamForm.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.TournamentForms.AddTournamentForm.resources
@@ -14,3 +12,10 @@ D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Appli
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Properties.Resources.resources
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD-Application.csproj.GenerateResource.cache
 D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD-Application.csproj.CoreCompileInputs.cache
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\bin\Debug\BD-Application.exe.config
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\bin\Debug\BD-Application.exe
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\bin\Debug\BD-Application.pdb
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.PlayerForms.AddPlayerForm.resources
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD_Application.Domain.Forms.PlayerForms.ChangePlayerForm.resources
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD-Application.exe
+D:\Studding\University Courses\Data Base Course\Semestr6\Курсова\BD-Application\BD-Application\BD-Application\obj\Debug\BD-Application.pdb

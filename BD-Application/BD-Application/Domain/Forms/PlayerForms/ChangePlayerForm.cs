@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BD_Application.Domain.Forms {
-    public partial class ChangeCoachForm : Form {
+namespace BD_Application.Domain.Forms.PlayerForms {
+    public partial class ChangePlayerForm : Form {
         private List<Player> players;
         private Player currentPlayer;
 
-        public ChangeCoachForm() {
+        public ChangePlayerForm() {
             InitializeComponent();
             players = GetAllPlayers();
             FillPlayerBox();
