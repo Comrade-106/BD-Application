@@ -60,6 +60,12 @@
     <Compile Include="Domain\Forms\CoachForms\ChangeCoachForm.Designer.cs">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Forms\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Forms\OrganizerForms\AddOrganizerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\CoachForms\ChangeCoachForm.resx">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\OrganizerForms\AddOrganizerForm.resx">
       <DependentUpon>AddOrganizerForm.cs</DependentUpon>
