@@ -5,8 +5,8 @@ namespace BD_Application.Domain {
         private int id;
         private string name;
         private int worldRank;
-        private Coach coach;
         private List<Tournament> achievement;
+        private bool isDelete;
 
         public int Id { get { return id; } set { id = value; } }
 
@@ -14,21 +14,21 @@ namespace BD_Application.Domain {
 
         public int WorldRank { get { return worldRank; } set { worldRank = value; } }
 
-        public Coach Coach { get { return coach; } set { coach = value; } }
-
         public List<Tournament> Achievement { get { return achievement; } set { achievement = value; } }
 
-        public Team(string name, int worldRank, Coach coach) {
+        public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
+
+        public Team(string name, int worldRank) {
             this.name = name;
             this.worldRank = worldRank;
-            this.coach = coach;
+            isDelete = false;
         }
 
-        public Team(string name, int worldRank, Coach coach, List<Tournament> achievement) {
+        public Team(string name, int worldRank, List<Tournament> achievement) {
             this.name = name;
             this.worldRank = worldRank;
-            this.coach = coach;
             this.achievement = achievement;
+            isDelete = false;
         }
     }
 }
