@@ -21,6 +21,14 @@ namespace BD_Application.DataBase {
         }
 
         public bool AddPlayer(Player player) {
+            connection.Open();
+            MySqlCommand cmd = connection.CreateCommand();
+            
+            //if (cmd) {
+            //    return false;
+            //}
+
+            connection.Close();
 
             return true;
         }
