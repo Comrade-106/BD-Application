@@ -91,6 +91,9 @@
   <ItemGroup>
     <Compile Include="DataBase\DBRepository.cs" />
     <Compile Include="Domain\Coach.cs" />
+    <Compile Include="Domain\Contract.cs" />
+    <Compile Include="Domain\ContractCoach.cs" />
+    <Compile Include="Domain\ContractPlayer.cs" />
     <Compile Include="Domain\Forms\CoachForms\AddCoachForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,11 +160,17 @@
     <Compile Include="Domain\Forms\TournamentForms\ChangeTournamentForm.Designer.cs">
       <DependentUpon>ChangeTournamentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Match.cs" />
     <Compile Include="Domain\Organizer.cs" />
     <Compile Include="Domain\Person.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
+    <Compile Include="Domain\TournamentTree\BinaryTree.cs" />
+    <Compile Include="Domain\TournamentTree\BinaryTreeNode.cs" />
+    <Compile Include="Domain\TournamentTree\Side.cs" />
+    <Compile Include="Domain\TournamentTree\Stage.cs" />
+    <Compile Include="Domain\TournamentTree\TournamentGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Domain\Forms\CoachForms\AddCoachForm.resx">
