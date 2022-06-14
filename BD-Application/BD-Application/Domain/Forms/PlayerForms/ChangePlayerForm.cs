@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.DataBase;
 
 namespace BD_Application.Domain.Forms.PlayerForms {
     public partial class ChangePlayerForm : Form {
         private List<Player> players;
         private Player currentPlayer;
+        private IRepositoryPlayer repository;
 
         public ChangePlayerForm() {
             InitializeComponent();
-            players = GetAllPlayers();
-            FillPlayerBox();
-        }
-
-        private List<Player> GetAllPlayers() {
-            List<Player> players = new List<Player>();
-
-            if (false) { //Get all players from DB
-                return null;
-            }
-
-            return players;
+            repository = new DBRepositoryPlayer();
         }
 
         private void FillPlayerBox() {
@@ -56,7 +47,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                         currentPlayer.Name = NameBox.Text;
                         currentPlayer.BirthDay = BirthDayBox.Value;
 
-                        //Change player by ID
+                        repository.ChangePlayer(currentPlayer);
 
                     } catch (Exception) {
                         MessageBox.Show("You entered wrong info", "Message!");
@@ -76,11 +67,18 @@ namespace BD_Application.Domain.Forms.PlayerForms {
         private void DeletePlayerButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {//Add check contract
 
-
-                //Delete Player
+                repository.DeletePlayer(currentPlayer);
             } else {
                 MessageBox.Show("You didn`t choice the player", "Message!");
             }
+        }
+
+        private void ChangePlayerForm_Load(object sender, EventArgs e) {
+            if ((players = repository.GetAllPlayers()) == null) {
+                MessageBox.Show("Can`t get info from database", "Error!");
+                return;
+            }
+            FillPlayerBox();
         }
     }
 }

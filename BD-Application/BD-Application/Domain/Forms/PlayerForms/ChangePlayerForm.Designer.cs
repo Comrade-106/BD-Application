@@ -177,7 +177,7 @@
             this.DeletePlayerButton.UseVisualStyleBackColor = true;
             this.DeletePlayerButton.Click += new System.EventHandler(this.DeletePlayerButton_Click);
             // 
-            // ChangeCoachForm
+            // ChangePlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -190,8 +190,9 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(435, 275);
-            this.Name = "ChangeCoachForm";
+            this.Name = "ChangePlayerForm";
             this.Text = "Change Player";
+            this.Load += new System.EventHandler(this.ChangePlayerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

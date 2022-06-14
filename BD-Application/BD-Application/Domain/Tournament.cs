@@ -11,6 +11,7 @@ namespace BD_Application.Domain {
         private DateTime dateEnd;
         private double prizePool;
         private List<Team> teams;
+        private bool isDelete;
 
         public int Id { get { return id; } set { id = value; } }
 
@@ -28,6 +29,8 @@ namespace BD_Application.Domain {
 
         public List<Team> Teams { get { return teams; } set { teams = value; } }
 
+        public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
+
         public Tournament(string name, Organizer organizer, string location, DateTime dateStart, DateTime dateEnd, double prizePool, List<Team> teams) {
             this.name = name;
             this.organizer = organizer;
@@ -36,6 +39,7 @@ namespace BD_Application.Domain {
             this.dateEnd = dateEnd;
             this.prizePool = prizePool;
             this.teams = teams;
+            this.isDelete = false;
         }
     }
 }
