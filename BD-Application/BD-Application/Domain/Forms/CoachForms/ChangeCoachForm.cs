@@ -25,9 +25,9 @@ namespace BD_Application.Domain.Forms.CoachForms {
 
         private void FillCoachBox() {
             CoachBox.Items.Clear();
-            foreach (Coach coach in coaches) {
-                CoachBox.Items.Add(coach.Id + ", " + coach.NickName + "( " + coach.Name + ")");
-            }
+            CoachBox.DataSource = coaches;
+            CoachBox.DisplayMember = "name";
+            CoachBox.ValueMember = "id";
         }
 
         private void DeleteCoachButton_Click(object sender, EventArgs e) {
@@ -50,11 +50,13 @@ namespace BD_Application.Domain.Forms.CoachForms {
         }
 
         private void ChangeConcractButton_Click(object sender, EventArgs e) {
-            if (CoachBox.SelectedValue != null) {
+            if (currentCoach != null) {
                 if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthdayBox.Value != null) {
-                   
+
                     try {
-                        Coach coach = new Coach(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
+                        currentCoach.NickName = NickNameBox.Text;
+                        currentCoach.Name = NameBox.Text;
+                        currentCoach.BirthDay = BirthdayBox.Value;
 
                         //Change player by ID
 
@@ -70,25 +72,24 @@ namespace BD_Application.Domain.Forms.CoachForms {
         }
 
         private void CoachBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (CoachBox.SelectedValue != null) {
-                if (int.TryParse(CoachBox.SelectedText.Substring(0, CoachBox.SelectedText.IndexOf(", ")), out int id)) {
-                    currentCoach = coaches.Find(x => x.Id == id);
+            if (CoachBox.SelectedItem != null) {
+                currentCoach = (Coach)CoachBox.SelectedItem;
+
+                if (currentCoach != null) {
                     panel1.Visible = true;
+                    NickNameBox.Text = currentCoach.NickName;
+                    NameBox.Text = currentCoach.Name;
+                    BirthdayBox.Value = currentCoach.BirthDay;
 
-                    if (currentCoach != null) {
-                        NickNameBox.Text = currentCoach.NickName;
-                        NameBox.Text = currentCoach.Name;
-                        BirthdayBox.Value = currentCoach.BirthDay;
+                    //Change info in DB
 
-                        //Change info in DB
-
-                    } else {
-                        MessageBox.Show("Can`t found player by ID", "Error!");
-                    }
                 } else {
-                    MessageBox.Show("Can`t get ID", "Error!");
+                    MessageBox.Show("Can`t found player by ID", "Error!");
                 }
+            } else {
+                MessageBox.Show("You didn`t choice the coach", "Message!");
             }
         }
     }
 }
+

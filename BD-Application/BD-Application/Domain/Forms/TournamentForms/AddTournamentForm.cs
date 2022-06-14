@@ -38,11 +38,15 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                     DateStartBox.Value != null && DateEndBox.Value != null && PrizePoolBox.Text != String.Empty) {
                 if (double.TryParse(PrizePoolBox.Text, out double prize)) {
                     if (prize >= 0.0) {
-                        currentTournament.Name = NameBox.Text;
-                        currentTournament.Organizer = organizers.Find(x => x.Id == Convert.ToInt32(OrganizerBox.SelectedValue));
-                        currentTournament.DateStart = DateStartBox.Value;
-                        currentTournament.DateEnd = DateEndBox.Value;
-                        currentTournament.PrizePool = prize;
+                        if (DateEndBox.Value > DateStartBox.Value) {
+                            currentTournament.Name = NameBox.Text;
+                            currentTournament.Organizer = organizers.Find(x => x.Id == Convert.ToInt32(OrganizerBox.SelectedValue));
+                            currentTournament.DateStart = DateStartBox.Value;
+                            currentTournament.DateEnd = DateEndBox.Value;
+                            currentTournament.PrizePool = prize;
+                        } else {
+                            MessageBox.Show("End date can`t be less than start date", "Message!");
+                        }
                     } else {
                         MessageBox.Show("Prize pool can`t be less than 0", "Message!");
                     }

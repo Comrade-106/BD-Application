@@ -25,29 +25,28 @@ namespace BD_Application.Domain.Forms.PlayerForms {
 
         private void FillPlayerBox() {
             PlayerBox.Items.Clear();
-            foreach (Player player in players) {
-                PlayerBox.Items.Add(player.Id + ", " + player.NickName + " (" + player.Name + ")");
-            }
+            PlayerBox.DataSource = players;
+            PlayerBox.DisplayMember = "name";
+            PlayerBox.ValueMember = "id";
         }
 
         private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (PlayerBox.SelectedValue != null) {
-                if (int.TryParse(PlayerBox.SelectedText.Substring(0, PlayerBox.SelectedText.IndexOf(", ")), out int id)) {
-                    currentPlayer = players.Find(x => x.Id == id);
-                    panel1.Visible = true;
+            if (PlayerBox.SelectedItem != null) {
+                currentPlayer = (Player)PlayerBox.SelectedItem;
 
-                    if (currentPlayer != null) {
-                        NickNameBox.Text = currentPlayer.NickName;
-                        NameBox.Text = currentPlayer.Name;
-                        BirthDayBox.Value = currentPlayer.BirthDay;
-                    } else {
-                        MessageBox.Show("Can`t found player by ID", "Error!");
-                    }
+                if (currentPlayer != null) {
+                    panel1.Visible = true;
+                    NickNameBox.Text = currentPlayer.NickName;
+                    NameBox.Text = currentPlayer.Name;
+                    BirthDayBox.Value = currentPlayer.BirthDay;
                 } else {
-                    MessageBox.Show("Can`t get ID", "Error!");
+                    MessageBox.Show("Can`t found a player", "Error!");
                 }
+            } else {
+                MessageBox.Show("You didn` choice a player", "Message!");
             }
         }
+
 
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {
@@ -79,6 +78,8 @@ namespace BD_Application.Domain.Forms.PlayerForms {
 
 
                 //Delete Player
+            } else {
+                MessageBox.Show("You didn`t choice the player", "Message!");
             }
         }
     }

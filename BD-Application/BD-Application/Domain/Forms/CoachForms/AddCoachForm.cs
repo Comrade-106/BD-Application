@@ -10,11 +10,11 @@ namespace BD_Application.Domain.Forms.CoachForms {
         private void AddCoachButton_Click(object sender, EventArgs e) {
             if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthdayBox.Value != null) {
                 try {
-                    Player player = new Player(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
+                    Coach coach = new Coach(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
 
                     //Add coach into DB
 
-                    MessageBox.Show("Player added successful", "Message!");
+                    MessageBox.Show("Coach added successful", "Message!");
                 } catch (Exception) {
                     MessageBox.Show("You entered wrong info", "Message!");
                 }

@@ -25,9 +25,9 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void FillTeamBox() {
             TeamBox.Items.Clear();
-            foreach (Team team in teams) {
-                TeamBox.Items.Add(team.Id + ", " + team.Name);
-            }
+            TeamBox.DataSource = teams;
+            TeamBox.DisplayMember = "name";
+            TeamBox.ValueMember = "id";
         }
 
         private void DeleteButton_Click(object sender, EventArgs e) {
@@ -41,21 +41,23 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void TeamBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (TeamBox.SelectedItem != null) {
-                int.TryParse(TeamBox.SelectedText.Substring(TeamBox.SelectedText.IndexOf(", ")), out int currentId);
+                currentTeam = (Team) TeamBox.SelectedItem;
 
-                if ((currentTeam = teams.Find(x => x.Id == currentId)) != null) {
+                if (currentTeam != null) {
                     panel1.Visible = true;
                     NameBox.Text = currentTeam.Name;
                     WorldRankBox.Text = Convert.ToString(currentTeam.WorldRank);
                 } else {
-                    MessageBox.Show("Can`t get id", "Error!");
+                    MessageBox.Show("You entered wrong info", "Error!");
                 }
+            } else {
+                MessageBox.Show("You don`t choice team", "Message!");
             }
         }
 
         private void ChangeButton_Click(object sender, EventArgs e) {
             if (NameBox.Text != String.Empty && WorldRankBox.Text != String.Empty) {
-                if (TeamBox.SelectedItem != null) {
+                if (currentTeam != null) {
 
                     if (int.TryParse(WorldRankBox.Text, out int rank)) {
                         if (rank <= 0) {

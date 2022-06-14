@@ -4,12 +4,15 @@ using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.OrganizerForms {
     public partial class ChangeOrganizerForm : Form {
-        private List<Organizer> organizers;
-        private Organizer current = null;
+        private readonly List<Organizer> organizers;
+        private Organizer currentOrganizer = null;
 
         public ChangeOrganizerForm() {
             InitializeComponent();
-            organizers = GetAllOrganizers();
+            if ((organizers = GetAllOrganizers()) == null) {
+                MessageBox.Show("Can`t get info from DB", "Error!");
+                return;
+            }
             FillOrganizerBox();
         }
 
@@ -25,39 +28,43 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
 
         private void FillOrganizerBox() {
             OrganizerBox.Items.Clear();
-            foreach (Organizer organizer in organizers) {
-                OrganizerBox.Items.Add(organizer.Id + ", " + organizer.Name);
-            }
+            OrganizerBox.DataSource = organizers;
+            OrganizerBox.DisplayMember = "name";
+            OrganizerBox.ValueMember = "id";
         }
 
         private void DeleteOrganizerButton_Click(object sender, EventArgs e) {
-            if (current != null) {
+            if (currentOrganizer != null) {
                 //Delete
             } else {
-                MessageBox.Show("You don`t choice organizer", "Message!");
+                MessageBox.Show("You didn`t choice organizer", "Message!");
             }
         }
 
         private void ChangeOrganizerButton_Click(object sender, EventArgs e) {
-            if (NameBox.Text != String.Empty) {
-                current.Name = NameBox.Text;
+            if (currentOrganizer != null) {
 
-                //Change info by ID
+                if (NameBox.Text != String.Empty) {
+                    currentOrganizer.Name = NameBox.Text;
 
+                    //Change info by ID
+
+                } else {
+                    MessageBox.Show("You didn`t enter all info", "Message!");
+                }
+            } else {
+                MessageBox.Show("You didn`t choice organizer", "Message!");
             }
         }
 
         private void OrganizerBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (OrganizerBox.SelectedItem != null) {
+                currentOrganizer = (Organizer)OrganizerBox.SelectedItem;
 
-                if (int.TryParse(OrganizerBox.SelectedText.Substring(0, OrganizerBox.SelectedText.IndexOf(", ")), out int id)) {
-                    if ((current = organizers.Find(x => x.Id == id)) != null) {
-                        NameBox.Text = current.Name;
-                    } else {
-                        MessageBox.Show("Can`t find organizer by id", "Error!");
-                    }
+                if (currentOrganizer != null) {
+                    NameBox.Text = currentOrganizer.Name;
                 } else {
-                    MessageBox.Show("Can`t get organizer`s id", "Error!");
+                    MessageBox.Show("You entered wrong info", "Error!");
                 }
             }
         }

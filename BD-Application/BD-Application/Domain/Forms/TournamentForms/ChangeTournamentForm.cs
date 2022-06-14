@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
@@ -59,14 +53,14 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
         private void TournamentBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (TournamentBox.SelectedItem != null) {
-                currentTournament = tournaments.Find(x => x.Id == Convert.ToInt32(TournamentBox.SelectedValue));
-            
+                currentTournament = (Tournament) TournamentBox.SelectedItem;
+
                 if (currentTournament != null && (organizers = GetAllOrganizers()) != null) {
                     panel1.Visible = true;
                     NameBox.Text = currentTournament.Name;
 
                     FillOraganizerBox();
-                    OrganizerBox.SelectedText = currentTournament.Organizer.Name; 
+                    OrganizerBox.SelectedText = currentTournament.Organizer.Name;
 
                     DateStartBox.Value = currentTournament.DateStart;
                     DateEndBox.Value = currentTournament.DateEnd;
@@ -90,15 +84,19 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
         private void ChangeButton_Click(object sender, EventArgs e) {
             if (currentTournament != null) {
-                if (NameBox.Text != String.Empty && OrganizerBox.SelectedItem != null && 
+                if (NameBox.Text != String.Empty && OrganizerBox.SelectedItem != null &&
                     DateStartBox.Value != null && DateEndBox.Value != null && PrizePoolBox.Text != String.Empty) {
                     if (double.TryParse(PrizePoolBox.Text, out double prize)) {
                         if (prize >= 0.0) {
-                            currentTournament.Name = NameBox.Text;
-                            currentTournament.Organizer = organizers.Find(x => x.Id == Convert.ToInt32(OrganizerBox.SelectedValue));
-                            currentTournament.DateStart = DateStartBox.Value;
-                            currentTournament.DateEnd = DateEndBox.Value;
-                            currentTournament.PrizePool = prize;
+                            if (DateEndBox.Value > DateStartBox.Value) {
+                                currentTournament.Name = NameBox.Text;
+                                currentTournament.Organizer = organizers.Find(x => x.Id == Convert.ToInt32(OrganizerBox.SelectedValue));
+                                currentTournament.DateStart = DateStartBox.Value;
+                                currentTournament.DateEnd = DateEndBox.Value;
+                                currentTournament.PrizePool = prize;
+                            } else {
+                                MessageBox.Show("End date can`t be less than start date", "Message!");
+                            }
                         } else {
                             MessageBox.Show("Prize pool can`t be less than 0", "Message!");
                         }

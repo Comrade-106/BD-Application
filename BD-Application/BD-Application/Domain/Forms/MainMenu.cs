@@ -3,14 +3,12 @@ using BD_Application.Domain.Forms.OrganizerForms;
 using BD_Application.Domain.Forms.PlayerForms;
 using BD_Application.Domain.Forms.TeamForms;
 using BD_Application.Domain.Forms.TournamentForms;
-using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 
 
 namespace BD_Application.Domain.Forms {
     public partial class MainMenu : Form {
-        MySqlConnection sqlConnection = new MySqlConnection();
 
         public MainMenu() {
             InitializeComponent();
@@ -25,13 +23,13 @@ namespace BD_Application.Domain.Forms {
             if (comboBox1.SelectedItem != null) {
                 switch (comboBox1.SelectedItem) {
                     case "Player":
-                        AddPlayerForm addPlayerForm = new AddPlayerForm();
-                        addPlayerForm.ShowDialog();
+                        AddPlayerForm playerForm = new AddPlayerForm();
+                        playerForm.ShowDialog();
                         break;
 
                     case "Coach":
-                        AddCoachForm form = new AddCoachForm();
-                        form.ShowDialog();
+                        AddCoachForm coachForm = new AddCoachForm();
+                        coachForm.ShowDialog();
                         break;
                     case "Team":
                         AddTeamForm teamForm = new AddTeamForm();
@@ -51,7 +49,31 @@ namespace BD_Application.Domain.Forms {
         }
 
         private void ChangeButton_Click(object sender, EventArgs e) {
-
+            if (comboBox1.SelectedItem != null) {
+                switch (comboBox1.SelectedItem) {
+                    case "Player":
+                        ChangePlayerForm playerForm = new ChangePlayerForm();
+                        playerForm.ShowDialog();
+                        break;
+                    case "Coach":
+                        ChangeCoachForm coachForm = new ChangeCoachForm();
+                        coachForm.ShowDialog();
+                        break;
+                    case "Team":
+                        ChangeTeamForm teamForm = new ChangeTeamForm();
+                        teamForm.ShowDialog();
+                        break;
+                    case "Organizer":
+                        ChangeOrganizerForm organizerForm = new ChangeOrganizerForm();
+                        organizerForm.ShowDialog();
+                        break;
+                    case "Tournament":
+                        ChangeTournamentForm tournamentForm = new ChangeTournamentForm();
+                        tournamentForm.ShowDialog();
+                        break;
+                    default: return;
+                }
+            }
         }
 
         private void ViewButton_Click(object sender, EventArgs e) {
