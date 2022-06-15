@@ -145,6 +145,7 @@
             this.MinimumSize = new System.Drawing.Size(440, 200);
             this.Name = "ChangeTeamForm";
             this.Text = "Change Team";
+            this.Load += new System.EventHandler(this.ChangeTeamForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

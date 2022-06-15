@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 namespace BD_Application.DataBase {
-    internal class DBRepositoryPlayer : IRepositoryPlayer {
+    internal class DBRepositoryOrganizer : IRepositoryOrganizer {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
         private readonly string userName = "root";
@@ -13,7 +13,7 @@ namespace BD_Application.DataBase {
 
         private readonly MySqlConnection connection = null;
 
-        public DBRepositoryPlayer() {
+        public DBRepositoryOrganizer() {
             string connectionInfo = "server=" + serverName + ";port=" + port + ";username=" + userName + ";password=" + password + ";database=" + dataBase;
 
             if ((connection = new MySqlConnection(connectionInfo)) == null) {
@@ -21,41 +21,59 @@ namespace BD_Application.DataBase {
             }
         }
 
-        public List<Player> GetAllPlayers() {
-            List<Player> list = new List<Player>();
-
+        public List<Organizer> GetAllOrganizers() {
+            List<Organizer> list = new List<Organizer>();
             connection.Open();
 
-            string sql = "SELECT * FROM player;";
+            string sql = "SELECT * FROM organizer;";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
 
             var reader = cmd.ExecuteReader();
 
             while (reader.Read()) {
-                var player = new Player(
+                var organizer = new Organizer(
                     reader.GetInt32("id"),
-                    reader.GetString("nickname"),
-                    reader.GetString("full_name"),
-                    reader.GetDateTime("birthday")
+                    reader.GetString("name")
                     );
                 if (reader.GetInt32("isDelete") == 1) {
-                    player.IsDelete = true;
+                    organizer.IsDelete = true;
                 }
-                list.Add(player);
+                list.Add(organizer);
             }
 
             connection.Close();
             return list;
         }
 
-        public bool AddPlayer(Player player) {
+        public Organizer GetOrganizer(int id) {
             connection.Open();
-            string sql = "INSERT INTO player VALUES(NULL, @nickname, @full_name, @birthday, @isDeleted);";
+
+            string sql = "SELECT * FROM organizer WHERE id = @id;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("id", MySqlDbType.Int16).Value = id;
+
+            var reader = cmd.ExecuteReader();
+
+            Organizer organizer = null;
+            while (reader.Read()) {
+                organizer.Id = reader.GetInt32("id");
+                organizer.Name = reader.GetString("name");
+                if (reader.GetInt32("isDelete") == 1) {
+                    organizer.IsDelete = true;
+                }
+            }
+
+            connection.Close();
+            return organizer;
+        }
+
+        public bool AddOrganizer(Organizer organizer) {
+            connection.Open();
+
+            string sql = "INSERT INTO TABLE organizer VALUES(NULL, @name, @isDeleted);";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
-            cmd.Parameters.Add("@nickname", MySqlDbType.VarChar).Value = player.NickName;
-            cmd.Parameters.Add("@full_name", MySqlDbType.VarChar).Value = player.Name;
-            cmd.Parameters.Add("@birthday", MySqlDbType.Date).Value = player.BirthDay.ToString("yyyy-MM-dd");
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = organizer.Name;
             cmd.Parameters.Add("@isDeleted", MySqlDbType.Int16).Value = 0;
 
             if (cmd.ExecuteNonQuery() != 1) {
@@ -64,20 +82,17 @@ namespace BD_Application.DataBase {
             }
 
             connection.Close();
-
             return true;
         }
 
-        public bool ChangePlayer(Player player) {
+        public bool ChangeOrganizer(Organizer organizer) {
             connection.Open();
 
-            string sql = "UPDATE player SET nickname = @nickname, full_name = @full_name, birthday = @birthday, WHERE id = @id;";
+            string sql = "UPDATE organizer SET name = @name  WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
-            cmd.Parameters.Add("@nickname", MySqlDbType.VarChar).Value = player.NickName;
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = player.Name;
-            cmd.Parameters.Add("@birthday", MySqlDbType.Date).Value = player.BirthDay.ToString("yyyy-MM-dd");
-            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = player.Id;
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = organizer.Name;
+            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = organizer.Id;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -88,14 +103,14 @@ namespace BD_Application.DataBase {
             return true;
         }
 
-        public bool DeletePlayer(Player player) {
+        public bool DeleteOrganizer(Organizer organizer) {
             connection.Open();
 
-            string sql = "UPDATE player SET isDelete = @isDelete WHERE id = @id;";
+            string sql = "UPDATE organizer SET isDelete = @isDelete  WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;
-            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = player.Id;
+            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = organizer.Id;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();

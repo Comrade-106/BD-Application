@@ -90,7 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\DBRepository.cs" />
+    <Compile Include="DataBase\DBRepositoryCoach.cs" />
+    <Compile Include="DataBase\DBRepositoryOrganizer.cs" />
     <Compile Include="DataBase\DBRepositoryPlayer.cs" />
+    <Compile Include="DataBase\DBRepositoryTeam.cs" />
+    <Compile Include="DataBase\DBRepositoryTournament.cs" />
     <Compile Include="DataBase\IRepositoryCoach.cs" />
     <Compile Include="DataBase\IRepositoryContractCoach.cs" />
     <Compile Include="DataBase\IRepositoryContractPlayer.cs" />

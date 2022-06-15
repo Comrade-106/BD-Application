@@ -1,29 +1,17 @@
-﻿using System;
+﻿using BD_Application.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.OrganizerForms {
     public partial class ChangeOrganizerForm : Form {
-        private readonly List<Organizer> organizers;
+        private List<Organizer> organizers;
         private Organizer currentOrganizer = null;
+        private readonly IRepositoryOrganizer repository;
 
         public ChangeOrganizerForm() {
             InitializeComponent();
-            if ((organizers = GetAllOrganizers()) == null) {
-                MessageBox.Show("Can`t get info from DB", "Error!");
-                return;
-            }
-            FillOrganizerBox();
-        }
-
-        private List<Organizer> GetAllOrganizers() {
-            List<Organizer> organizers = new List<Organizer>();
-
-            if (false) {
-                return null;
-            }
-
-            return organizers;
+            repository = new DBRepositoryOrganizer();
         }
 
         private void FillOrganizerBox() {
@@ -35,7 +23,7 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
 
         private void DeleteOrganizerButton_Click(object sender, EventArgs e) {
             if (currentOrganizer != null) {
-                //Delete
+                repository.DeleteOrganizer(currentOrganizer);
             } else {
                 MessageBox.Show("You didn`t choice organizer", "Message!");
             }
@@ -47,8 +35,7 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                 if (NameBox.Text != String.Empty) {
                     currentOrganizer.Name = NameBox.Text;
 
-                    //Change info by ID
-
+                    repository.ChangeOrganizer(currentOrganizer);
                 } else {
                     MessageBox.Show("You didn`t enter all info", "Message!");
                 }
@@ -67,6 +54,14 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                     MessageBox.Show("You entered wrong info", "Error!");
                 }
             }
+        }
+
+        private void ChangeOrganizerForm_Load(object sender, EventArgs e) {
+            if ((organizers = repository.GetAllOrganizers()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Error!");
+                return;
+            }
+            FillOrganizerBox();
         }
     }
 }

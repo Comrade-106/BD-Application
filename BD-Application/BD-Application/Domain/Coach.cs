@@ -12,5 +12,9 @@ namespace BD_Application.Domain {
         public Coach(string nickName, string name, DateTime birthDay) : base(nickName, name, birthDay) {
             isDelete = false;
         }
+        public Coach(int id, string nickName, string name, DateTime birthDay) : base(nickName, name, birthDay) {
+            this.Id = id;
+            isDelete = false;
+        }
     }
 }

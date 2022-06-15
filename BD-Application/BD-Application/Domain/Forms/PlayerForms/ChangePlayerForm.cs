@@ -7,7 +7,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
     public partial class ChangePlayerForm : Form {
         private List<Player> players;
         private Player currentPlayer;
-        private IRepositoryPlayer repository;
+        private readonly IRepositoryPlayer repository;
 
         public ChangePlayerForm() {
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
         private void FillPlayerBox() {
             PlayerBox.Items.Clear();
             PlayerBox.DataSource = players;
-            PlayerBox.DisplayMember = "name";
+            PlayerBox.DisplayMember = "nickname";
             PlayerBox.ValueMember = "id";
         }
 
