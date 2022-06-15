@@ -18,6 +18,8 @@ namespace BD_Application.Domain.Forms.CoachForms {
 
                     if (repository.AddCoach(coach)) {
                         MessageBox.Show("Coach added successful", "Message!");
+                        NameBox.Text = NickNameBox.Text = String.Empty;
+                        BirthdayBox.Value = Convert.ToDateTime("1990-01-01");
                     } else {
                         MessageBox.Show("Coach didn`t add", "Message!");
                     }

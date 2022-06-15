@@ -49,12 +49,12 @@ namespace BD_Application.DataBase {
         public bool AddTeam(Team team) {
             connection.Open();
 
-            string sql = "INSERT INTO TABLE team VALUES(NULL, @name, @world_rank, @isDeleted);";
+            string sql = "INSERT INTO team VALUES(NULL, @name, @world_rank, @isDelete);";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = team.Name;
             cmd.Parameters.Add("@world_rank", MySqlDbType.Int16).Value = team.WorldRank;
-            cmd.Parameters.Add("@isDeleted", MySqlDbType.Int16).Value = 0;
+            cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 0;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -87,7 +87,7 @@ namespace BD_Application.DataBase {
         public bool DeleteTeam(Team team) {
             connection.Open();
 
-            string sql = "UPDATE team SET name = @name, world_rank = @world_rank WHERE id = @id;";
+            string sql = "UPDATE team SET isDelete = @isDelete WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;

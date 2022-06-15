@@ -21,24 +21,6 @@ namespace BD_Application.Domain.Forms.PlayerForms {
             PlayerBox.ValueMember = "id";
         }
 
-        private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (PlayerBox.SelectedItem != null) {
-                currentPlayer = (Player)PlayerBox.SelectedItem;
-
-                if (currentPlayer != null) {
-                    panel1.Visible = true;
-                    NickNameBox.Text = currentPlayer.NickName;
-                    NameBox.Text = currentPlayer.Name;
-                    BirthDayBox.Value = currentPlayer.BirthDay;
-                } else {
-                    MessageBox.Show("Can`t found a player", "Error!");
-                }
-            } else {
-                MessageBox.Show("You didn` choice a player", "Message!");
-            }
-        }
-
-
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {
                 if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthDayBox.Value != null) {
@@ -48,7 +30,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                         currentPlayer.BirthDay = BirthDayBox.Value;
 
                         repository.ChangePlayer(currentPlayer);
-
+                        MessageBox.Show("Player info changed successfull", "Message!");
                     } catch (Exception) {
                         MessageBox.Show("You entered wrong info", "Message!");
                     }
@@ -67,7 +49,15 @@ namespace BD_Application.Domain.Forms.PlayerForms {
         private void DeletePlayerButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {//Add check contract
 
-                repository.DeletePlayer(currentPlayer);
+                if (repository.DeletePlayer(currentPlayer)) {
+                    MessageBox.Show("Player deleted successfull", "Message!");
+                    if ((players = repository.GetAllPlayers()) == null) {
+                        MessageBox.Show("Can`t get info from database", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Player didn`t delete", "Message!");
+                }
             } else {
                 MessageBox.Show("You didn`t choice the player", "Message!");
             }
@@ -79,6 +69,23 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                 return;
             }
             FillPlayerBox();
+        }
+
+        private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (PlayerBox.SelectedItem != null) {
+                currentPlayer = (Player)PlayerBox.SelectedItem;
+
+                if (currentPlayer != null) {
+                    panel1.Visible = true;
+                    NickNameBox.Text = currentPlayer.NickName;
+                    NameBox.Text = currentPlayer.Name;
+                    BirthDayBox.Value = currentPlayer.BirthDay;
+                } else {
+                    MessageBox.Show("Can`t found a player", "Error!");
+                }
+            } else {
+                MessageBox.Show("You didn` choice a player", "Message!");
+            }
         }
     }
 }

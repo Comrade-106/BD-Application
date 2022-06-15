@@ -1,29 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.DataBase;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
-        private readonly List<Organizer> organizers;
+        private List<Organizer> organizers;
         private Tournament currentTournament = null;
+
+        private readonly IRepositoryTournanent repositoryTournanent;
+        private readonly IRepositoryOrganizer repositoryOrganizer;
 
         public AddTournamentForm() {
             InitializeComponent();
-            if ((organizers = GetAllOrganizers()) == null) {
-                MessageBox.Show("Can`t get info about organizer from DB", "Error!");
-                return;
-            }
-            FillOrganizersBox();
-        }
-
-        private List<Organizer> GetAllOrganizers() {
-            List<Organizer> organizers = new List<Organizer>();
-
-            if (false) {//get organizers from db
-                return null;
-            }
-
-            return organizers;
+            repositoryTournanent = new DBRepositoryTournament();
+            repositoryOrganizer = new DBRepositoryOrganizer();
         }
 
         private void FillOrganizersBox() {
@@ -44,6 +35,8 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                             currentTournament.DateStart = DateStartBox.Value;
                             currentTournament.DateEnd = DateEndBox.Value;
                             currentTournament.PrizePool = prize;
+
+                            repositoryTournanent.AddTournament(currentTournament);
                         } else {
                             MessageBox.Show("End date can`t be less than start date", "Message!");
                         }
@@ -56,6 +49,14 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             } else {
                 MessageBox.Show("You entered not all info ", "Message!");
             }
+        }
+
+        private void AddTournamentForm_Load(object sender, EventArgs e) {
+            if ((organizers = repositoryOrganizer.GetAllOrganizers()) == null) {
+                MessageBox.Show("Can`t get info about organizer from DB", "Error!");
+                return;
+            }
+            FillOrganizersBox();
         }
     }
 }

@@ -70,11 +70,11 @@ namespace BD_Application.DataBase {
         public bool AddOrganizer(Organizer organizer) {
             connection.Open();
 
-            string sql = "INSERT INTO TABLE organizer VALUES(NULL, @name, @isDeleted);";
+            string sql = "INSERT INTO organizer VALUES(NULL, @name, @isDelete);";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = organizer.Name;
-            cmd.Parameters.Add("@isDeleted", MySqlDbType.Int16).Value = 0;
+            cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 0;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -88,7 +88,7 @@ namespace BD_Application.DataBase {
         public bool ChangeOrganizer(Organizer organizer) {
             connection.Open();
 
-            string sql = "UPDATE organizer SET name = @name  WHERE id = @id;";
+            string sql = "UPDATE organizer SET name = @name WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = organizer.Name;

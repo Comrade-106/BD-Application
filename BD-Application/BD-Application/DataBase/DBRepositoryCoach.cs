@@ -50,11 +50,11 @@ namespace BD_Application.DataBase {
         public bool AddCoach(Coach coach) {
             connection.Open();
 
-            string sql = "INSERT INTO TABLE coach VALUES(NULL, @nickname, @full_name, @birthday, @isDeleted);";
+            string sql = "INSERT INTO coach VALUES(NULL, @nickname, @full_name, @birthday, @isDeleted);";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@nickname", MySqlDbType.VarChar).Value = coach.NickName;
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = coach.Name;
+            cmd.Parameters.Add("@full_name", MySqlDbType.VarChar).Value = coach.Name;
             cmd.Parameters.Add("@birthday", MySqlDbType.Date).Value = coach.BirthDay.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@isDeleted", MySqlDbType.Int16).Value = 0;
 
@@ -70,11 +70,11 @@ namespace BD_Application.DataBase {
         public bool ChangeCoach(Coach coach) {
             connection.Open();
 
-            string sql = "UPDATE coach SET nickname = @nickname, full_name = @full_name, birthday = @birthday, WHERE id = @id;";
+            string sql = "UPDATE coach SET nickname = @nickname, full_name = @full_name, birthday = @birthday WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@nickname", MySqlDbType.VarChar).Value = coach.NickName;
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = coach.Name;
+            cmd.Parameters.Add("@full_name", MySqlDbType.VarChar).Value = coach.Name;
             cmd.Parameters.Add("@birthday", MySqlDbType.Date).Value = coach.BirthDay.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = coach.Id;
 

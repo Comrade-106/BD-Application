@@ -16,8 +16,11 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                 try {
                     Player player = new Player(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
 
-                    repository.AddPlayer(player);
-                    MessageBox.Show("Player added successful", "Message!");
+                    if (repository.AddPlayer(player)) {
+                        MessageBox.Show("Player added successful", "Message!");
+                    } else {
+                        MessageBox.Show("Player didn`t add", "Message!");
+                    }
 
                     NickNameBox.Text = NameBox.Text = String.Empty;
                     BirthdayBox.Value = Convert.ToDateTime("1990-01-01");

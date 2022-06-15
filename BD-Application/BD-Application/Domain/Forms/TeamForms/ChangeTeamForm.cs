@@ -23,7 +23,15 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTeam != null) {
-                repository.DeleteTeam(currentTeam);
+                if (repository.DeleteTeam(currentTeam)) {
+                    MessageBox.Show("Team deleted successfull", "Message!");
+                    if ((teams = repository.GetAllTeams()) == null) {
+                        MessageBox.Show("Can`t get info from repository", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Team didn`t delete", "Message!");
+                }
                 //contracts?
             } else {
                 MessageBox.Show("You don`t choice team", "Message!");
@@ -63,7 +71,11 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
                     currentTeam.Name = NameBox.Text;
 
-                    repository.ChangeTeam(currentTeam);
+                    if (repository.ChangeTeam(currentTeam)) {
+                        MessageBox.Show("Team changed successfull", "Message!");
+                    } else {
+                        MessageBox.Show("Team didn`t change", "Message!");
+                    }
 
                 } else {
                     MessageBox.Show("You don`t choice team", "Message!");

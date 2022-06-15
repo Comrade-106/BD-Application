@@ -156,6 +156,7 @@
             this.PlayerBox.Name = "PlayerBox";
             this.PlayerBox.Size = new System.Drawing.Size(329, 23);
             this.PlayerBox.TabIndex = 7;
+            this.PlayerBox.SelectedIndexChanged += new System.EventHandler(this.PlayerBox_SelectedIndexChanged);
             // 
             // PlayerLabel
             // 

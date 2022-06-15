@@ -24,9 +24,13 @@ namespace BD_Application.Domain.Forms.TeamForms {
                     return;
                 }
                 
-                repository.AddTeam(new Team(NameBox.Text, worldRank));
-
-                MessageBox.Show("Team added successful", "Message!");
+                if (repository.AddTeam(new Team(NameBox.Text, worldRank))) {
+                    MessageBox.Show("Team added successful", "Message!");
+                } else {
+                    MessageBox.Show("Team didn`t add", "Message!");
+                }
+                NameBox.Text = WorldRankBox.Text = String.Empty;
+               
             } else {
                 MessageBox.Show("You didn`t entered all info", "Message!");
             }

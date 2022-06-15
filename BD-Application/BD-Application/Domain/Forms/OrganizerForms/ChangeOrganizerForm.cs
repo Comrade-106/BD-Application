@@ -23,7 +23,15 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
 
         private void DeleteOrganizerButton_Click(object sender, EventArgs e) {
             if (currentOrganizer != null) {
-                repository.DeleteOrganizer(currentOrganizer);
+                if (repository.DeleteOrganizer(currentOrganizer)) {
+                    MessageBox.Show("Organizer deleted successfull", "Message!");
+                    if ((organizers = repository.GetAllOrganizers()) == null) {
+                        MessageBox.Show("Can`t get info from repository", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Organizer didn`t delete", "Message!");
+                }
             } else {
                 MessageBox.Show("You didn`t choice organizer", "Message!");
             }
@@ -35,7 +43,11 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                 if (NameBox.Text != String.Empty) {
                     currentOrganizer.Name = NameBox.Text;
 
-                    repository.ChangeOrganizer(currentOrganizer);
+                    if (repository.ChangeOrganizer(currentOrganizer)) {
+                        MessageBox.Show("Organizer changed successfull", "Message!");
+                    } else {
+                        MessageBox.Show("Organizer didn`t change", "Message!");
+                    }
                 } else {
                     MessageBox.Show("You didn`t enter all info", "Message!");
                 }
@@ -49,10 +61,13 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                 currentOrganizer = (Organizer)OrganizerBox.SelectedItem;
 
                 if (currentOrganizer != null) {
+                    panel1.Visible = true;
                     NameBox.Text = currentOrganizer.Name;
                 } else {
                     MessageBox.Show("You entered wrong info", "Error!");
                 }
+            } else {
+                MessageBox.Show("You didn`t choice organizer", "Message!");
             }
         }
 

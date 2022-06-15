@@ -24,7 +24,15 @@ namespace BD_Application.Domain.Forms.CoachForms {
         private void DeleteCoachButton_Click(object sender, EventArgs e) {
             if (currentCoach != null) {  //Add check contract
 
-                repository.DeleteCoach(currentCoach);
+                if (repository.DeleteCoach(currentCoach)) {
+                    MessageBox.Show("Coach deleted successfull", "Message!");
+                    if ((coaches = repository.GetAllCoaches()) == null) {
+                        MessageBox.Show("Can`t get info from repository", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Coach didn`t delete", "Message!");
+                }
                 //contracts?
 
             } else {
@@ -41,7 +49,11 @@ namespace BD_Application.Domain.Forms.CoachForms {
                         currentCoach.Name = NameBox.Text;
                         currentCoach.BirthDay = BirthdayBox.Value;
 
-                        repository.ChangeCoach(currentCoach);
+                        if (repository.ChangeCoach(currentCoach)) {
+                            MessageBox.Show("Coach added successfull", "Message!");
+                        } else {
+                            MessageBox.Show("Coach didn`t add", "Message!");
+                        }
 
                     } catch (Exception) {
                         MessageBox.Show("You entered wrong info", "Message!");

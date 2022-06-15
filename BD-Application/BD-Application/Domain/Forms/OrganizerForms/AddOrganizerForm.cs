@@ -14,7 +14,14 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
             if (NameBox.Text != String.Empty) {
                 Organizer organizer = new Organizer(NameBox.Text);
 
-                repository.AddOrganizer(organizer);
+                if (repository.AddOrganizer(organizer)) {
+                    MessageBox.Show("Organizer added successfull", "Message!");
+                    NameBox.Text = String.Empty;
+                } else {
+                    MessageBox.Show("Organizer didn`t add", "Message!");
+                }
+            } else {
+                MessageBox.Show("You didn`t enter all info", "Message!");
             }
         }
     }

@@ -14,6 +14,12 @@
             this.name = name;
             isDelete = false;
         }
+
+        public Organizer(int id) {
+            this.id = id;
+            isDelete = false;
+        }
+
         public Organizer(int id, string name) {
             this.id = id;
             this.name = name;

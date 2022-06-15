@@ -217,6 +217,7 @@
             this.MinimumSize = new System.Drawing.Size(535, 270);
             this.Name = "ChangeTournamentForm";
             this.Text = "Change Tournament";
+            this.Load += new System.EventHandler(this.ChangeTournamentForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

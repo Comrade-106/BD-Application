@@ -71,11 +71,11 @@ namespace BD_Application.DataBase {
         public bool ChangePlayer(Player player) {
             connection.Open();
 
-            string sql = "UPDATE player SET nickname = @nickname, full_name = @full_name, birthday = @birthday, WHERE id = @id;";
+            string sql = "UPDATE player SET nickname = @nickname, full_name = @full_name, birthday = @birthday WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@nickname", MySqlDbType.VarChar).Value = player.NickName;
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = player.Name;
+            cmd.Parameters.Add("@full_name", MySqlDbType.VarChar).Value = player.Name;
             cmd.Parameters.Add("@birthday", MySqlDbType.Date).Value = player.BirthDay.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = player.Id;
 

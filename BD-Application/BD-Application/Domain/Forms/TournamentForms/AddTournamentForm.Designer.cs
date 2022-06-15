@@ -24,17 +24,17 @@
         /// </summary>
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.AddTournamentButton = new System.Windows.Forms.Button();
+            this.PrizePoolBox = new System.Windows.Forms.TextBox();
+            this.PrizePoolLabel = new System.Windows.Forms.Label();
+            this.DateEndLabel = new System.Windows.Forms.Label();
+            this.DateStartLabel = new System.Windows.Forms.Label();
             this.DateEndBox = new System.Windows.Forms.DateTimePicker();
             this.DateStartBox = new System.Windows.Forms.DateTimePicker();
             this.OrganizerBox = new System.Windows.Forms.ComboBox();
             this.OrganizerLabel = new System.Windows.Forms.Label();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
-            this.DateStartLabel = new System.Windows.Forms.Label();
-            this.DateEndLabel = new System.Windows.Forms.Label();
-            this.PrizePoolLabel = new System.Windows.Forms.Label();
-            this.PrizePoolBox = new System.Windows.Forms.TextBox();
-            this.AddTournamentButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,51 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(530, 274);
             this.panel1.TabIndex = 0;
+            // 
+            // AddTournamentButton
+            // 
+            this.AddTournamentButton.Location = new System.Drawing.Point(3, 239);
+            this.AddTournamentButton.Name = "AddTournamentButton";
+            this.AddTournamentButton.Size = new System.Drawing.Size(522, 30);
+            this.AddTournamentButton.TabIndex = 10;
+            this.AddTournamentButton.Text = "Add";
+            this.AddTournamentButton.UseVisualStyleBackColor = true;
+            this.AddTournamentButton.Click += new System.EventHandler(this.AddTournamentButton_Click);
+            // 
+            // PrizePoolBox
+            // 
+            this.PrizePoolBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PrizePoolBox.Location = new System.Drawing.Point(102, 116);
+            this.PrizePoolBox.Name = "PrizePoolBox";
+            this.PrizePoolBox.Size = new System.Drawing.Size(423, 22);
+            this.PrizePoolBox.TabIndex = 9;
+            // 
+            // PrizePoolLabel
+            // 
+            this.PrizePoolLabel.Location = new System.Drawing.Point(3, 116);
+            this.PrizePoolLabel.Name = "PrizePoolLabel";
+            this.PrizePoolLabel.Size = new System.Drawing.Size(93, 22);
+            this.PrizePoolLabel.TabIndex = 8;
+            this.PrizePoolLabel.Text = "Prize Pool";
+            this.PrizePoolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // DateEndLabel
+            // 
+            this.DateEndLabel.Location = new System.Drawing.Point(3, 88);
+            this.DateEndLabel.Name = "DateEndLabel";
+            this.DateEndLabel.Size = new System.Drawing.Size(93, 22);
+            this.DateEndLabel.TabIndex = 7;
+            this.DateEndLabel.Text = "Date End";
+            this.DateEndLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // DateStartLabel
+            // 
+            this.DateStartLabel.Location = new System.Drawing.Point(3, 60);
+            this.DateStartLabel.Name = "DateStartLabel";
+            this.DateStartLabel.Size = new System.Drawing.Size(93, 22);
+            this.DateStartLabel.TabIndex = 6;
+            this.DateStartLabel.Text = "Date Start";
+            this.DateStartLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DateEndBox
             // 
@@ -112,51 +157,6 @@
             this.NameLabel.Text = "Name";
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // DateStartLabel
-            // 
-            this.DateStartLabel.Location = new System.Drawing.Point(3, 60);
-            this.DateStartLabel.Name = "DateStartLabel";
-            this.DateStartLabel.Size = new System.Drawing.Size(93, 22);
-            this.DateStartLabel.TabIndex = 6;
-            this.DateStartLabel.Text = "Date Start";
-            this.DateStartLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // DateEndLabel
-            // 
-            this.DateEndLabel.Location = new System.Drawing.Point(3, 88);
-            this.DateEndLabel.Name = "DateEndLabel";
-            this.DateEndLabel.Size = new System.Drawing.Size(93, 22);
-            this.DateEndLabel.TabIndex = 7;
-            this.DateEndLabel.Text = "Date End";
-            this.DateEndLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PrizePoolLabel
-            // 
-            this.PrizePoolLabel.Location = new System.Drawing.Point(3, 116);
-            this.PrizePoolLabel.Name = "PrizePoolLabel";
-            this.PrizePoolLabel.Size = new System.Drawing.Size(93, 22);
-            this.PrizePoolLabel.TabIndex = 8;
-            this.PrizePoolLabel.Text = "Prize Pool";
-            this.PrizePoolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PrizePoolBox
-            // 
-            this.PrizePoolBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PrizePoolBox.Location = new System.Drawing.Point(102, 116);
-            this.PrizePoolBox.Name = "PrizePoolBox";
-            this.PrizePoolBox.Size = new System.Drawing.Size(423, 22);
-            this.PrizePoolBox.TabIndex = 9;
-            // 
-            // AddTournamentButton
-            // 
-            this.AddTournamentButton.Location = new System.Drawing.Point(3, 239);
-            this.AddTournamentButton.Name = "AddTournamentButton";
-            this.AddTournamentButton.Size = new System.Drawing.Size(522, 30);
-            this.AddTournamentButton.TabIndex = 10;
-            this.AddTournamentButton.Text = "Add";
-            this.AddTournamentButton.UseVisualStyleBackColor = true;
-            this.AddTournamentButton.Click += new System.EventHandler(this.AddTournamentButton_Click);
-            // 
             // AddTournamentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -167,6 +167,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddTournamentForm";
             this.Text = "Add Tournament";
+            this.Load += new System.EventHandler(this.AddTournamentForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

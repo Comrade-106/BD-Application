@@ -11,8 +11,6 @@ namespace BD_Application.DataBase {
         private readonly string password = "root";
         private readonly string dataBase = "csgo_events";
 
-        private readonly DBRepositoryOrganizer organizerRepository = new DBRepositoryOrganizer();
-
         private readonly MySqlConnection connection = null;
 
         public DBRepositoryTournament() {
@@ -42,8 +40,7 @@ namespace BD_Application.DataBase {
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
                     );
-
-                tournament.Organizer = organizerRepository.GetOrganizer(reader.GetInt32("organizer"));
+                tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
 
                 if (reader.GetInt32("isDelete") == 1) {
                     tournament.IsDelete = true;
@@ -53,6 +50,36 @@ namespace BD_Application.DataBase {
 
             connection.Close();
             return list;
+        }
+
+        public Tournament GetTournament(int id) {
+            connection.Open();
+
+            string sql = "SELECT * FROM tournament WHERE id = @id;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+
+            var reader = cmd.ExecuteReader();
+
+            Tournament tournament = null;
+
+            try {
+                while (reader.Read()) {
+                    tournament.Id = reader.GetInt32("id");
+                    tournament.Name = reader.GetString("tournament_name");
+                    tournament.Location = reader.GetString("location");
+                    tournament.DateStart = reader.GetDateTime("start_date");
+                    tournament.DateEnd = reader.GetDateTime("end_date");
+                    tournament.PrizePool = reader.GetDouble("prize_pool");
+                    tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+                    if (reader.GetInt32("isDelete") == 1) {
+                        tournament.IsDelete = true;
+                    }
+                }
+            } catch { }
+
+            connection.Close();
+            return tournament;
         }
 
         public bool AddTournament(Tournament tournament) {
