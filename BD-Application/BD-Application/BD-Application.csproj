@@ -91,6 +91,9 @@
   <ItemGroup>
     <Compile Include="DataBase\DBRepository.cs" />
     <Compile Include="Domain\Coach.cs" />
+    <Compile Include="Domain\Contract.cs" />
+    <Compile Include="Domain\ContractCoach.cs" />
+    <Compile Include="Domain\ContractPlayer.cs" />
     <Compile Include="Domain\Forms\CoachForms\AddCoachForm.cs">
       <SubType>Form</SubType>
     </Compile>
