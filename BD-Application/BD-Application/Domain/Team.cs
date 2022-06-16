@@ -24,6 +24,13 @@ namespace BD_Application.Domain {
             isDelete = false;
         }
 
+        public Team(int id, string name, int worldRank) {
+            this.id = id;
+            this.name = name;
+            this.worldRank = worldRank;
+            isDelete = false;
+        }
+
         public Team(string name, int worldRank, List<Tournament> achievement) {
             this.name = name;
             this.worldRank = worldRank;

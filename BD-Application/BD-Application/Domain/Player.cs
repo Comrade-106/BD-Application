@@ -1,13 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BD_Application.Domain {
     internal class Player : Person {
         private int id;
-        //private List<Contract> contracts;
-        //private Team currectTeam;
+        private bool isDelete;
 
         public int Id { get { return id; } set { id = value; } }
-        
-        public Player(string nickName, string name, DateTime birthDay) : base(nickName, name, birthDay) { }
+
+        public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
+
+        public Player(string nickName, string name, DateTime birthDay) : base(nickName, name, birthDay) {
+            isDelete = false;
+        }
+        public Player(int id, string nickName, string name, DateTime birthDay) : base(nickName, name, birthDay) {
+            this.Id = id;
+            isDelete = false;
+        }
     }
 }

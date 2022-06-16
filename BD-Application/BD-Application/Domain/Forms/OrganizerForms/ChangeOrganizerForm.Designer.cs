@@ -124,6 +124,7 @@
             this.MinimumSize = new System.Drawing.Size(435, 195);
             this.Name = "ChangeOrganizerForm";
             this.Text = "Change Organizer";
+            this.Load += new System.EventHandler(this.ChangeOrganizerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

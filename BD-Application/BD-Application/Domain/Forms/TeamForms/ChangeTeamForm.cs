@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.DataBase;
 
 namespace BD_Application.Domain.Forms.TeamForms {
     public partial class ChangeTeamForm : Form {
         private List<Team> teams;
         private Team currentTeam = null;
+        private readonly IRepositoryTeam repository;
 
         public ChangeTeamForm() {
             InitializeComponent();
-            teams = GetAllTeams();
-            FillTeamBox();
-        }
-
-        private List<Team> GetAllTeams() {
-            List<Team> teams = new List<Team>();
-
-            if (false) { //Get all teams from DB
-                return null;
-            }
-
-            return teams;
+            repository = new DBRepositoryTeam();
         }
 
         private void FillTeamBox() {
@@ -32,7 +23,15 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTeam != null) {
-                //Delete (logic) team
+                if (repository.DeleteTeam(currentTeam)) {
+                    MessageBox.Show("Team deleted successfull", "Message!");
+                    if ((teams = repository.GetAllTeams()) == null) {
+                        MessageBox.Show("Can`t get info from repository", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Team didn`t delete", "Message!");
+                }
                 //contracts?
             } else {
                 MessageBox.Show("You don`t choice team", "Message!");
@@ -72,7 +71,11 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
                     currentTeam.Name = NameBox.Text;
 
-                    //Change team to currentTeam by ID
+                    if (repository.ChangeTeam(currentTeam)) {
+                        MessageBox.Show("Team changed successfull", "Message!");
+                    } else {
+                        MessageBox.Show("Team didn`t change", "Message!");
+                    }
 
                 } else {
                     MessageBox.Show("You don`t choice team", "Message!");
@@ -80,6 +83,14 @@ namespace BD_Application.Domain.Forms.TeamForms {
             } else {
                 MessageBox.Show("You didn`t entered all info", "Message!");
             }
+        }
+
+        private void ChangeTeamForm_Load(object sender, EventArgs e) {
+            if ((teams = repository.GetAllTeams()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Error!");
+                return;
+            }
+            FillTeamBox();
         }
     }
 }

@@ -10,7 +10,8 @@ namespace BD_Application.Domain {
         private DateTime dateStart;
         private DateTime dateEnd;
         private double prizePool;
-        private List<Team> teams;
+        //private List<Team> teams;
+        private bool isDelete;
 
         public int Id { get { return id; } set { id = value; } }
 
@@ -26,16 +27,26 @@ namespace BD_Application.Domain {
 
         public double PrizePool { get { return prizePool; } set { prizePool = value; } }
 
-        public List<Team> Teams { get { return teams; } set { teams = value; } }
+        //public List<Team> Teams { get { return teams; } set { teams = value; } }
 
-        public Tournament(string name, Organizer organizer, string location, DateTime dateStart, DateTime dateEnd, double prizePool, List<Team> teams) {
+        public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
+
+        public Tournament(string name, Organizer organizer, string location, DateTime dateStart, DateTime dateEnd, double prizePool) {
             this.name = name;
             this.organizer = organizer;
             this.location = location;
             this.dateStart = dateStart;
             this.dateEnd = dateEnd;
             this.prizePool = prizePool;
-            this.teams = teams;
+            this.isDelete = false;
+        }
+        public Tournament(int id, string name, string location, DateTime dateStart, DateTime dateEnd, double prizePool) {
+            this.name = name;
+            this.location = location;
+            this.dateStart = dateStart;
+            this.dateEnd = dateEnd;
+            this.prizePool = prizePool;
+            this.isDelete = false;
         }
     }
 }

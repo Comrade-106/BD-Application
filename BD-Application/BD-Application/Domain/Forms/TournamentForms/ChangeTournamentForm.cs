@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.DataBase;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class ChangeTournamentForm : Form {
@@ -8,33 +9,13 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private List<Organizer> organizers;
         private Tournament currentTournament = null;
 
+        private readonly IRepositoryTournanent repositoryTournanent;
+        private readonly IRepositoryOrganizer repositoryOrganizer;
+
         public ChangeTournamentForm() {
             InitializeComponent();
-            if ((tournaments = GetAllTournaments()) == null) {
-                MessageBox.Show("Can`t get info about tournament", "Error!");
-                return;
-            }
-            FillTournamentBox();
-        }
-
-        private List<Tournament> GetAllTournaments() {
-            List<Tournament> tournaments = new List<Tournament>();
-
-            if (false) {    //Get tournament from DB
-                return null;
-            }
-
-            return tournaments;
-        }
-
-        private List<Organizer> GetAllOrganizers() {
-            List<Organizer> organizers = new List<Organizer>();
-
-            if (false) {    //Get organizer from DB
-                return null;
-            }
-
-            return organizers;
+            repositoryTournanent = new DBRepositoryTournament();
+            repositoryOrganizer = new DBRepositoryOrganizer();
         }
 
         private void FillTournamentBox() {
@@ -55,7 +36,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             if (TournamentBox.SelectedItem != null) {
                 currentTournament = (Tournament) TournamentBox.SelectedItem;
 
-                if (currentTournament != null && (organizers = GetAllOrganizers()) != null) {
+                if (currentTournament != null && (organizers = repositoryOrganizer.GetAllOrganizers()) != null) {
                     panel1.Visible = true;
                     NameBox.Text = currentTournament.Name;
 
@@ -76,9 +57,9 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTournament != null) {
-
-                //Delete tournament, chnge bool value
-
+                repositoryTournanent.DeleteTournament(currentTournament);
+            } else {
+                MessageBox.Show("You didn`t choice tournament", "Message!");
             }
         }
 
@@ -94,6 +75,8 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                                 currentTournament.DateStart = DateStartBox.Value;
                                 currentTournament.DateEnd = DateEndBox.Value;
                                 currentTournament.PrizePool = prize;
+
+                                repositoryTournanent.ChangeTournament(currentTournament);
                             } else {
                                 MessageBox.Show("End date can`t be less than start date", "Message!");
                             }
@@ -110,6 +93,14 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             } else {
                 MessageBox.Show("You didn`t choice tournament", "Message!");
             }
+        }
+
+        private void ChangeTournamentForm_Load(object sender, EventArgs e) {
+            if ((tournaments = repositoryTournanent.GetAllTournament()) == null) {
+                MessageBox.Show("Can`t get info about tournament", "Error!");
+                return;
+            }
+            FillTournamentBox();
         }
     }
 }

@@ -1,39 +1,38 @@
-﻿using System;
+﻿using BD_Application.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.CoachForms {
     public partial class ChangeCoachForm : Form {
-        private List<Coach> coaches = new List<Coach>();
+        private List<Coach> coaches;
         private Coach currentCoach = null;
+        private readonly IRepositoryCoach repository;
 
         public ChangeCoachForm() {
             InitializeComponent();
-            coaches = GetAllCoaches();
-            FillCoachBox();
-        }
-
-        private List<Coach> GetAllCoaches() {
-            List<Coach> coaches = new List<Coach>();
-
-            if (false) { //Get all coaches from DB
-                return null;
-            }
-
-            return coaches;
+            repository = new DBRepositoryCoach();
         }
 
         private void FillCoachBox() {
             CoachBox.Items.Clear();
             CoachBox.DataSource = coaches;
-            CoachBox.DisplayMember = "name";
+            CoachBox.DisplayMember = "nickname";
             CoachBox.ValueMember = "id";
         }
 
         private void DeleteCoachButton_Click(object sender, EventArgs e) {
             if (currentCoach != null) {  //Add check contract
 
-                //Delete coach by ID
+                if (repository.DeleteCoach(currentCoach)) {
+                    MessageBox.Show("Coach deleted successfull", "Message!");
+                    if ((coaches = repository.GetAllCoaches()) == null) {
+                        MessageBox.Show("Can`t get info from repository", "Error!");
+                        return;
+                    }
+                } else {
+                    MessageBox.Show("Coach didn`t delete", "Message!");
+                }
                 //contracts?
 
             } else {
@@ -42,14 +41,6 @@ namespace BD_Application.Domain.Forms.CoachForms {
         }
 
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
-            //Change contract
-        }
-
-        private void AddConctactButton_Click(object sender, EventArgs e) {
-            //Add contract
-        }
-
-        private void ChangeConcractButton_Click(object sender, EventArgs e) {
             if (currentCoach != null) {
                 if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthdayBox.Value != null) {
 
@@ -58,7 +49,11 @@ namespace BD_Application.Domain.Forms.CoachForms {
                         currentCoach.Name = NameBox.Text;
                         currentCoach.BirthDay = BirthdayBox.Value;
 
-                        //Change player by ID
+                        if (repository.ChangeCoach(currentCoach)) {
+                            MessageBox.Show("Coach added successfull", "Message!");
+                        } else {
+                            MessageBox.Show("Coach didn`t add", "Message!");
+                        }
 
                     } catch (Exception) {
                         MessageBox.Show("You entered wrong info", "Message!");
@@ -69,6 +64,15 @@ namespace BD_Application.Domain.Forms.CoachForms {
             } else {
                 MessageBox.Show("You didn`t choice the coach", "Message!");
             }
+
+        }
+
+        private void AddConctactButton_Click(object sender, EventArgs e) {
+            //Add contract
+        }
+
+        private void ChangeConcractButton_Click(object sender, EventArgs e) {
+            //Change contract
         }
 
         private void CoachBox_SelectedIndexChanged(object sender, EventArgs e) {
@@ -80,15 +84,20 @@ namespace BD_Application.Domain.Forms.CoachForms {
                     NickNameBox.Text = currentCoach.NickName;
                     NameBox.Text = currentCoach.Name;
                     BirthdayBox.Value = currentCoach.BirthDay;
-
-                    //Change info in DB
-
                 } else {
                     MessageBox.Show("Can`t found player by ID", "Error!");
                 }
             } else {
                 MessageBox.Show("You didn`t choice the coach", "Message!");
             }
+        }
+
+        private void ChangeCoachForm_Load(object sender, EventArgs e) {
+            if ((coaches = repository.GetAllCoaches()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Error!");
+                return;
+            }
+            FillCoachBox();
         }
     }
 }

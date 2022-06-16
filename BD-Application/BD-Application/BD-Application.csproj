@@ -89,7 +89,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase\DBRepository.cs" />
+    <Compile Include="DataBase\DBRepositoryCoach.cs" />
+    <Compile Include="DataBase\DBRepositoryContractCoach.cs" />
+    <Compile Include="DataBase\DBRepositoryContractPlayer.cs" />
+    <Compile Include="DataBase\DBRepositoryMatch.cs" />
+    <Compile Include="DataBase\DBRepositoryOrganizer.cs" />
+    <Compile Include="DataBase\DBRepositoryPlayer.cs" />
+    <Compile Include="DataBase\DBRepositoryStage.cs" />
+    <Compile Include="DataBase\DBRepositoryTeam.cs" />
+    <Compile Include="DataBase\DBRepositoryTournament.cs" />
+    <Compile Include="DataBase\IRepositoryCoach.cs" />
+    <Compile Include="DataBase\IRepositoryContractCoach.cs" />
+    <Compile Include="DataBase\IRepositoryContractPlayer.cs" />
+    <Compile Include="DataBase\IRepositoryMatch.cs" />
+    <Compile Include="DataBase\IRepositoryOrganizer.cs" />
+    <Compile Include="DataBase\IRepositoryPlayer.cs" />
+    <Compile Include="DataBase\IRepositoryStage.cs" />
+    <Compile Include="DataBase\IRepositoryTeam.cs" />
+    <Compile Include="DataBase\IRepositoryTournanent.cs" />
     <Compile Include="Domain\Coach.cs" />
     <Compile Include="Domain\Contract.cs" />
     <Compile Include="Domain\ContractCoach.cs" />
@@ -170,6 +187,7 @@
     <Compile Include="Domain\Organizer.cs" />
     <Compile Include="Domain\Person.cs" />
     <Compile Include="Domain\Player.cs" />
+    <Compile Include="Domain\Stage1.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
     <Compile Include="Domain\TournamentTree\BinaryTree.cs" />
