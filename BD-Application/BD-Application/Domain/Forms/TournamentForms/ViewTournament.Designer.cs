@@ -24,8 +24,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewTournament));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._match7_team1 = new System.Windows.Forms.TextBox();
             this._match7_team2 = new System.Windows.Forms.TextBox();
             this._match6_team2 = new System.Windows.Forms.TextBox();
@@ -56,18 +54,9 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             this._match14_team1 = new System.Windows.Forms.TextBox();
             this._match15_team2 = new System.Windows.Forms.TextBox();
             this._match15_team1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BD_Application.Properties.Resources.TournamentTree;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(665, 609);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // _match7_team1
             // 
@@ -368,6 +357,16 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             this._match15_team1.ReadOnly = true;
             this._match15_team1.Size = new System.Drawing.Size(128, 24);
             this._match15_team1.TabIndex = 59;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BD_Application.Properties.Resources.TournamentTree;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(665, 609);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // ViewTournament
             // 

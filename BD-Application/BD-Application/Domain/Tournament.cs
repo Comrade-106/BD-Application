@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BD_Application.Domain {
     internal class Tournament {
@@ -11,6 +10,7 @@ namespace BD_Application.Domain {
         private DateTime dateEnd;
         private double prizePool;
         //private List<Team> teams;
+        private string tournamentTree;
         private bool isDelete;
 
         public int Id { get { return id; } set { id = value; } }
@@ -30,6 +30,8 @@ namespace BD_Application.Domain {
         //public List<Team> Teams { get { return teams; } set { teams = value; } }
 
         public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
+
+        public string TournamentTree { get => tournamentTree; set => tournamentTree = value; }
 
         public Tournament(string name, Organizer organizer, string location, DateTime dateStart, DateTime dateEnd, double prizePool) {
             this.name = name;
