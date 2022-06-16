@@ -177,6 +177,7 @@
     <Compile Include="Domain\Forms\TournamentForms\ChangeTournamentForm.Designer.cs">
       <DependentUpon>ChangeTournamentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\MatchDataView.cs" />
     <Compile Include="Domain\Forms\TournamentForms\ViewTournament.cs">
       <SubType>Form</SubType>
     </Compile>
