@@ -54,7 +54,22 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             this._match14_team1 = new System.Windows.Forms.TextBox();
             this._match15_team2 = new System.Windows.Forms.TextBox();
             this._match15_team1 = new System.Windows.Forms.TextBox();
+            this._match1InfoButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this._match2InfoButton = new System.Windows.Forms.Button();
+            this._match3InfoButton = new System.Windows.Forms.Button();
+            this._match4InfoButton = new System.Windows.Forms.Button();
+            this._match8InfoButton = new System.Windows.Forms.Button();
+            this._match7InfoButton = new System.Windows.Forms.Button();
+            this._match6InfoButton = new System.Windows.Forms.Button();
+            this._match5InfoButton = new System.Windows.Forms.Button();
+            this._match9InfoButton = new System.Windows.Forms.Button();
+            this._match10InfoButton = new System.Windows.Forms.Button();
+            this._match11InfoButton = new System.Windows.Forms.Button();
+            this._match12InfoButton = new System.Windows.Forms.Button();
+            this._match13InfoButton = new System.Windows.Forms.Button();
+            this._match14InfoButton = new System.Windows.Forms.Button();
+            this._match15InfoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -358,6 +373,16 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             this._match15_team1.Size = new System.Drawing.Size(128, 24);
             this._match15_team1.TabIndex = 59;
             // 
+            // _match1InfoButton
+            // 
+            this._match1InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match1InfoButton.Location = new System.Drawing.Point(139, 66);
+            this._match1InfoButton.Name = "_match1InfoButton";
+            this._match1InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match1InfoButton.TabIndex = 61;
+            this._match1InfoButton.UseVisualStyleBackColor = true;
+            this._match1InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BD_Application.Properties.Resources.TournamentTree;
@@ -368,11 +393,166 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // _match2InfoButton
+            // 
+            this._match2InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match2InfoButton.Location = new System.Drawing.Point(139, 138);
+            this._match2InfoButton.Name = "_match2InfoButton";
+            this._match2InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match2InfoButton.TabIndex = 62;
+            this._match2InfoButton.UseVisualStyleBackColor = true;
+            this._match2InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match3InfoButton
+            // 
+            this._match3InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match3InfoButton.Location = new System.Drawing.Point(139, 210);
+            this._match3InfoButton.Name = "_match3InfoButton";
+            this._match3InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match3InfoButton.TabIndex = 63;
+            this._match3InfoButton.UseVisualStyleBackColor = true;
+            this._match3InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match4InfoButton
+            // 
+            this._match4InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match4InfoButton.Location = new System.Drawing.Point(139, 282);
+            this._match4InfoButton.Name = "_match4InfoButton";
+            this._match4InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match4InfoButton.TabIndex = 64;
+            this._match4InfoButton.UseVisualStyleBackColor = true;
+            this._match4InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match8InfoButton
+            // 
+            this._match8InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match8InfoButton.Location = new System.Drawing.Point(139, 570);
+            this._match8InfoButton.Name = "_match8InfoButton";
+            this._match8InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match8InfoButton.TabIndex = 68;
+            this._match8InfoButton.UseVisualStyleBackColor = true;
+            this._match8InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match7InfoButton
+            // 
+            this._match7InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match7InfoButton.Location = new System.Drawing.Point(139, 498);
+            this._match7InfoButton.Name = "_match7InfoButton";
+            this._match7InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match7InfoButton.TabIndex = 67;
+            this._match7InfoButton.UseVisualStyleBackColor = true;
+            this._match7InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match6InfoButton
+            // 
+            this._match6InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match6InfoButton.Location = new System.Drawing.Point(139, 426);
+            this._match6InfoButton.Name = "_match6InfoButton";
+            this._match6InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match6InfoButton.TabIndex = 66;
+            this._match6InfoButton.UseVisualStyleBackColor = true;
+            this._match6InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match5InfoButton
+            // 
+            this._match5InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match5InfoButton.Location = new System.Drawing.Point(139, 354);
+            this._match5InfoButton.Name = "_match5InfoButton";
+            this._match5InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match5InfoButton.TabIndex = 65;
+            this._match5InfoButton.UseVisualStyleBackColor = true;
+            this._match5InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match9InfoButton
+            // 
+            this._match9InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match9InfoButton.Location = new System.Drawing.Point(309, 102);
+            this._match9InfoButton.Name = "_match9InfoButton";
+            this._match9InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match9InfoButton.TabIndex = 69;
+            this._match9InfoButton.UseVisualStyleBackColor = true;
+            this._match9InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match10InfoButton
+            // 
+            this._match10InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match10InfoButton.Location = new System.Drawing.Point(309, 246);
+            this._match10InfoButton.Name = "_match10InfoButton";
+            this._match10InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match10InfoButton.TabIndex = 70;
+            this._match10InfoButton.UseVisualStyleBackColor = true;
+            this._match10InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match11InfoButton
+            // 
+            this._match11InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match11InfoButton.Location = new System.Drawing.Point(309, 390);
+            this._match11InfoButton.Name = "_match11InfoButton";
+            this._match11InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match11InfoButton.TabIndex = 71;
+            this._match11InfoButton.UseVisualStyleBackColor = true;
+            this._match11InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match12InfoButton
+            // 
+            this._match12InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match12InfoButton.Location = new System.Drawing.Point(309, 534);
+            this._match12InfoButton.Name = "_match12InfoButton";
+            this._match12InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match12InfoButton.TabIndex = 72;
+            this._match12InfoButton.UseVisualStyleBackColor = true;
+            this._match12InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match13InfoButton
+            // 
+            this._match13InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match13InfoButton.Location = new System.Drawing.Point(478, 174);
+            this._match13InfoButton.Name = "_match13InfoButton";
+            this._match13InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match13InfoButton.TabIndex = 73;
+            this._match13InfoButton.UseVisualStyleBackColor = true;
+            this._match13InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match14InfoButton
+            // 
+            this._match14InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match14InfoButton.Location = new System.Drawing.Point(478, 462);
+            this._match14InfoButton.Name = "_match14InfoButton";
+            this._match14InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match14InfoButton.TabIndex = 74;
+            this._match14InfoButton.UseVisualStyleBackColor = true;
+            this._match14InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
+            // _match15InfoButton
+            // 
+            this._match15InfoButton.Image = global::BD_Application.Properties.Resources.icons8_info_24;
+            this._match15InfoButton.Location = new System.Drawing.Point(651, 318);
+            this._match15InfoButton.Name = "_match15InfoButton";
+            this._match15InfoButton.Size = new System.Drawing.Size(26, 48);
+            this._match15InfoButton.TabIndex = 75;
+            this._match15InfoButton.UseVisualStyleBackColor = true;
+            this._match15InfoButton.Click += new System.EventHandler(this.OnShowMatchButtonClick);
+            // 
             // ViewTournament
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 631);
+            this.Controls.Add(this._match15InfoButton);
+            this.Controls.Add(this._match14InfoButton);
+            this.Controls.Add(this._match13InfoButton);
+            this.Controls.Add(this._match12InfoButton);
+            this.Controls.Add(this._match11InfoButton);
+            this.Controls.Add(this._match10InfoButton);
+            this.Controls.Add(this._match9InfoButton);
+            this.Controls.Add(this._match8InfoButton);
+            this.Controls.Add(this._match7InfoButton);
+            this.Controls.Add(this._match6InfoButton);
+            this.Controls.Add(this._match5InfoButton);
+            this.Controls.Add(this._match4InfoButton);
+            this.Controls.Add(this._match3InfoButton);
+            this.Controls.Add(this._match2InfoButton);
+            this.Controls.Add(this._match1InfoButton);
             this.Controls.Add(this._match15_team2);
             this.Controls.Add(this._match15_team1);
             this.Controls.Add(this._match14_team2);
@@ -445,5 +625,20 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private System.Windows.Forms.TextBox _match14_team1;
         private System.Windows.Forms.TextBox _match15_team2;
         private System.Windows.Forms.TextBox _match15_team1;
+        private System.Windows.Forms.Button _match1InfoButton;
+        private System.Windows.Forms.Button _match2InfoButton;
+        private System.Windows.Forms.Button _match3InfoButton;
+        private System.Windows.Forms.Button _match4InfoButton;
+        private System.Windows.Forms.Button _match8InfoButton;
+        private System.Windows.Forms.Button _match7InfoButton;
+        private System.Windows.Forms.Button _match6InfoButton;
+        private System.Windows.Forms.Button _match5InfoButton;
+        private System.Windows.Forms.Button _match9InfoButton;
+        private System.Windows.Forms.Button _match10InfoButton;
+        private System.Windows.Forms.Button _match11InfoButton;
+        private System.Windows.Forms.Button _match12InfoButton;
+        private System.Windows.Forms.Button _match13InfoButton;
+        private System.Windows.Forms.Button _match14InfoButton;
+        private System.Windows.Forms.Button _match15InfoButton;
     }
 }

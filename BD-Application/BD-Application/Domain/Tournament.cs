@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace BD_Application.Domain {
-    internal class Tournament {
+    public class Tournament {
         private int id;
         private string name;
         private Organizer organizer;

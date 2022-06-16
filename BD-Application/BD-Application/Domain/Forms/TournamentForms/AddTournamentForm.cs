@@ -6,12 +6,12 @@ using BD_Application.DataBase;
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
         private readonly List<Organizer> organizers;
-        private  List<Team> teams;
+        private List<Team> teams;
         private Tournament currentTournament = null;
         private List<Team> selectedTeams;
         private int count;
 
-        private IRepositoryTournanent repositoryTournanent;
+        private IRepositoryTournament repositoryTournanent;
         private IRepositoryOrganizer repositoryOrganizer;
         private IRepositoryTeam repositoryTeam;
 

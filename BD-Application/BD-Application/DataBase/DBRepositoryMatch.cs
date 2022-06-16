@@ -31,7 +31,7 @@ namespace BD_Application.DataBase {
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@id_tournament", MySqlDbType.Int32).Value = match.TournamentID;
-            cmd.Parameters.Add("@stage", MySqlDbType.Int32).Value = match.MatchStage;       ///???????
+            cmd.Parameters.Add("@stage", MySqlDbType.Int32).Value = ((int)match.MatchStage);       ///???????
             cmd.Parameters.Add("@first_team", MySqlDbType.Int32).Value = match.IdFirstTeam;
             cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;
             cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;

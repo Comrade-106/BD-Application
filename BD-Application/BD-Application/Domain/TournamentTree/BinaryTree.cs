@@ -61,26 +61,6 @@ namespace BD_Application.Domain.TournamentTree {
         }
 
         /// <summary>
-        /// Поиск узла по значению
-        /// </summary>
-        /// <param name="data">Искомое значение</param>
-        /// <param name="startWithNode">Узел начала поиска</param>
-        /// <returns>Найденный узел</returns>
-        public BinaryTreeNode FindNodeByMatch(int data, BinaryTreeNode startWithNode = null) {
-            startWithNode = startWithNode ?? RootNode;
-            int result;
-            return (result = data.CompareTo(startWithNode.Data)) == 0
-                ? startWithNode
-                : result < 0
-                    ? startWithNode.LeftNode == null
-                        ? null
-                        : FindNode(data, startWithNode.LeftNode)
-                    : startWithNode.RightNode == null
-                        ? null
-                        : FindNode(data, startWithNode.RightNode);
-        }
-
-        /// <summary>
         /// Вывод бинарного дерева
         /// </summary>
         public void PrintTree() {
@@ -96,7 +76,7 @@ namespace BD_Application.Domain.TournamentTree {
         private void PrintTree(BinaryTreeNode startNode, string indent = "", Side? side = null) {
             if (startNode != null) {
                 var nodeSide = side == null ? "+" : side == Side.Left ? "L" : "R";
-                Console.WriteLine($"{indent} [{nodeSide}]- {startNode.Data};\t Match: {startNode.MatchID}");
+                Console.WriteLine($"{indent} [{nodeSide}]- {startNode.Data};");
                 indent += new string(' ', 3);
                 //рекурсивный вызов для левой и правой веток
                 PrintTree(startNode.LeftNode, indent, Side.Left);
