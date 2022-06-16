@@ -41,7 +41,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                     NameBox.Text = currentTournament.Name;
 
                     FillOraganizerBox();
-                    OrganizerBox.SelectedText = currentTournament.Organizer.Name;
+                    OrganizerBox.SelectedValue = currentTournament.Organizer.Id;
 
                     DateStartBox.Value = currentTournament.DateStart;
                     DateEndBox.Value = currentTournament.DateEnd;
