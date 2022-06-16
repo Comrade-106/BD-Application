@@ -5,15 +5,39 @@ using System.Windows.Forms;
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
         private readonly List<Organizer> organizers;
+        private  List<Team> teams;
         private Tournament currentTournament = null;
+        private List<Team> selectedTeams;
+        private int count;
 
         public AddTournamentForm() {
             InitializeComponent();
+
             if ((organizers = GetAllOrganizers()) == null) {
                 MessageBox.Show("Can`t get info about organizer from DB", "Error!");
                 return;
             }
+
+            if ((teams = GetAllTeams()) == null) {
+                MessageBox.Show("Can`t get info about teams from DB", "Error!");
+                return;
+            }
+
             FillOrganizersBox();
+            FillTeamsBox();
+
+            selectedTeams = new List<Team>();
+            count = 0;
+        }
+
+        private List<Team> GetAllTeams() {
+            var teams = new List<Team>();
+
+            if (false) {//get organizers from db
+                return null;
+            }
+            
+            return teams;
         }
 
         private List<Organizer> GetAllOrganizers() {
@@ -31,6 +55,13 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             OrganizerBox.DataSource = organizers;
             OrganizerBox.DisplayMember = "name";
             OrganizerBox.ValueMember = "id";
+        }
+
+        private void FillTeamsBox() {
+            _teamsList.Items.Clear();
+            _teamsList.DataSource = teams;
+            _teamsList.DisplayMember = "name";
+            _teamsList.ValueMember = "id";
         }
 
         private void AddTournamentButton_Click(object sender, EventArgs e) {
@@ -56,6 +87,19 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             } else {
                 MessageBox.Show("You entered not all info ", "Message!");
             }
+        }
+
+        private void AddTeamButton_Click(object sender, EventArgs e) {
+            count++;
+            if (count >= 16) AddTeamButton.Enabled = false;
+
+            Team temp = teams.Find(x => x.Id == Convert.ToInt32(_teamsList.SelectedValue));
+            selectedTeams.Add(temp);
+            teams.Remove(temp);
+
+            _teamsGridView.Rows.Add(new object[]{ temp.WorldRank, temp.Name });
+
+            FillTeamsBox();
         }
     }
 }
