@@ -22,7 +22,6 @@ namespace BD_Application.Domain.TournamentTree {
             var matches = CreateMatches(teams);
 
             foreach(var stage in _stages) {
-                int i = 0;
                 foreach (var item in stage.Value) {
                     var node = tree.FindNode(item);
                     node.MatchID = matches[stage.Key][item].Id;

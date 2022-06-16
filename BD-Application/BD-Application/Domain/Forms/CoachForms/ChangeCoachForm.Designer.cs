@@ -79,7 +79,7 @@
             this.ChangePlayerButton.TabIndex = 28;
             this.ChangePlayerButton.Text = "Change";
             this.ChangePlayerButton.UseVisualStyleBackColor = true;
-            this.ChangePlayerButton.Click += new System.EventHandler(this.ChangePlayerButton_Click);
+            this.ChangePlayerButton.Click += new System.EventHandler(this.ChangeCoachButton_Click);
             // 
             // panel1
             // 
@@ -118,9 +118,9 @@
             this.ChangeConcractButton.Name = "ChangeConcractButton";
             this.ChangeConcractButton.Size = new System.Drawing.Size(184, 29);
             this.ChangeConcractButton.TabIndex = 14;
-            this.ChangeConcractButton.Text = "Change Contract";
+            this.ChangeConcractButton.Text = "Terminate Contract";
             this.ChangeConcractButton.UseVisualStyleBackColor = true;
-            this.ChangeConcractButton.Click += new System.EventHandler(this.ChangeConcractButton_Click);
+            this.ChangeConcractButton.Click += new System.EventHandler(this.TerminateConcractButton_Click);
             // 
             // BirthdayLabel
             // 

@@ -89,24 +89,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase\DBRepositoryCoach.cs" />
-    <Compile Include="DataBase\DBRepositoryContractCoach.cs" />
-    <Compile Include="DataBase\DBRepositoryContractPlayer.cs" />
-    <Compile Include="DataBase\DBRepositoryMatch.cs" />
-    <Compile Include="DataBase\DBRepositoryOrganizer.cs" />
-    <Compile Include="DataBase\DBRepositoryPlayer.cs" />
-    <Compile Include="DataBase\DBRepositoryStage.cs" />
-    <Compile Include="DataBase\DBRepositoryTeam.cs" />
-    <Compile Include="DataBase\DBRepositoryTournament.cs" />
-    <Compile Include="DataBase\IRepositoryCoach.cs" />
-    <Compile Include="DataBase\IRepositoryContractCoach.cs" />
-    <Compile Include="DataBase\IRepositoryContractPlayer.cs" />
-    <Compile Include="DataBase\IRepositoryMatch.cs" />
-    <Compile Include="DataBase\IRepositoryOrganizer.cs" />
-    <Compile Include="DataBase\IRepositoryPlayer.cs" />
-    <Compile Include="DataBase\IRepositoryStage.cs" />
-    <Compile Include="DataBase\IRepositoryTeam.cs" />
-    <Compile Include="DataBase\IRepositoryTournanent.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryCoach.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryContractCoach.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryContractPlayer.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryMatch.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryOrganizer.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryPlayer.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryStage.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryTeam.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryTournament.cs" />
+    <Compile Include="Repository\IRepositoryCoach.cs" />
+    <Compile Include="Repository\IRepositoryContractCoach.cs" />
+    <Compile Include="Repository\IRepositoryContractPlayer.cs" />
+    <Compile Include="Repository\IRepositoryMatch.cs" />
+    <Compile Include="Repository\IRepositoryOrganizer.cs" />
+    <Compile Include="Repository\IRepositoryPlayer.cs" />
+    <Compile Include="Repository\IRepositoryStage.cs" />
+    <Compile Include="Repository\IRepositoryTeam.cs" />
+    <Compile Include="Repository\IRepositoryTournanent.cs" />
     <Compile Include="Domain\Coach.cs" />
     <Compile Include="Domain\Contract.cs" />
     <Compile Include="Domain\ContractCoach.cs" />
@@ -122,6 +122,18 @@
     </Compile>
     <Compile Include="Domain\Forms\CoachForms\ChangeCoachForm.Designer.cs">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\ContractCoachTeamForms\AddCoachTeamContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\ContractCoachTeamForms\AddCoachTeamContract.Designer.cs">
+      <DependentUpon>AddCoachTeamContract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\ContractPlayerTeamForms\AddPlayerTeamContractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\ContractPlayerTeamForms\AddPlayerTeamContractForm.Designer.cs">
+      <DependentUpon>AddPlayerTeamContractForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Forms\MainMenu.cs">
       <SubType>Form</SubType>
@@ -203,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\CoachForms\ChangeCoachForm.resx">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\ContractCoachTeamForms\AddCoachTeamContract.resx">
+      <DependentUpon>AddCoachTeamContract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\ContractPlayerTeamForms\AddPlayerTeamContractForm.resx">
+      <DependentUpon>AddPlayerTeamContractForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

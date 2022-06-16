@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BD_Application.Domain;
+﻿using BD_Application.Domain;
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 
-namespace BD_Application.DataBase {
+namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryMatch : IRepositoryMatch {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
@@ -24,14 +21,42 @@ namespace BD_Application.DataBase {
             }
         }
 
+        public List<Match> GetAllMatch(int id_tournament) {
+            List<Match> list = new List<Match>();
+            connection.Open();
+
+            string sql = "SELECT * FROM match WHERE id_tournament = @id;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id_tournament;
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                Match match = new Match(
+                    reader.GetInt32("id_match"),
+                    reader.GetInt32("id_tournament"),
+                    reader.GetDateTime("date"),
+                    reader.GetInt32("first_team"),
+                    reader.GetInt32("second_team"),
+                    reader.GetString("result")
+                    );
+                list.Add(match);
+            }
+
+            connection.Close();
+            return list;
+        }
+
         public bool AddMatch(Match match) {
             connection.Open();
 
-            string sql = "INSERT INTO match VALUES(NULL, @id_tournament, @stage, @first_team, @second_team, @result);";
+            string sql = "INSERT INTO match VALUES(NULL, @id_tournament, @stage, @date, @first_team, @second_team, @result);";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@id_tournament", MySqlDbType.Int32).Value = match.TournamentID;
-            cmd.Parameters.Add("@stage", MySqlDbType.Int32).Value = match.MatchStage;       ///???????
+            cmd.Parameters.Add("@date", MySqlDbType.Int32).Value = match.MatchStage;
+            cmd.Parameters.Add("@stage", MySqlDbType.DateTime).Value = match.DateTimeMatch;
             cmd.Parameters.Add("@first_team", MySqlDbType.Int32).Value = match.IdFirstTeam;
             cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;
             cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;
@@ -40,6 +65,31 @@ namespace BD_Application.DataBase {
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
                 return false;
+            }
+
+            connection.Close();
+            return true;
+        }
+
+        public bool AddMatches(List<Match> matches) {
+            connection.Open();
+
+            foreach (Match match in matches) {
+                string sql = "INSERT INTO match VALUES(NULL, @id_tournament, @stage, @date, @first_team, @second_team, @result);";
+
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                cmd.Parameters.Add("@id_tournament", MySqlDbType.Int32).Value = match.TournamentID;
+                cmd.Parameters.Add("@date", MySqlDbType.Int32).Value = match.MatchStage;
+                cmd.Parameters.Add("@stage", MySqlDbType.DateTime).Value = match.DateTimeMatch;
+                cmd.Parameters.Add("@first_team", MySqlDbType.Int32).Value = match.IdFirstTeam;
+                cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;
+                cmd.Parameters.Add("@second_team", MySqlDbType.Int32).Value = match.IdSecondTeam;
+                cmd.Parameters.Add("@result", MySqlDbType.VarChar).Value = match.MatchResult;
+
+                if (cmd.ExecuteNonQuery() != 1) {
+                    connection.Close();
+                    return false;
+                }
             }
 
             connection.Close();
@@ -80,7 +130,8 @@ namespace BD_Application.DataBase {
             while (reader.Read()) {
                 match.Id = reader.GetInt32("id");
                 match.TournamentID = reader.GetInt32("id_tournament");
-                //match.MatchStage = reader.GetInt32("stage");
+                match.DateTimeMatch = reader.GetDateTime("date");
+                match.MatchStage = reader.GetInt32("stage");
                 match.IdFirstTeam = reader.GetInt32("first_team");
                 match.IdSecondTeam = reader.GetInt32("second_team");
                 match.MatchResult = reader.GetString("result");

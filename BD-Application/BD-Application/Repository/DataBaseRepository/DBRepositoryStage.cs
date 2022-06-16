@@ -2,7 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 
-namespace BD_Application.DataBase {
+namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryStage : IRepositoryStage {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;

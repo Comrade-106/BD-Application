@@ -1,46 +1,67 @@
-﻿using BD_Application.DataBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.Domain.Forms.ContractCoachTeamForms;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.CoachForms {
     public partial class ChangeCoachForm : Form {
         private List<Coach> coaches;
         private Coach currentCoach = null;
         private readonly IRepositoryCoach repository;
+        private readonly IRepositoryContractCoach repositoryContract;
 
         public ChangeCoachForm() {
             InitializeComponent();
             repository = new DBRepositoryCoach();
+            repositoryContract = new DBRepositoryContractCoach();
         }
 
         private void FillCoachBox() {
-            CoachBox.Items.Clear();
+            CoachBox.DataSource = null;
             CoachBox.DataSource = coaches;
             CoachBox.DisplayMember = "nickname";
             CoachBox.ValueMember = "id";
         }
 
         private void DeleteCoachButton_Click(object sender, EventArgs e) {
-            if (currentCoach != null) {  //Add check contract
-
+            if (currentCoach != null) {
+                var contract = repositoryContract.GetActiveContract(currentCoach.Id);
+                if (contract != null) {
+                    DialogResult result = MessageBox.Show(
+                        "The coach have active contract with team. Determinate this contract?",
+                        "Message!",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Information,
+                         MessageBoxDefaultButton.Button1,
+                         MessageBoxOptions.DefaultDesktopOnly
+                    );
+                    if (result == DialogResult.Yes) {
+                        if (repositoryContract.DeleteContractCoach(contract)) {
+                            MessageBox.Show("The contract deleted successfull", "Message!");
+                        } else {
+                            MessageBox.Show("The contract didn`t delete", "Message!");
+                        }
+                    } else {
+                        return;
+                    }
+                }
                 if (repository.DeleteCoach(currentCoach)) {
-                    MessageBox.Show("Coach deleted successfull", "Message!");
+                    MessageBox.Show("The coach deleted successfull", "Message!");
                     if ((coaches = repository.GetAllCoaches()) == null) {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
                 } else {
-                    MessageBox.Show("Coach didn`t delete", "Message!");
+                    MessageBox.Show("The coach didn`t delete", "Message!");
                 }
-                //contracts?
-
             } else {
-                MessageBox.Show("You didn`t choice the coach", "Message!");
+                MessageBox.Show("You didn`t choice a coach", "Message!");
             }
         }
 
-        private void ChangePlayerButton_Click(object sender, EventArgs e) {
+        private void ChangeCoachButton_Click(object sender, EventArgs e) {
             if (currentCoach != null) {
                 if (NickNameBox.Text != String.Empty && NameBox.Text != String.Empty && BirthdayBox.Value != null) {
 
@@ -50,9 +71,9 @@ namespace BD_Application.Domain.Forms.CoachForms {
                         currentCoach.BirthDay = BirthdayBox.Value;
 
                         if (repository.ChangeCoach(currentCoach)) {
-                            MessageBox.Show("Coach added successfull", "Message!");
+                            MessageBox.Show("Coach`s info changed successfull", "Message!");
                         } else {
-                            MessageBox.Show("Coach didn`t add", "Message!");
+                            MessageBox.Show("Coach`s info changed successfull", "Message!");
                         }
 
                     } catch (Exception) {
@@ -62,17 +83,35 @@ namespace BD_Application.Domain.Forms.CoachForms {
                     MessageBox.Show("You didn`t enter all info", "Message!");
                 }
             } else {
-                MessageBox.Show("You didn`t choice the coach", "Message!");
+                MessageBox.Show("You didn`t choice a coach", "Message!");
             }
 
         }
 
         private void AddConctactButton_Click(object sender, EventArgs e) {
-            //Add contract
+            if (currentCoach != null) {
+                AddCoachTeamContract form = new AddCoachTeamContract(currentCoach.Id);
+                form.ShowDialog();
+            } else {
+                MessageBox.Show("You didn`t choice a coach", "Message!");
+            }
         }
 
-        private void ChangeConcractButton_Click(object sender, EventArgs e) {
-            //Change contract
+        private void TerminateConcractButton_Click(object sender, EventArgs e) {
+            if (currentCoach != null) {
+                var contract = repositoryContract.GetActiveContract(currentCoach.Id);
+                if (contract != null) {
+                    if (repositoryContract.DeleteContractCoach(contract)) {
+                        MessageBox.Show("The contract deleted successfull", "Message!");
+                    } else {
+                        MessageBox.Show("The contract didn`t delete", "Message!");
+                    }
+                } else {
+                    MessageBox.Show("The coach didn`t have active contract", "Message!");
+                }
+            } else {
+                MessageBox.Show("You didn`t choice a coach", "Message!");
+            }
         }
 
         private void CoachBox_SelectedIndexChanged(object sender, EventArgs e) {
@@ -88,7 +127,7 @@ namespace BD_Application.Domain.Forms.CoachForms {
                     MessageBox.Show("Can`t found player by ID", "Error!");
                 }
             } else {
-                MessageBox.Show("You didn`t choice the coach", "Message!");
+                MessageBox.Show("You didn`t choice a coach", "Message!");
             }
         }
 

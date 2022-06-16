@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TeamForms {
     public partial class ChangeTeamForm : Form {
@@ -15,7 +16,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
         }
 
         private void FillTeamBox() {
-            TeamBox.Items.Clear();
+            TeamBox.DataSource = null;
             TeamBox.DataSource = teams;
             TeamBox.DisplayMember = "name";
             TeamBox.ValueMember = "id";
@@ -24,17 +25,18 @@ namespace BD_Application.Domain.Forms.TeamForms {
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTeam != null) {
                 if (repository.DeleteTeam(currentTeam)) {
-                    MessageBox.Show("Team deleted successfull", "Message!");
+                    MessageBox.Show("The team deleted successfull", "Message!");
                     if ((teams = repository.GetAllTeams()) == null) {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
                 } else {
-                    MessageBox.Show("Team didn`t delete", "Message!");
+                    MessageBox.Show("The team didn`t delete", "Message!");
                 }
+            
                 //contracts?
             } else {
-                MessageBox.Show("You don`t choice team", "Message!");
+                MessageBox.Show("You didn`t choice a team", "Message!");
             }
         }
 
@@ -50,7 +52,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
                     MessageBox.Show("You entered wrong info", "Error!");
                 }
             } else {
-                MessageBox.Show("You don`t choice team", "Message!");
+                MessageBox.Show("You didn`t choice a team", "Message!");
             }
         }
 
@@ -60,7 +62,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
                     if (int.TryParse(WorldRankBox.Text, out int rank)) {
                         if (rank <= 0) {
-                            MessageBox.Show("Rank can`t be less than '1'", "Message!");
+                            MessageBox.Show("A rank can`t be less than '1'", "Message!");
                             return;
                         }
                         currentTeam.WorldRank = rank;
@@ -72,13 +74,13 @@ namespace BD_Application.Domain.Forms.TeamForms {
                     currentTeam.Name = NameBox.Text;
 
                     if (repository.ChangeTeam(currentTeam)) {
-                        MessageBox.Show("Team changed successfull", "Message!");
+                        MessageBox.Show("Team`s info changed successfull", "Message!");
                     } else {
-                        MessageBox.Show("Team didn`t change", "Message!");
+                        MessageBox.Show("Team`s info didn`t change", "Message!");
                     }
 
                 } else {
-                    MessageBox.Show("You don`t choice team", "Message!");
+                    MessageBox.Show("You didn`t choice a team", "Message!");
                 }
             } else {
                 MessageBox.Show("You didn`t entered all info", "Message!");
