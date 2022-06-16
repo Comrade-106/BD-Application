@@ -15,7 +15,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private IRepositoryOrganizer repositoryOrganizer;
         private IRepositoryTeam repositoryTeam;
 
-
         public AddTournamentForm() {
             InitializeComponent();
             repositoryTournanent = new DBRepositoryTournament();
@@ -40,14 +39,14 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         }
 
         private void FillOrganizersBox() {
-            OrganizerBox.Items.Clear();
+            OrganizerBox.DataSource = null;
             OrganizerBox.DataSource = organizers;
             OrganizerBox.DisplayMember = "name";
             OrganizerBox.ValueMember = "id";
         }
 
         private void FillTeamsBox() {
-            _teamsList.Items.Clear();
+            _teamsList.DataSource = null;
             _teamsList.DataSource = teams;
             _teamsList.DisplayMember = "name";
             _teamsList.ValueMember = "id";
