@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BD_Application.DataBase;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
-<<<<<<< HEAD
         private readonly List<Organizer> organizers;
         private  List<Team> teams;
-=======
-        private List<Organizer> organizers;
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
         private Tournament currentTournament = null;
         private List<Team> selectedTeams;
         private int count;
 
-        private readonly IRepositoryTournanent repositoryTournanent;
-        private readonly IRepositoryOrganizer repositoryOrganizer;
-
         public AddTournamentForm() {
             InitializeComponent();
-<<<<<<< HEAD
 
             if ((organizers = GetAllOrganizers()) == null) {
                 MessageBox.Show("Can`t get info about organizer from DB", "Error!");
@@ -57,10 +48,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             }
 
             return organizers;
-=======
-            repositoryTournanent = new DBRepositoryTournament();
-            repositoryOrganizer = new DBRepositoryOrganizer();
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
         }
 
         private void FillOrganizersBox() {
@@ -88,8 +75,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                             currentTournament.DateStart = DateStartBox.Value;
                             currentTournament.DateEnd = DateEndBox.Value;
                             currentTournament.PrizePool = prize;
-
-                            repositoryTournanent.AddTournament(currentTournament);
                         } else {
                             MessageBox.Show("End date can`t be less than start date", "Message!");
                         }
@@ -104,7 +89,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             }
         }
 
-<<<<<<< HEAD
         private void AddTeamButton_Click(object sender, EventArgs e) {
             count++;
             if (count >= 16) AddTeamButton.Enabled = false;
@@ -116,14 +100,6 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             _teamsGridView.Rows.Add(new object[]{ temp.WorldRank, temp.Name });
 
             FillTeamsBox();
-=======
-        private void AddTournamentForm_Load(object sender, EventArgs e) {
-            if ((organizers = repositoryOrganizer.GetAllOrganizers()) == null) {
-                MessageBox.Show("Can`t get info about organizer from DB", "Error!");
-                return;
-            }
-            FillOrganizersBox();
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
         }
     }
 }

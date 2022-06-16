@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
-<<<<<<< HEAD
             this.panel2 = new System.Windows.Forms.Panel();
             this._teamsGridView = new System.Windows.Forms.DataGridView();
             this._worldRankCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -32,8 +31,6 @@
             this.AddTeamButton = new System.Windows.Forms.Button();
             this._teamsList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-=======
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
             this.AddTournamentButton = new System.Windows.Forms.Button();
             this.PrizePoolBox = new System.Windows.Forms.TextBox();
             this.PrizePoolLabel = new System.Windows.Forms.Label();
@@ -73,9 +70,9 @@
             this.panel1.Size = new System.Drawing.Size(968, 329);
             this.panel1.TabIndex = 0;
             // 
-<<<<<<< HEAD
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this._teamsGridView);
             this.panel2.Controls.Add(this.AddTeamButton);
             this.panel2.Controls.Add(this._teamsList);
@@ -144,8 +141,6 @@
             this.label1.Text = "Команда";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-=======
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
             // AddTournamentButton
             // 
             this.AddTournamentButton.Location = new System.Drawing.Point(3, 239);
@@ -161,11 +156,7 @@
             this.PrizePoolBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PrizePoolBox.Location = new System.Drawing.Point(102, 116);
             this.PrizePoolBox.Name = "PrizePoolBox";
-<<<<<<< HEAD
             this.PrizePoolBox.Size = new System.Drawing.Size(423, 26);
-=======
-            this.PrizePoolBox.Size = new System.Drawing.Size(423, 22);
->>>>>>> ae5cf15983ff06a829327c07acb41dd2db809e08
             this.PrizePoolBox.TabIndex = 9;
             // 
             // PrizePoolLabel
@@ -257,7 +248,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddTournamentForm";
             this.Text = "Add Tournament";
-            this.Load += new System.EventHandler(this.AddTournamentForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
