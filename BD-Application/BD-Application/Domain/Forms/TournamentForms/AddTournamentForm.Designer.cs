@@ -129,7 +129,7 @@
             this._teamsList.FormattingEnabled = true;
             this._teamsList.Location = new System.Drawing.Point(102, 3);
             this._teamsList.Name = "_teamsList";
-            this._teamsList.Size = new System.Drawing.Size(315, 27);
+            this._teamsList.Size = new System.Drawing.Size(315, 23);
             this._teamsList.TabIndex = 5;
             // 
             // label1
@@ -156,7 +156,7 @@
             this.PrizePoolBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PrizePoolBox.Location = new System.Drawing.Point(102, 116);
             this.PrizePoolBox.Name = "PrizePoolBox";
-            this.PrizePoolBox.Size = new System.Drawing.Size(423, 26);
+            this.PrizePoolBox.Size = new System.Drawing.Size(423, 22);
             this.PrizePoolBox.TabIndex = 9;
             // 
             // PrizePoolLabel
@@ -191,7 +191,7 @@
             this.DateEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateEndBox.Location = new System.Drawing.Point(102, 88);
             this.DateEndBox.Name = "DateEndBox";
-            this.DateEndBox.Size = new System.Drawing.Size(423, 26);
+            this.DateEndBox.Size = new System.Drawing.Size(423, 22);
             this.DateEndBox.TabIndex = 5;
             this.DateEndBox.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -200,7 +200,7 @@
             this.DateStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateStartBox.Location = new System.Drawing.Point(102, 60);
             this.DateStartBox.Name = "DateStartBox";
-            this.DateStartBox.Size = new System.Drawing.Size(423, 26);
+            this.DateStartBox.Size = new System.Drawing.Size(423, 22);
             this.DateStartBox.TabIndex = 4;
             this.DateStartBox.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -209,7 +209,7 @@
             this.OrganizerBox.FormattingEnabled = true;
             this.OrganizerBox.Location = new System.Drawing.Point(102, 31);
             this.OrganizerBox.Name = "OrganizerBox";
-            this.OrganizerBox.Size = new System.Drawing.Size(423, 27);
+            this.OrganizerBox.Size = new System.Drawing.Size(423, 23);
             this.OrganizerBox.TabIndex = 3;
             // 
             // OrganizerLabel
@@ -226,7 +226,7 @@
             this.NameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameBox.Location = new System.Drawing.Point(102, 3);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(423, 26);
+            this.NameBox.Size = new System.Drawing.Size(423, 22);
             this.NameBox.TabIndex = 1;
             // 
             // NameLabel
@@ -240,7 +240,7 @@
             // 
             // AddTournamentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 353);
             this.Controls.Add(this.panel1);
@@ -248,6 +248,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddTournamentForm";
             this.Text = "Add Tournament";
+            this.Load += new System.EventHandler(this.AddTournamentForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
