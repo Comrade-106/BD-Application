@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BD_Application.Domain.TournamentTree {
     /// <summary>
@@ -82,6 +79,54 @@ namespace BD_Application.Domain.TournamentTree {
                 PrintTree(startNode.LeftNode, indent, Side.Left);
                 PrintTree(startNode.RightNode, indent, Side.Right);
             }
+        }
+
+        public static string Serialize(BinaryTreeNode root) {
+            string res = "";
+            if (root == null) return res += "#,";
+            res += root.Data.ToString();
+            res += ",";
+            res += Serialize(root.LeftNode);
+            res += Serialize(root.RightNode);
+            return res;
+        }
+
+        public static BinaryTree Deserialize(string data) {
+            int size = data.Length;
+            if (size == 0) return null;
+            var v = new List<string>();
+            for (int i = 0; i < size;) {
+                if (data[i] != ',' && data[i] != '#') {
+                    string s = "";
+                    while (i < size && data[i] != ',' && data[i] != '#') {
+                        s += data[i];
+                        i++;
+                    }
+                    v.Add(s);
+                } else if (data[i] == ',') i++;
+                else if (data[i++] == '#') v.Add("#");
+            }
+
+            var tree = new BinaryTree();
+            tree.Add(helper(v));
+
+            return tree;
+        }
+
+        private static BinaryTreeNode helper(List<string> data) {
+            BinaryTreeNode res;
+
+            if (data.Count == 0) return null;
+            string str = data[0];
+            data.Remove(str);
+            if (str == "#") {
+                return null;
+            }
+            int tmp = Convert.ToInt32(str);
+            res = new BinaryTreeNode(tmp);
+            res.LeftNode = helper(data);
+            res.RightNode = helper(data);
+            return res;
         }
     }
 }
