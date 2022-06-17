@@ -11,6 +11,7 @@ namespace BD_Application {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Domain.Forms.MainMenu());
+            //Application.Run(new Domain.Forms.TournamentForms.ViewTournamenrResult());
         }
     }
 }

@@ -36,7 +36,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetString("name")
                     );
                 if (reader.GetInt32("isDelete") == 1) {
-                    organizer.IsDelete = true;
+                    continue;
                 }
                 list.Add(organizer);
             }

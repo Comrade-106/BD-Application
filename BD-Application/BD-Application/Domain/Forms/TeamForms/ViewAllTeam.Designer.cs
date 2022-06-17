@@ -40,7 +40,7 @@
             this.AllTeamTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AllTeamTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AllTeamTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.AllTeamTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.AllTeamTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.AllTeamTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -60,23 +60,27 @@
             this.team_name.HeaderText = "Team`s name";
             this.team_name.Name = "team_name";
             this.team_name.ReadOnly = true;
+            this.team_name.Width = 101;
             // 
             // world_rank
             // 
             this.world_rank.HeaderText = "World rank";
             this.world_rank.Name = "world_rank";
             this.world_rank.ReadOnly = true;
+            this.world_rank.Width = 91;
             // 
             // coach
             // 
             this.coach.HeaderText = "Coach";
             this.coach.Name = "coach";
+            this.coach.Width = 66;
             // 
             // players
             // 
             this.players.HeaderText = "Players";
             this.players.Name = "players";
             this.players.ReadOnly = true;
+            this.players.Width = 71;
             // 
             // ViewAllTeam
             // 

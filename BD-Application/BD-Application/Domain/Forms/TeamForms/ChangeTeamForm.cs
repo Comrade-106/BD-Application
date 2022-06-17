@@ -73,6 +73,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
+                    FillTeamBox();
                 } else {
                     MessageBox.Show("The team didn`t delete", "Message!");
                 }

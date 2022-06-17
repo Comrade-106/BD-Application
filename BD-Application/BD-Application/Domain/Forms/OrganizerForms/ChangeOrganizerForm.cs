@@ -30,6 +30,7 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
+                    FillOrganizerBox();
                 } else {
                     MessageBox.Show("The organizer didn`t delete", "Message!");
                 }

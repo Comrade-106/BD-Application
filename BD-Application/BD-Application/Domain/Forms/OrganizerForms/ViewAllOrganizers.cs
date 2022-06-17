@@ -32,7 +32,7 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
 
             for (int i = 0; i < organizers.Count; i++) {
                 CoahesTable.Rows.Add();
-                CoahesTable.Rows[i].Cells[1].Value = organizers[i].Name;
+                CoahesTable.Rows[i].Cells[0].Value = organizers[i].Name;
             }
         }
     }

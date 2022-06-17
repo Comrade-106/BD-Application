@@ -32,6 +32,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             var reder = cmd.ExecuteReader();
 
             if (reder.HasRows) {
+                connection.Close();
                 return true;
             }
 
@@ -134,6 +135,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                 list.Add(contract);
             }
 
+            connection.Close();
             return list;
         }
 

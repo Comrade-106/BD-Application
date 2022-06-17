@@ -62,6 +62,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                     if (result == DialogResult.Yes) {
                         if (repositoryContract.DeleteContractPlayer(contract)) {
                             MessageBox.Show("The contract deleted successfull", "Message!");
+
                         } else {
                             MessageBox.Show("The contract didn`t delete", "Message!");
                         }
@@ -76,6 +77,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                         MessageBox.Show("Can`t get info from database", "Error!");
                         return;
                     }
+                    FillPlayerBox();
                 } else {
                     MessageBox.Show("The player didn`t delete", "Message!");
                 }

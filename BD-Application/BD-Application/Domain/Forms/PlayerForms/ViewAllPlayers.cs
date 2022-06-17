@@ -44,16 +44,16 @@ namespace BD_Application.Domain.Forms.PlayerForms {
 
                 CoahesTable.Rows[i].Cells[0].Value = players[i].NickName;
                 CoahesTable.Rows[i].Cells[1].Value = players[i].Name;
-                CoahesTable.Rows[i].Cells[2].Value = players[i].BirthDay;
+                CoahesTable.Rows[i].Cells[2].Value = players[i].BirthDay.ToString("yyyy-MM-dd");
 
                 if ((contract = contractPlayer.GetActiveContract(players[i].Id)) != null) {
                     if ((team = repository.GetTeam(contract.IdTeam)) != null) {
-                        CoahesTable.Rows[i].Cells[2].Value = team.Name;
+                        CoahesTable.Rows[i].Cells[3].Value = team.Name;
                     } else {
-                        CoahesTable.Rows[i].Cells[2].Value = String.Empty;
+                        CoahesTable.Rows[i].Cells[3].Value = String.Empty;
                     }
                 } else {
-                    CoahesTable.Rows[i].Cells[2].Value = String.Empty;
+                    CoahesTable.Rows[i].Cells[3].Value = String.Empty;
                 }
 
             }

@@ -59,6 +59,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                 if (double.TryParse(PrizePoolBox.Text, out double prize)) {
                     if (prize >= 0.0) {
                         if (DateEndBox.Value > DateStartBox.Value) {
+                            currentTournament = new Tournament();
                             currentTournament.Name = NameBox.Text;
                             currentTournament.Organizer = organizers.Find(x => x.Id == Convert.ToInt32(OrganizerBox.SelectedValue));
                             currentTournament.DateStart = DateStartBox.Value;

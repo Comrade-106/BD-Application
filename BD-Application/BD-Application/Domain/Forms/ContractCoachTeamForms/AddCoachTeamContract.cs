@@ -32,7 +32,7 @@ namespace BD_Application.Domain.Forms.ContractCoachTeamForms {
                 EndDateBox.Value != null && SalaryBox.Text != String.Empty) {
                 if (StartDateBox.Value < EndDateBox.Value) {
                     if (double.TryParse(SalaryBox.Text, out double salary) && salary >= 0) {
-                        if (repositoryContract.HaveCoachInTheTeame(Convert.ToInt32(TeamBox.SelectedValue))) {
+                        if (!repositoryContract.HaveCoachInTheTeame(Convert.ToInt32(TeamBox.SelectedValue))) {
                             contract = new ContractCoach(
                                 id_coach,
                                 Convert.ToInt32(TeamBox.SelectedValue),

@@ -28,6 +28,8 @@ namespace BD_Application.Domain {
 
         public bool IsDelete { get { return isDelete; } set { isDelete = value; } }
 
+        public Tournament() { }
+
         public Tournament(string name, Organizer organizer, DateTime dateStart, DateTime dateEnd, double prizePool) {
             this.name = name;
             this.organizer = organizer;

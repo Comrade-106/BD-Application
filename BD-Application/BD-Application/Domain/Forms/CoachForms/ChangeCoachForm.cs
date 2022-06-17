@@ -53,6 +53,7 @@ namespace BD_Application.Domain.Forms.CoachForms {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
+                    FillCoachBox();
                 } else {
                     MessageBox.Show("The coach didn`t delete", "Message!");
                 }
