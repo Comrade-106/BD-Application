@@ -1,4 +1,5 @@
-﻿using BD_Application.DataBase;
+﻿using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 using BD_Application.Domain.TournamentTree;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private int _tournamentID;
 
         private IRepositoryMatch matchRepository;
-        private IRepositoryTournament tournamentRepository;
+        private IRepositoryTournanent tournamentRepository;
 
         public ViewTournament(int tournamentID) {
             InitializeComponent();

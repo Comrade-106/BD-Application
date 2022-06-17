@@ -12,7 +12,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private List<Team> selectedTeams;
         private int count;
 
-        private IRepositoryTournament repositoryTournanent;
+        private IRepositoryTournanent repositoryTournanent;
         private IRepositoryOrganizer repositoryOrganizer;
         private IRepositoryTeam repositoryTeam;
 

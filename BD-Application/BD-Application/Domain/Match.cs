@@ -18,6 +18,8 @@ namespace BD_Application.Domain {
         public int TournamentID { get => _tournamentID; set => _tournamentID = value; }
         internal Stage MatchStage { get => _matchStage; set => _matchStage = value; }
 
+        public Match() { }
+
         public Match(int _id, int _tournamentID, DateTime _dateTimeMatch, int _idFirstTeam, int _idSecondTeam, string _matchResult) {
             this._id = _id;
             this._tournamentID = _tournamentID;
