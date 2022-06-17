@@ -3,8 +3,8 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
-namespace BD_Application.DataBase {
-    internal class DBRepositoryTournament : IRepositoryTournament {
+namespace BD_Application.Repository.DataBaseRepository {
+    internal class DBRepositoryTournament : IRepositoryTournanent {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
         private readonly string userName = "root";
@@ -35,7 +35,6 @@ namespace BD_Application.DataBase {
                 var tournament = new Tournament(
                     reader.GetInt32("id"),
                     reader.GetString("tournament_name"),
-                    //reader.GetString("location"),
                     reader.GetDateTime("start_date"),
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
@@ -67,7 +66,6 @@ namespace BD_Application.DataBase {
                 while (reader.Read()) {
                     tournament.Id = reader.GetInt32("id");
                     tournament.Name = reader.GetString("tournament_name");
-                    //tournament.Location = reader.GetString("location");
                     tournament.DateStart = reader.GetDateTime("start_date");
                     tournament.DateEnd = reader.GetDateTime("end_date");
                     tournament.PrizePool = reader.GetDouble("prize_pool");

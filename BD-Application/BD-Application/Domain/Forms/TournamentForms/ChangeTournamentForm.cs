@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class ChangeTournamentForm : Form {
@@ -9,7 +10,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private List<Organizer> organizers;
         private Tournament currentTournament = null;
 
-        private readonly IRepositoryTournament repositoryTournanent;
+        private readonly IRepositoryTournanent repositoryTournanent;
         private readonly IRepositoryOrganizer repositoryOrganizer;
 
         public ChangeTournamentForm() {
@@ -19,14 +20,14 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         }
 
         private void FillTournamentBox() {
-            TournamentBox.Items.Clear();
+            TournamentBox.DataSource = null;
             TournamentBox.DataSource = tournaments;
             TournamentBox.DisplayMember = "name";
             TournamentBox.ValueMember = "id";
         }
 
         private void FillOraganizerBox() {
-            OrganizerBox.Items.Clear();
+            OrganizerBox.DataSource = null;
             OrganizerBox.DataSource = organizers;
             OrganizerBox.DisplayMember = "name";
             OrganizerBox.ValueMember = "id";
@@ -76,7 +77,11 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                                 currentTournament.DateEnd = DateEndBox.Value;
                                 currentTournament.PrizePool = prize;
 
-                                repositoryTournanent.ChangeTournament(currentTournament);
+                                if (repositoryTournanent.ChangeTournament(currentTournament)) {
+                                    MessageBox.Show("Tournament`s info changed successfull", "Message!");
+                                } else {
+                                    MessageBox.Show("Tournament`s info didn`t change", "Message!");
+                                }
                             } else {
                                 MessageBox.Show("End date can`t be less than start date", "Message!");
                             }
@@ -88,7 +93,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                     }
 
                 } else {
-                    MessageBox.Show("You entered not all info ", "Message!");
+                    MessageBox.Show("You entered not all info", "Message!");
                 }
             } else {
                 MessageBox.Show("You didn`t choice tournament", "Message!");

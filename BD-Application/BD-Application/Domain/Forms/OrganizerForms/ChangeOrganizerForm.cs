@@ -1,7 +1,8 @@
-﻿using BD_Application.DataBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.OrganizerForms {
     public partial class ChangeOrganizerForm : Form {
@@ -15,7 +16,7 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
         }
 
         private void FillOrganizerBox() {
-            OrganizerBox.Items.Clear();
+            OrganizerBox.DataSource = null;
             OrganizerBox.DataSource = organizers;
             OrganizerBox.DisplayMember = "name";
             OrganizerBox.ValueMember = "id";
@@ -24,13 +25,13 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
         private void DeleteOrganizerButton_Click(object sender, EventArgs e) {
             if (currentOrganizer != null) {
                 if (repository.DeleteOrganizer(currentOrganizer)) {
-                    MessageBox.Show("Organizer deleted successfull", "Message!");
+                    MessageBox.Show("The organizer deleted successfull", "Message!");
                     if ((organizers = repository.GetAllOrganizers()) == null) {
                         MessageBox.Show("Can`t get info from repository", "Error!");
                         return;
                     }
                 } else {
-                    MessageBox.Show("Organizer didn`t delete", "Message!");
+                    MessageBox.Show("The organizer didn`t delete", "Message!");
                 }
             } else {
                 MessageBox.Show("You didn`t choice organizer", "Message!");
@@ -44,9 +45,9 @@ namespace BD_Application.Domain.Forms.OrganizerForms {
                     currentOrganizer.Name = NameBox.Text;
 
                     if (repository.ChangeOrganizer(currentOrganizer)) {
-                        MessageBox.Show("Organizer changed successfull", "Message!");
+                        MessageBox.Show("Organizer`s info changed successfull", "Message!");
                     } else {
-                        MessageBox.Show("Organizer didn`t change", "Message!");
+                        MessageBox.Show("Organizer`s info didn`t change", "Message!");
                     }
                 } else {
                     MessageBox.Show("You didn`t enter all info", "Message!");

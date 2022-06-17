@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
@@ -11,7 +12,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private List<Team> selectedTeams;
         private int count;
 
-        private IRepositoryTournament repositoryTournanent;
+        private IRepositoryTournanent repositoryTournanent;
         private IRepositoryOrganizer repositoryOrganizer;
         private IRepositoryTeam repositoryTeam;
 
@@ -66,9 +67,9 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                             //currentTournament.
 
                             if (repositoryTournanent.AddTournament(currentTournament)) {
-                                MessageBox.Show("Tournament added successfull", "Message!");
+                                MessageBox.Show("The tournament added successfull", "Message!");
                             } else {
-                                MessageBox.Show("Tournament didn`t add", "Message!");
+                                MessageBox.Show("The tournament didn`t add", "Message!");
                             }
                         } else {
                             MessageBox.Show("End date can`t be less than start date", "Message!");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.CoachForms {
     public partial class AddCoachForm : Form {
@@ -17,11 +18,11 @@ namespace BD_Application.Domain.Forms.CoachForms {
                     Coach coach = new Coach(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
 
                     if (repository.AddCoach(coach)) {
-                        MessageBox.Show("Coach added successful", "Message!");
+                        MessageBox.Show("The coach added successful", "Message!");
                         NameBox.Text = NickNameBox.Text = String.Empty;
                         BirthdayBox.Value = Convert.ToDateTime("1990-01-01");
                     } else {
-                        MessageBox.Show("Coach didn`t add", "Message!");
+                        MessageBox.Show("The coach didn`t add", "Message!");
                     }
                 } catch (Exception) {
                     MessageBox.Show("You entered wrong info", "Message!");

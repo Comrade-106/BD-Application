@@ -1,9 +1,10 @@
 ﻿using BD_Application.Domain;
+using BD_Application.Repository;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
-namespace BD_Application.DataBase {
+namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryCoach : IRepositoryCoach {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
@@ -38,7 +39,7 @@ namespace BD_Application.DataBase {
                     reader.GetDateTime("birthday")
                     );
                 if (reader.GetInt32("isDelete") == 1) {
-                    coach.IsDelete = true;
+                    continue;
                 }
                 list.Add(coach);
             }
@@ -90,9 +91,9 @@ namespace BD_Application.DataBase {
         public bool DeleteCoach(Coach coach) {
             connection.Open();
 
-            string sql = "UPDATE coach SET idDelete = @idDelete WHERE id = @id;";
+            string sql = "UPDATE coach SET isDelete = @isDelete WHERE id = @id;";
 
-            MySqlCommand cmd = new MySqlCommand(sql);
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;
             cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = coach.Id;
 

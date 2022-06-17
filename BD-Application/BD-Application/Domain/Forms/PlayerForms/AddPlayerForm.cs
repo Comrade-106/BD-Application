@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.PlayerForms {
     public partial class AddPlayerForm : Form {
@@ -17,9 +18,9 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                     Player player = new Player(NickNameBox.Text, NameBox.Text, BirthdayBox.Value);
 
                     if (repository.AddPlayer(player)) {
-                        MessageBox.Show("Player added successful", "Message!");
+                        MessageBox.Show("The player added successful", "Message!");
                     } else {
-                        MessageBox.Show("Player didn`t add", "Message!");
+                        MessageBox.Show("The player didn`t add", "Message!");
                     }
 
                     NickNameBox.Text = NameBox.Text = String.Empty;

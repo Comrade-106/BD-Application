@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using BD_Application.DataBase;
+using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TeamForms {
     public partial class AddTeamForm : Form {
@@ -20,14 +21,14 @@ namespace BD_Application.Domain.Forms.TeamForms {
                 }
 
                 if (worldRank <= 0) {
-                    MessageBox.Show("Rank can`t be less than '1'", "Message!");
+                    MessageBox.Show("A rank can`t be less than '1'", "Message!");
                     return;
                 }
                 
                 if (repository.AddTeam(new Team(NameBox.Text, worldRank))) {
-                    MessageBox.Show("Team added successful", "Message!");
+                    MessageBox.Show("The team added successful", "Message!");
                 } else {
-                    MessageBox.Show("Team didn`t add", "Message!");
+                    MessageBox.Show("The team didn`t add", "Message!");
                 }
                 NameBox.Text = WorldRankBox.Text = String.Empty;
                
