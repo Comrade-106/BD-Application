@@ -37,7 +37,35 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetInt32("world_rank")
                     );
                 if (reader.GetInt32("isDelete") == 1) {
-                    team.IsDelete = true;
+                    continue;
+                }
+                list.Add(team);
+            }
+
+            connection.Close();
+            return list;
+        }
+
+        public List<Team> GetTeams(string letterInName) {
+            List<Team> list = new List<Team>();
+            connection.Open();
+
+            string sql = "SELECT * FROM team WHERE LEFT(name, @n) = @name";
+            
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@n", letterInName.Length);
+            cmd.Parameters.AddWithValue("@name", letterInName);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                var team = new Team(
+                    reader.GetInt32("id"),
+                    reader.GetString("name"),
+                    reader.GetInt32("world_rank")
+                    );
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
                 }
                 list.Add(team);
             }

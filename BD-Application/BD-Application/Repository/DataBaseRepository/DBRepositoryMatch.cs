@@ -131,7 +131,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                 match.Id = reader.GetInt32("id");
                 match.TournamentID = reader.GetInt32("id_tournament");
                 match.DateTimeMatch = reader.GetDateTime("date");
-                match.MatchStage = reader.GetInt32("stage");
+                //match.MatchStage = reader.GetInt32("stage");
                 match.IdFirstTeam = reader.GetInt32("first_team");
                 match.IdSecondTeam = reader.GetInt32("second_team");
                 match.MatchResult = reader.GetString("result");

@@ -21,6 +21,43 @@ namespace BD_Application.Repository.DataBaseRepository {
             }
         }
 
+        public bool CheckContractByTeamId(int id_team) {
+            connection.Open();
+
+            string sql = "SELECT id_contract FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reder = cmd.ExecuteReader();
+
+            if (reder.HasRows) {
+                return true;
+            }
+
+            connection.Close();
+            return false;
+        }
+
+        public List<string> GetIdPlayerByTeamId(int id_team) {
+            List<string> result = new List<string>();
+            connection.Open();
+
+            string sql = "SELECT id_player, isMain FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                result.Add(reader.GetString(0) + ":" + reader.GetString(1));
+            }
+
+            connection.Close();
+            return result;
+        }
+
         public ContractPlayer GetActiveContract(int id_player) {
             ContractPlayer contract = null;
             connection.Open();
@@ -161,6 +198,24 @@ namespace BD_Application.Repository.DataBaseRepository {
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = contract.IdPlayerContract;
             cmd.Parameters.Add("@isActive", MySqlDbType.Int32).Value = 0;
             cmd.Parameters.Add("@date_end", MySqlDbType.Date).Value = DateTime.Now.ToString("yyyy-MM-dd");
+
+            if (cmd.ExecuteNonQuery() != 1) {
+                connection.Close();
+                return false;
+            }
+
+            connection.Close();
+            return true;
+        }
+
+        public bool DeleteAllContractByTeamId(int id_team) {
+            connection.Open();
+            string sql = "UPDATE contract_player_team SET isActive = @isActive, date_end = @date_end WHERE id_team = @id;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id", id_team);
+            cmd.Parameters.AddWithValue("@isActive", 0);
+            cmd.Parameters.AddWithValue("@date_end", DateTime.Now.ToString("yyyy-MM-dd"));
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();

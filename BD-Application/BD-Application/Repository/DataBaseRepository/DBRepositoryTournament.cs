@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 namespace BD_Application.Repository.DataBaseRepository {
-    internal class DBRepositoryTournament : IRepositoryTournanent {
+    internal class DBRepositoryTournament : IRepositoryTournament {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
         private readonly string userName = "root";

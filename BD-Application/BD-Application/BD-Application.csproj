@@ -12,6 +12,22 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,27 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>BD_Application.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>49A3F839CE2CB9D415234AA2460085F9760F78F4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>BD-Application_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -89,6 +126,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Forms\CoachForms\ViewAllCoaches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\CoachForms\ViewAllCoaches.Designer.cs">
+      <DependentUpon>ViewAllCoaches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.Designer.cs">
+      <DependentUpon>ViewAllOrganizers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\PlayerForms\ViewAllPlayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\PlayerForms\ViewAllPlayers.Designer.cs">
+      <DependentUpon>ViewAllPlayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\TeamForms\ViewAllTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\TeamForms\ViewAllTeam.Designer.cs">
+      <DependentUpon>ViewAllTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\ViewAllTournament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\TournamentForms\ViewAllTournament.Designer.cs">
+      <DependentUpon>ViewAllTournament.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\DataBaseRepository\DBRepositoryCoach.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryContractCoach.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryContractPlayer.cs" />
@@ -106,7 +173,7 @@
     <Compile Include="Repository\IRepositoryPlayer.cs" />
     <Compile Include="Repository\IRepositoryStage.cs" />
     <Compile Include="Repository\IRepositoryTeam.cs" />
-    <Compile Include="Repository\IRepositoryTournanent.cs" />
+    <Compile Include="Repository\IRepositoryTournament.cs" />
     <Compile Include="Domain\Coach.cs" />
     <Compile Include="Domain\Contract.cs" />
     <Compile Include="Domain\ContractCoach.cs" />
@@ -200,7 +267,6 @@
     <Compile Include="Domain\Organizer.cs" />
     <Compile Include="Domain\Person.cs" />
     <Compile Include="Domain\Player.cs" />
-    <Compile Include="Domain\Stage1.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
     <Compile Include="Domain\TournamentTree\BinaryTree.cs" />
@@ -215,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\CoachForms\ChangeCoachForm.resx">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\CoachForms\ViewAllCoaches.resx">
+      <DependentUpon>ViewAllCoaches.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\ContractCoachTeamForms\AddCoachTeamContract.resx">
       <DependentUpon>AddCoachTeamContract.cs</DependentUpon>
@@ -231,11 +300,17 @@
     <EmbeddedResource Include="Domain\Forms\OrganizerForms\ChangeOrganizerForm.resx">
       <DependentUpon>ChangeOrganizerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.resx">
+      <DependentUpon>ViewAllOrganizers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\PlayerForms\AddPlayerForm.resx">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\PlayerForms\ChangePlayerForm.resx">
       <DependentUpon>ChangePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\PlayerForms\ViewAllPlayers.resx">
+      <DependentUpon>ViewAllPlayers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TeamForms\AddTeamForm.resx">
       <DependentUpon>AddTeamForm.cs</DependentUpon>
@@ -243,11 +318,17 @@
     <EmbeddedResource Include="Domain\Forms\TeamForms\ChangeTeamForm.resx">
       <DependentUpon>ChangeTeamForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TeamForms\ViewAllTeam.resx">
+      <DependentUpon>ViewAllTeam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TournamentForms\AddTournamentForm.resx">
       <DependentUpon>AddTournamentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TournamentForms\ChangeTournamentForm.resx">
       <DependentUpon>ChangeTournamentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TournamentForms\ViewAllTournament.resx">
+      <DependentUpon>ViewAllTournament.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -258,7 +339,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="BD-Application_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -272,6 +355,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

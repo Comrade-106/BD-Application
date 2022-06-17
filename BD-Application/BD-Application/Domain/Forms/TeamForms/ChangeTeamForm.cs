@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BD_Application.Repository;
-using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TeamForms {
     public partial class ChangeTeamForm : Form {
@@ -10,9 +10,14 @@ namespace BD_Application.Domain.Forms.TeamForms {
         private Team currentTeam = null;
         private readonly IRepositoryTeam repository;
 
+        private readonly IRepositoryContractCoach contractCoach;
+        private readonly IRepositoryContractPlayer contractPlayer;
+
         public ChangeTeamForm() {
             InitializeComponent();
             repository = new DBRepositoryTeam();
+            contractCoach = new DBRepositoryContractCoach();
+            contractPlayer = new DBRepositoryContractPlayer();
         }
 
         private void FillTeamBox() {
@@ -24,6 +29,44 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTeam != null) {
+                if (contractCoach.CheckContractByTeamId(currentTeam.Id)) {
+                    DialogResult result = MessageBox.Show(
+                        "The team has active contract with coach. Determinate this contract?",
+                        "Message!",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Information,
+                         MessageBoxDefaultButton.Button1,
+                         MessageBoxOptions.DefaultDesktopOnly
+                    );
+                    if (result == DialogResult.Yes) {
+                        if (contractCoach.DeleteContractCoachByTeamId(currentTeam.Id)) {
+                            MessageBox.Show("The coach`s contract determinated", "Message!");
+                        } else {
+                            MessageBox.Show("The coach`s contract didn`t determinate", "Message!");
+                        }
+                    } else {
+                        return;
+                    }
+                } else if (contractPlayer.CheckContractByTeamId(currentTeam.Id)) {
+                    DialogResult result = MessageBox.Show(
+                        "The team has active contracts with players. Determinate this contract?",
+                        "Message!",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Information,
+                         MessageBoxDefaultButton.Button1,
+                         MessageBoxOptions.DefaultDesktopOnly
+                    );
+                    if (result == DialogResult.Yes) {
+                        if (contractPlayer.DeleteAllContractByTeamId(currentTeam.Id)) {
+                            MessageBox.Show("The contracts of players determinated", "Message!");
+                        } else {
+                            MessageBox.Show("The contracts of players didn`t determinate", "Message!");
+                        }
+                    } else {
+                        return;
+                    }
+                }
+
                 if (repository.DeleteTeam(currentTeam)) {
                     MessageBox.Show("The team deleted successfull", "Message!");
                     if ((teams = repository.GetAllTeams()) == null) {
@@ -33,7 +76,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
                 } else {
                     MessageBox.Show("The team didn`t delete", "Message!");
                 }
-            
+
                 //contracts?
             } else {
                 MessageBox.Show("You didn`t choice a team", "Message!");
@@ -42,7 +85,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void TeamBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (TeamBox.SelectedItem != null) {
-                currentTeam = (Team) TeamBox.SelectedItem;
+                currentTeam = (Team)TeamBox.SelectedItem;
 
                 if (currentTeam != null) {
                     panel1.Visible = true;

@@ -10,7 +10,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private List<Organizer> organizers;
         private Tournament currentTournament = null;
 
-        private readonly IRepositoryTournanent repositoryTournanent;
+        private readonly IRepositoryTournament repositoryTournanent;
         private readonly IRepositoryOrganizer repositoryOrganizer;
 
         public ChangeTournamentForm() {

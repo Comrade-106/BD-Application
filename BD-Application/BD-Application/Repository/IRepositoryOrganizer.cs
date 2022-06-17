@@ -7,5 +7,6 @@ namespace BD_Application.Repository {
         bool ChangeOrganizer(Organizer organizer);
         bool DeleteOrganizer(Organizer organizer);
         List<Organizer> GetAllOrganizers();
+        Organizer GetOrganizer(int id);
     }
 }

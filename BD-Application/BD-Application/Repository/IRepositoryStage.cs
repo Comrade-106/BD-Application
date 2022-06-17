@@ -2,6 +2,6 @@
 
 namespace BD_Application.Repository {
     internal interface IRepositoryStage {
-        Stage1 GetStage(int id);
+        //Stage1 GetStage(int id);
     }
 }

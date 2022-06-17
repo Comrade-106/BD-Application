@@ -8,5 +8,6 @@ namespace BD_Application.Repository {
         bool DeleteTeam(Team team);
         List<Team> GetAllTeams();
         Team GetTeam(int id_team);
+        List<Team> GetTeams(string letterInName);
     }
 }

@@ -30,7 +30,7 @@ namespace BD_Application.Domain.Forms.CoachForms {
                 var contract = repositoryContract.GetActiveContract(currentCoach.Id);
                 if (contract != null) {
                     DialogResult result = MessageBox.Show(
-                        "The coach have active contract with team. Determinate this contract?",
+                        "The coach has active contract with team. Determinate this contract?",
                         "Message!",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Information,

@@ -7,5 +7,6 @@ namespace BD_Application.Repository {
         bool ChangeCoach(Coach coach);
         bool DeleteCoach(Coach coach);
         List<Coach> GetAllCoaches();
+        Coach GetCoache(int id);
     }
 }

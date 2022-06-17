@@ -8,5 +8,6 @@ namespace BD_Application.Repository {
         bool DeletePlayer(Player player);
         List<Player> GetAllPlayers();
         List<Player> GetPlayersWithoutContract();
+        Player GetPlayerById(int id_player);
     }
 }

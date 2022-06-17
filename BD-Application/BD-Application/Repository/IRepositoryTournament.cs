@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace BD_Application.Repository {
-    internal interface IRepositoryTournanent {
+    internal interface IRepositoryTournament {
         bool AddTournament(Tournament tournament);
         bool ChangeTournament(Tournament tournament);
         bool DeleteTournament(Tournament tournament);

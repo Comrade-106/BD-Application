@@ -52,7 +52,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                 var contract = repositoryContract.GetActiveContract(currentPlayer.Id);
                 if (contract != null) {
                     DialogResult result =  MessageBox.Show(
-                        "The Player have active contract with team. Determinate this contract?", 
+                        "The Player has active contract with team. Determinate this contract?", 
                         "Message!",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Information,

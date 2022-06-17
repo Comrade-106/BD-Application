@@ -21,6 +21,33 @@ namespace BD_Application.Repository.DataBaseRepository {
             }
         }
 
+        public Player GetPlayerById(int id_player) {
+            Player player = null;
+            connection.Open();
+
+            string sql = "SELECT * FROM player WHERE id = @id_player";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id_player", id_player);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                player = new Player(
+                    reader.GetInt32("id"),
+                    reader.GetString("nickname"),
+                    reader.GetString("full_name"),
+                    reader.GetDateTime("birthday")
+                );
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
+                } 
+            }
+
+            connection.Close();
+            return player;
+        }
+
         public List<Player> GetPlayersWithoutContract() {
             List<Player> list = new List<Player>();
 
