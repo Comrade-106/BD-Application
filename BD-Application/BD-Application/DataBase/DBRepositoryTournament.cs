@@ -35,7 +35,7 @@ namespace BD_Application.DataBase {
                 var tournament = new Tournament(
                     reader.GetInt32("id"),
                     reader.GetString("tournament_name"),
-                    reader.GetString("location"),
+                    //reader.GetString("location"),
                     reader.GetDateTime("start_date"),
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
@@ -67,7 +67,7 @@ namespace BD_Application.DataBase {
                 while (reader.Read()) {
                     tournament.Id = reader.GetInt32("id");
                     tournament.Name = reader.GetString("tournament_name");
-                    tournament.Location = reader.GetString("location");
+                    //tournament.Location = reader.GetString("location");
                     tournament.DateStart = reader.GetDateTime("start_date");
                     tournament.DateEnd = reader.GetDateTime("end_date");
                     tournament.PrizePool = reader.GetDouble("prize_pool");
