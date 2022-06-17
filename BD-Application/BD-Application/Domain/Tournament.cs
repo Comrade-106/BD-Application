@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BD_Application.Domain {
-    internal class Tournament {
+    public class Tournament {
         private int id;
         private string name;
         private Organizer organizer;
         private DateTime dateStart;
         private DateTime dateEnd;
         private double prizePool;
+<<<<<<< HEAD
+        //private List<Team> teams;
+=======
+>>>>>>> 3ed72ddae051a80ffcb40739e22094e815e1482a
         private string tournamentTree;
         private bool isDelete;
 

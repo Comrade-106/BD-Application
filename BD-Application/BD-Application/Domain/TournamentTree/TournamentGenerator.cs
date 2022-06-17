@@ -19,27 +19,19 @@ namespace BD_Application.Domain.TournamentTree {
         
         public BinaryTree GenerateTournamentTree(int teamCount, List<Team> teams) {
             var tree = CreateBinaryTree(teamCount - 1);
-            var matches = CreateMatches(teams);
-
-            foreach(var stage in _stages) {
-                foreach (var item in stage.Value) {
-                    var node = tree.FindNode(item);
-                    node.MatchID = matches[stage.Key][item].Id;
-                }
-            }
+            CreateMatches(teams);
 
             return tree;
         }
 
-        private Dictionary<Stage, List<Match>> CreateMatches(List<Team> teams) {
+        private void CreateMatches(List<Team> teams) {
             var matches = new Dictionary<Stage, List<Match>>();
             var gen = new Random();
 
             var tempMatches = new List<Match>();
             foreach (var id in _stages[Stage.EighthFinals]) {
-                int index = gen.Next(0, teams.Count);
                 //Console.WriteLine($"index: {index}\tCount: {teams.Count}");
-                var team1 = teams[index];
+                var team1 = teams[gen.Next(0, teams.Count)];
                 teams.Remove(team1);
 
                 var team2 = teams[gen.Next(0, teams.Count)];
@@ -64,11 +56,13 @@ namespace BD_Application.Domain.TournamentTree {
                 matches.Add(stage.Key, tempMatches);
             }
 
-            return matches;
+            //Запись матчей в таблицу
+
         }
 
         private Match CreateMatch(int id, int team1, int team2, Stage stage) {
             var match = new Match();
+            match.Id = id;
             match.DateTimeMatch = RandomDay();
             match.IdFirstTeam = team1;
             match.IdSecondTeam = team2;
@@ -85,7 +79,7 @@ namespace BD_Application.Domain.TournamentTree {
                 nodes.Add(new BinaryTreeNode(i));
             }
 
-            BinaryTree tree = FillBinaryTree(nodes, 0, 0);
+            BinaryTree tree = FillBinaryTree(nodes);
 
             return tree;
         }
@@ -115,15 +109,27 @@ namespace BD_Application.Domain.TournamentTree {
             return tree;
         }
 
-        //private void Shuffle<T>(T[] a) {
-        //    Random rand = new Random();
-        //    for (int i = a.Length - 1; i > 0; i--) {
-        //        int j = rand.Next(0, i + 1);
-        //        T tmp = a[i];
-        //        a[i] = a[j];
-        //        a[j] = tmp;
-        //    }
-        //}
+        private BinaryTree FillBinaryTree(List<BinaryTreeNode> nodes, BinaryTree tree = null) { 
+            if(tree == null)
+                tree = new BinaryTree();
+
+            if (nodes.Count == 1) {
+                tree.Add(nodes[0]);
+                return tree;
+            }
+
+            int midle = nodes.Count / 2;
+
+            tree.Add(nodes[midle]);
+
+            List<BinaryTreeNode> leftListSide = nodes.GetRange(0, midle);
+            List<BinaryTreeNode> rightListSide = nodes.GetRange(midle, nodes.Count - midle);
+
+            FillBinaryTree(leftListSide, tree);
+            FillBinaryTree(rightListSide, tree);
+
+            return tree;
+        }
 
         private DateTime RandomDay() {
             Random gen = new Random();

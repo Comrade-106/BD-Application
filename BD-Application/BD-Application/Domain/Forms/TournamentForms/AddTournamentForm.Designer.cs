@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.RemoveButton = new System.Windows.Forms.Button();
             this._teamsGridView = new System.Windows.Forms.DataGridView();
             this._worldRankCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._teamNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,23 +68,36 @@
             this.panel1.Controls.Add(this.NameLabel);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(968, 329);
+            this.panel1.Size = new System.Drawing.Size(875, 329);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.RemoveButton);
             this.panel2.Controls.Add(this._teamsGridView);
             this.panel2.Controls.Add(this.AddTeamButton);
             this.panel2.Controls.Add(this._teamsList);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(543, 3);
+            this.panel2.Location = new System.Drawing.Point(449, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(420, 321);
             this.panel2.TabIndex = 11;
             // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Location = new System.Drawing.Point(94, 36);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(225, 27);
+            this.RemoveButton.TabIndex = 8;
+            this.RemoveButton.Text = "Убрать последнюю команду";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // _teamsGridView
             // 
+            this._teamsGridView.AllowUserToAddRows = false;
+            this._teamsGridView.AllowUserToDeleteRows = false;
             this._teamsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._teamsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._worldRankCol,
@@ -129,7 +143,7 @@
             this._teamsList.FormattingEnabled = true;
             this._teamsList.Location = new System.Drawing.Point(102, 3);
             this._teamsList.Name = "_teamsList";
-            this._teamsList.Size = new System.Drawing.Size(315, 23);
+            this._teamsList.Size = new System.Drawing.Size(315, 27);
             this._teamsList.TabIndex = 5;
             // 
             // label1
@@ -145,7 +159,7 @@
             // 
             this.AddTournamentButton.Location = new System.Drawing.Point(3, 239);
             this.AddTournamentButton.Name = "AddTournamentButton";
-            this.AddTournamentButton.Size = new System.Drawing.Size(522, 30);
+            this.AddTournamentButton.Size = new System.Drawing.Size(431, 30);
             this.AddTournamentButton.TabIndex = 10;
             this.AddTournamentButton.Text = "Add";
             this.AddTournamentButton.UseVisualStyleBackColor = true;
@@ -156,7 +170,7 @@
             this.PrizePoolBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PrizePoolBox.Location = new System.Drawing.Point(102, 116);
             this.PrizePoolBox.Name = "PrizePoolBox";
-            this.PrizePoolBox.Size = new System.Drawing.Size(423, 22);
+            this.PrizePoolBox.Size = new System.Drawing.Size(332, 26);
             this.PrizePoolBox.TabIndex = 9;
             // 
             // PrizePoolLabel
@@ -191,7 +205,7 @@
             this.DateEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateEndBox.Location = new System.Drawing.Point(102, 88);
             this.DateEndBox.Name = "DateEndBox";
-            this.DateEndBox.Size = new System.Drawing.Size(423, 22);
+            this.DateEndBox.Size = new System.Drawing.Size(332, 26);
             this.DateEndBox.TabIndex = 5;
             this.DateEndBox.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -200,7 +214,7 @@
             this.DateStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateStartBox.Location = new System.Drawing.Point(102, 60);
             this.DateStartBox.Name = "DateStartBox";
-            this.DateStartBox.Size = new System.Drawing.Size(423, 22);
+            this.DateStartBox.Size = new System.Drawing.Size(332, 26);
             this.DateStartBox.TabIndex = 4;
             this.DateStartBox.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -209,7 +223,7 @@
             this.OrganizerBox.FormattingEnabled = true;
             this.OrganizerBox.Location = new System.Drawing.Point(102, 31);
             this.OrganizerBox.Name = "OrganizerBox";
-            this.OrganizerBox.Size = new System.Drawing.Size(423, 23);
+            this.OrganizerBox.Size = new System.Drawing.Size(332, 27);
             this.OrganizerBox.TabIndex = 3;
             // 
             // OrganizerLabel
@@ -226,7 +240,7 @@
             this.NameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameBox.Location = new System.Drawing.Point(102, 3);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(423, 22);
+            this.NameBox.Size = new System.Drawing.Size(332, 26);
             this.NameBox.TabIndex = 1;
             // 
             // NameLabel
@@ -240,9 +254,9 @@
             // 
             // AddTournamentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 353);
+            this.ClientSize = new System.Drawing.Size(899, 353);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -278,5 +292,6 @@
         private System.Windows.Forms.Button AddTeamButton;
         private System.Windows.Forms.ComboBox _teamsList;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button RemoveButton;
     }
 }

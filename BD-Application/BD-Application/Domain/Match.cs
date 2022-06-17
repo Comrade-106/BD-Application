@@ -2,7 +2,7 @@
 using System;
 
 namespace BD_Application.Domain {
-    class Match {
+    public class Match {
         private int _id;
         private DateTime _dateTimeMatch;
         private int _idFirstTeam, _idSecondTeam;

@@ -7,12 +7,12 @@ using BD_Application.Repository.DataBaseRepository;
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class AddTournamentForm : Form {
         private readonly List<Organizer> organizers;
-        private  List<Team> teams;
+        private List<Team> teams;
         private Tournament currentTournament = null;
         private List<Team> selectedTeams;
         private int count;
 
-        private IRepositoryTournanent repositoryTournanent;
+        private IRepositoryTournament repositoryTournanent;
         private IRepositoryOrganizer repositoryOrganizer;
         private IRepositoryTeam repositoryTeam;
 
@@ -64,6 +64,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                             currentTournament.DateStart = DateStartBox.Value;
                             currentTournament.DateEnd = DateEndBox.Value;
                             currentTournament.PrizePool = prize;
+                            //currentTournament.
 
                             if (repositoryTournanent.AddTournament(currentTournament)) {
                                 MessageBox.Show("The tournament added successfull", "Message!");
@@ -85,8 +86,9 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         }
 
         private void AddTeamButton_Click(object sender, EventArgs e) {
+            if (teams.Count == 0) return;
+            
             count++;
-            if (count >= 16) AddTeamButton.Enabled = false;
 
             Team temp = teams.Find(x => x.Id == Convert.ToInt32(_teamsList.SelectedValue));
             selectedTeams.Add(temp);
@@ -94,11 +96,28 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
             _teamsGridView.Rows.Add(new object[]{ temp.WorldRank, temp.Name });
 
+            _teamsList.DataSource = null;
             FillTeamsBox();
+            
+            if (count >= 16) AddTeamButton.Enabled = false;
         }
 
         private void AddTournamentForm_Load(object sender, EventArgs e) {
 
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e) {
+            if (count <= 0) return;
+
+            _teamsGridView.Rows.RemoveAt(_teamsGridView.RowCount - 1);
+            count--;
+
+            var temp = selectedTeams[selectedTeams.Count-1];
+            selectedTeams.Remove(temp);
+            teams.Add(temp);
+
+            //_teamsList.DataSource = null;
+            FillTeamsBox();
         }
     }
 }

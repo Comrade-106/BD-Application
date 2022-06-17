@@ -44,6 +44,6 @@
         /// Преобразование экземпляра класса в строку
         /// </summary>
         /// <returns>Данные узла дерева</returns>
-        public override string ToString() => MatchID.ToString();
+        public override string ToString() => Data.ToString();
     }
 }
