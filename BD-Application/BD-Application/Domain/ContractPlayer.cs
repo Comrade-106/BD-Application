@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace BD_Application.Domain {
-    internal class ContractPlayer : Contract {
+    public class ContractPlayer : Contract {
         private int idPlayerContract;
         private int idPlayer;
         private bool isMain;

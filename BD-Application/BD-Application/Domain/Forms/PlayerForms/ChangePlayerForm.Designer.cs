@@ -25,16 +25,14 @@
         private void InitializeComponent() {
             this.ChangePlayerButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.ConcractButton = new System.Windows.Forms.Button();
+            this.AddChangeContractButton = new System.Windows.Forms.Button();
+            this.TerminateContractButton = new System.Windows.Forms.Button();
             this.BirthdayLabel = new System.Windows.Forms.Label();
             this.BirthDayBox = new System.Windows.Forms.DateTimePicker();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.NickNameBox = new System.Windows.Forms.TextBox();
             this.NickNameLabel = new System.Windows.Forms.Label();
-            this.PlayerBox = new System.Windows.Forms.ComboBox();
-            this.PlayerLabel = new System.Windows.Forms.Label();
             this.DeletePlayerButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,41 +53,41 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.ConcractButton);
+            this.panel1.Controls.Add(this.AddChangeContractButton);
+            this.panel1.Controls.Add(this.TerminateContractButton);
             this.panel1.Controls.Add(this.BirthdayLabel);
             this.panel1.Controls.Add(this.BirthDayBox);
             this.panel1.Controls.Add(this.NameBox);
             this.panel1.Controls.Add(this.NameLabel);
             this.panel1.Controls.Add(this.NickNameBox);
             this.panel1.Controls.Add(this.NickNameLabel);
-            this.panel1.Location = new System.Drawing.Point(9, 39);
+            this.panel1.Location = new System.Drawing.Point(9, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 133);
+            this.panel1.Size = new System.Drawing.Size(398, 160);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
-            // button1
+            // AddChangeContractButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(6, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 29);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Add/Change Contract";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.AddContractButton_Click);
+            this.AddChangeContractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddChangeContractButton.Location = new System.Drawing.Point(6, 121);
+            this.AddChangeContractButton.Name = "AddChangeContractButton";
+            this.AddChangeContractButton.Size = new System.Drawing.Size(184, 29);
+            this.AddChangeContractButton.TabIndex = 15;
+            this.AddChangeContractButton.Text = "Add/Change Contract";
+            this.AddChangeContractButton.UseVisualStyleBackColor = true;
+            this.AddChangeContractButton.Click += new System.EventHandler(this.AddChangeContractButton_Click);
             // 
-            // ConcractButton
+            // TerminateContractButton
             // 
-            this.ConcractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConcractButton.Location = new System.Drawing.Point(209, 94);
-            this.ConcractButton.Name = "ConcractButton";
-            this.ConcractButton.Size = new System.Drawing.Size(184, 29);
-            this.ConcractButton.TabIndex = 14;
-            this.ConcractButton.Text = "Terminate Contract";
-            this.ConcractButton.UseVisualStyleBackColor = true;
-            this.ConcractButton.Click += new System.EventHandler(this.TerminateContractButton_Click);
+            this.TerminateContractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TerminateContractButton.Location = new System.Drawing.Point(209, 121);
+            this.TerminateContractButton.Name = "TerminateContractButton";
+            this.TerminateContractButton.Size = new System.Drawing.Size(184, 29);
+            this.TerminateContractButton.TabIndex = 14;
+            this.TerminateContractButton.Text = "Terminate Contract";
+            this.TerminateContractButton.UseVisualStyleBackColor = true;
+            this.TerminateContractButton.Click += new System.EventHandler(this.TerminateConcractButton_Click);
             // 
             // BirthdayLabel
             // 
@@ -149,26 +147,6 @@
             this.NickNameLabel.Text = "Nickname";
             this.NickNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PlayerBox
-            // 
-            this.PlayerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PlayerBox.FormattingEnabled = true;
-            this.PlayerBox.Location = new System.Drawing.Point(78, 10);
-            this.PlayerBox.Name = "PlayerBox";
-            this.PlayerBox.Size = new System.Drawing.Size(329, 23);
-            this.PlayerBox.TabIndex = 7;
-            this.PlayerBox.SelectedIndexChanged += new System.EventHandler(this.PlayerBox_SelectedIndexChanged);
-            // 
-            // PlayerLabel
-            // 
-            this.PlayerLabel.Location = new System.Drawing.Point(12, 9);
-            this.PlayerLabel.Name = "PlayerLabel";
-            this.PlayerLabel.Size = new System.Drawing.Size(48, 23);
-            this.PlayerLabel.TabIndex = 6;
-            this.PlayerLabel.Text = "Player";
-            this.PlayerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // DeletePlayerButton
             // 
             this.DeletePlayerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -188,8 +166,6 @@
             this.Controls.Add(this.DeletePlayerButton);
             this.Controls.Add(this.ChangePlayerButton);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.PlayerBox);
-            this.Controls.Add(this.PlayerLabel);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(435, 275);
@@ -206,16 +182,14 @@
 
         private System.Windows.Forms.Button ChangePlayerButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button ConcractButton;
+        private System.Windows.Forms.Button AddChangeContractButton;
+        private System.Windows.Forms.Button TerminateContractButton;
         private System.Windows.Forms.Label BirthdayLabel;
         private System.Windows.Forms.DateTimePicker BirthDayBox;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox NickNameBox;
         private System.Windows.Forms.Label NickNameLabel;
-        private System.Windows.Forms.ComboBox PlayerBox;
-        private System.Windows.Forms.Label PlayerLabel;
         private System.Windows.Forms.Button DeletePlayerButton;
     }
 }
