@@ -10,7 +10,8 @@ namespace BD_Application {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Domain.Forms.MainMenu());
+            //Application.Run(new Domain.Forms.MainMenu());
+            Application.Run(new Domain.Forms.TournamentForms.ChangeTournamentForm());
             //Application.Run(new Domain.Forms.TournamentForms.ViewTournamenrResult());
         }
     }

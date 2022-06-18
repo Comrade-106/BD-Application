@@ -39,10 +39,13 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
                     );
+                
+                int id = reader.GetInt32("id");
+
                 tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
 
                 if (reader.GetInt32("isDelete") == 1) {
-                    tournament.IsDelete = true;
+                    continue;
                 }
                 list.Add(tournament);
             }
@@ -107,7 +110,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Open();
 
             string sql = "UPDATE tournament SET organizer = @organizer, name_tournament = @name_tournament, start_date = @start_date, " +
-                "end_date = @end_date, prize_pool = @prize_pool, tournament_tree = @tournament_tree WHERE id = @id);";
+                "end_date = @end_date, prize_pool = @prize_pool, tournament_tree = @tournament_tree WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@organizer", MySqlDbType.Int16).Value = tournament.Organizer.Id;
@@ -130,11 +133,11 @@ namespace BD_Application.Repository.DataBaseRepository {
         public bool DeleteTournament(Tournament tournament) {
             connection.Open();
 
-            string sql = "UPDATE tournament SET isDelete = @isDelete WHERE id = @id);";
+            string sql = "UPDATE tournament SET isDelete = @isDelete WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;
-            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = 0;
+            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = tournament.Id;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -148,7 +151,7 @@ namespace BD_Application.Repository.DataBaseRepository {
         public string GetTournamentTree() {
             connection.Open();
 
-            string sql = "SELECT tournament_tree FROM tournament WHERE id = @id);";
+            string sql = "SELECT tournament_tree FROM tournament WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = 0;

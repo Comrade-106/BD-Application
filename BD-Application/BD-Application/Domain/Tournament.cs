@@ -39,6 +39,7 @@ namespace BD_Application.Domain {
             this.isDelete = false;
         }
         public Tournament(int id, string name, DateTime dateStart, DateTime dateEnd, double prizePool) {
+            this.id = id;
             this.name = name;
             this.dateStart = dateStart;
             this.dateEnd = dateEnd;
