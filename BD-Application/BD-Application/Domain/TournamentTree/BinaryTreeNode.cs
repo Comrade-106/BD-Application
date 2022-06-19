@@ -11,8 +11,6 @@
         /// <summary>
         /// Данные которые хранятся в узле
         /// </summary>
-        public int MatchID { get; set; }
-
         public int Data { get; set; }
 
         /// <summary>

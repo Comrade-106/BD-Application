@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BD_Application.Repository;
+using BD_Application.Repository.DataBaseRepository;
+using System;
 using System.Collections.Generic;
 
 namespace BD_Application.Domain.TournamentTree {
     class TournamentGenerator {
         private Dictionary<Stage, int[]> _stages;
         private int _tournamentID;
+        private IRepositoryMatch repository;
 
         public TournamentGenerator(int id) {
             _stages = new Dictionary<Stage, int[]> {
@@ -15,6 +18,8 @@ namespace BD_Application.Domain.TournamentTree {
             };
 
             _tournamentID = id;
+
+            repository = new DBRepositoryMatch();
         }
         
         public BinaryTree GenerateTournamentTree(int teamCount, List<Team> teams) {
@@ -48,7 +53,7 @@ namespace BD_Application.Domain.TournamentTree {
 
                 tempMatches = new List<Match>();
                 foreach(var id in stage.Value) {
-                    var match = CreateMatch(id, - 1, -1, stage.Key);
+                    var match = CreateMatch(id, -1, -1, stage.Key);
                     tempMatches.Add(match);
                 }
 
@@ -57,7 +62,9 @@ namespace BD_Application.Domain.TournamentTree {
             }
 
             //Запись матчей в таблицу
-
+            foreach (var item in matches) {
+                repository.AddMatches(item.Value);
+            }
         }
 
         private Match CreateMatch(int id, int team1, int team2, Stage stage) {
@@ -68,6 +75,7 @@ namespace BD_Application.Domain.TournamentTree {
             match.IdSecondTeam = team2;
             match.MatchStage = stage;
             match.TournamentID = _tournamentID;
+            match.MatchResult = null;
 
             return match;
         }
@@ -80,31 +88,6 @@ namespace BD_Application.Domain.TournamentTree {
             }
 
             BinaryTree tree = FillBinaryTree(nodes);
-
-            return tree;
-        }
-
-        private BinaryTree FillBinaryTree(List<BinaryTreeNode> nodes, int size, int side) {
-            //int midle = size + ((size / 2) * side);
-
-            BinaryTree tree = new BinaryTree();
-            tree.Add(nodes[7]);
-
-            tree.Add(nodes[3]);
-            tree.Add(nodes[1]);
-            tree.Add(nodes[0]);
-            tree.Add(nodes[2]);
-            tree.Add(nodes[5]);
-            tree.Add(nodes[4]);
-            tree.Add(nodes[6]);
-
-            tree.Add(nodes[11]);
-            tree.Add(nodes[9]);
-            tree.Add(nodes[8]);
-            tree.Add(nodes[10]);
-            tree.Add(nodes[13]);
-            tree.Add(nodes[12]);
-            tree.Add(nodes[14]);
 
             return tree;
         }

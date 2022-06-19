@@ -77,7 +77,31 @@ namespace BD_Application.Domain.Forms {
         }
 
         private void ViewButton_Click(object sender, EventArgs e) {
-
+            if (comboBox1.SelectedItem != null) {
+                switch (comboBox1.SelectedItem) {
+                    case "Player":
+                        ChangePlayerForm playerForm = new ChangePlayerForm();
+                        playerForm.ShowDialog();
+                        break;
+                    case "Coach":
+                        ChangeCoachForm coachForm = new ChangeCoachForm();
+                        coachForm.ShowDialog();
+                        break;
+                    case "Team":
+                        ChangeTeamForm teamForm = new ChangeTeamForm();
+                        teamForm.ShowDialog();
+                        break;
+                    case "Organizer":
+                        ChangeOrganizerForm organizerForm = new ChangeOrganizerForm();
+                        organizerForm.ShowDialog();
+                        break;
+                    case "Tournament":
+                        ViewTournament tournamentForm = new ViewTournament(6);
+                        tournamentForm.ShowDialog();
+                        break;
+                    default: return;
+                }
+            }
         }
     }
 }

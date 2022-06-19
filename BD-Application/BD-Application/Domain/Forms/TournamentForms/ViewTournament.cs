@@ -4,6 +4,8 @@ using BD_Application.Domain.TournamentTree;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BD_Application.Domain.Forms.MatchForms;
+using System.Drawing;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class ViewTournament : Form {
@@ -21,6 +23,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
         private IRepositoryMatch matchRepository;
         private IRepositoryTournanent tournamentRepository;
+        private IRepositoryTeam teamRepository;
 
         public ViewTournament(int tournamentID) {
             InitializeComponent();
@@ -28,9 +31,10 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
             matchRepository = new DBRepositoryMatch();
             tournamentRepository = new DBRepositoryTournament();
+            teamRepository = new DBRepositoryTeam();
 
-            //_matches = matchRepository.Get
-            //_tournament = tournamentRepository.
+            _matches = matchRepository.GetAllMatch(tournamentID);
+            _tournament = tournamentRepository.GetTournament(tournamentID);
 
             _tournamentID = tournamentID;
             FillForm(tournamentID);
@@ -57,25 +61,57 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         }
 
         private void FillForm(int id) {
-                                                    //Получаем строку из базы данных
-            BinaryTree tree = new BinaryTree();     //Создаем из нее дерево
+            var tree = BinaryTree.Deserialize(_tournament.TournamentTree);
+            int i = 1; // посмотреть индексы
 
             foreach (var item in _stages) {
-                int i = 0; // посмотреть индексы
                 foreach (var index in item.Value) {
-                    var node = tree.FindNode(index);
 
-                    _matchesView[i].MatchID = index;
+                    Match temp = _matches.Find(x => x.Id == index);
 
-                    //Из узла берем айди матча и находим в таблице
-                    Match temp = new Match(); // = ...
+                    _matchesView[i].MatchID = temp.Id;
+
+                    if (temp.IdFirstTeam != -1)
+                        _matchesView[i].FirstTeam.Text = teamRepository.GetTeam(temp.IdFirstTeam).Name;
+
+                    if (temp.IdSecondTeam != -1)
+                        _matchesView[i].SecondTeam.Text = teamRepository.GetTeam(temp.IdSecondTeam).Name;
+
+                    if (IsMatchComplited(temp, out int winner)) {
+                        if(winner == temp.IdFirstTeam) {
+                            _matchesView[i].SecondTeam.BackColor = SystemColors.ControlDark;
+                        } else {
+                            _matchesView[i].FirstTeam.BackColor = SystemColors.ControlDark;
+                        }
+                    }
                     
-
-
-                    //_matchesView[i].FirstMatch.Text = temp.IdFirstTeam; - заполняем первое поле матча
-                    // второе поле матча
                     i++;
                 }
+            }
+        }
+
+        private bool IsMatchComplited(Match match, out int winner) {
+            winner = -1;
+            if (!string.IsNullOrEmpty(match.MatchResult)) {
+                if(DefineWinner(match.MatchResult) == 1) {
+                    winner = match.IdFirstTeam;
+                } else {
+                    winner = match.IdSecondTeam;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private int DefineWinner(string matchResult) {
+            var res = matchResult.Split(':');
+
+            if (Convert.ToInt32(res[0]) > Convert.ToInt32(res[1])) {
+                return 1;
+            } else {
+                return 2;
             }
         }
 
@@ -83,11 +119,51 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             var button = sender as Button;
 
             foreach (var item in _matchesView) {
-                if (item.Value.InfoButton == button) {
-                    //вызываем форму с данными о матче
+                if (item.Value.InfoButton.Equals(button)) {
+                    var match = _matches.Find(x => x.Id == item.Value.MatchID);
+                    
+                    var form = new ChangeMatchForm(match, _tournament);
+                    form.Owner = this;
+                    form.ShowDialog();
+
+                    FillForm(_tournamentID);
+
                     break;
                 }
             }
+        }
+
+        public bool UpdateMatch(Match match) {
+            var tree = BinaryTree.Deserialize(_tournament.TournamentTree);
+
+            var temp = tree.FindNode(match.Id);
+
+            //MessageBox.Show("\nNode: " + temp.Data + "\nParent: " + (temp.ParentNode == null).ToString() + "\nParent Data: " + temp.ParentNode?.Data);
+
+            var nextMatchNode = tree.FindNode(match.Id).ParentNode;
+
+            if(nextMatchNode == null) {
+
+
+                return true;
+            }
+
+            var nextMatch = _matches.Find(x => x.Id == nextMatchNode.Data);
+
+            if (!string.IsNullOrEmpty(match.MatchResult)) {
+                int winnerId;
+                if (DefineWinner(match.MatchResult) == 1)
+                    winnerId = match.IdFirstTeam;
+                else
+                    winnerId = match.IdSecondTeam;               
+
+                if (nextMatch.IdFirstTeam == -1)
+                    nextMatch.IdFirstTeam = winnerId;
+                else
+                    nextMatch.IdSecondTeam = winnerId;
+            }
+
+            return matchRepository.ChangeMatch(match) && matchRepository.ChangeMatch(nextMatch);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             _secondTeam = secondMatch;
         }
 
-        public TextBox FirstMatch { get => _firstTeam; set => _firstTeam = value; }
-        public TextBox SecondMatch { get => _secondTeam; set => _secondTeam = value; }
+        public TextBox FirstTeam { get => _firstTeam; set => _firstTeam = value; }
+        public TextBox SecondTeam { get => _secondTeam; set => _secondTeam = value; }
         public int MatchID { get => _matchID; set => _matchID = value; }
         public Button InfoButton { get => _infoButton; set => _infoButton = value; }
     }

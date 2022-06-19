@@ -2,6 +2,8 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryTournament : IRepositoryTournanent {
@@ -31,6 +33,9 @@ namespace BD_Application.Repository.DataBaseRepository {
 
             var reader = cmd.ExecuteReader();
 
+            BinaryFormatter formatter = new BinaryFormatter();
+            MemoryStream ms;
+
             while (reader.Read()) {
                 var tournament = new Tournament(
                     reader.GetInt32("id"),
@@ -43,7 +48,23 @@ namespace BD_Application.Repository.DataBaseRepository {
 
                 if (reader.GetInt32("isDelete") == 1) {
                     tournament.IsDelete = true;
+                    continue;
                 }
+
+                //var col = reader.GetOrdinal("tournament_tree");
+
+                byte[] buf = ReadBlobData(reader);
+                //var len = (int)reader.GetBytes(col, 0, buf, 0, 0);
+                //buf = new byte[len];
+                //reader.GetBytes(6, 0, buf, 0, len);
+                if (buf != null) {
+                    ms = new MemoryStream(buf);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    tournament.TournamentTree = (string)formatter.Deserialize(ms);
+                } else {
+                    tournament.TournamentTree = null;
+                }
+
                 list.Add(tournament);
             }
 
@@ -64,14 +85,29 @@ namespace BD_Application.Repository.DataBaseRepository {
 
             try {
                 while (reader.Read()) {
-                    tournament.Id = reader.GetInt32("id");
-                    tournament.Name = reader.GetString("tournament_name");
-                    tournament.DateStart = reader.GetDateTime("start_date");
-                    tournament.DateEnd = reader.GetDateTime("end_date");
-                    tournament.PrizePool = reader.GetDouble("prize_pool");
+                    tournament = new Tournament(
+                        reader.GetInt32("id"),
+                        reader.GetString("tournament_name"),
+                        reader.GetDateTime("start_date"),
+                        reader.GetDateTime("end_date"),
+                        reader.GetDouble("prize_pool")
+                        );
                     tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+
                     if (reader.GetInt32("isDelete") == 1) {
                         tournament.IsDelete = true;
+                    }
+
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    MemoryStream ms;
+
+                    byte[] buf = ReadBlobData(reader);
+                    if (buf != null) {
+                        ms = new MemoryStream(buf);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        tournament.TournamentTree = (string)formatter.Deserialize(ms);
+                    } else {
+                        tournament.TournamentTree = null;
                     }
                 }
             } catch { }
@@ -91,7 +127,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             cmd.Parameters.Add("@start_date", MySqlDbType.Date).Value = tournament.DateStart.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@end_date", MySqlDbType.Date).Value = tournament.DateEnd.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@prize_pool", MySqlDbType.Double).Value = tournament.PrizePool;
-            cmd.Parameters.Add("@tournament_tree", MySqlDbType.Byte).Value = null;
+            cmd.Parameters.Add("@tournament_tree", MySqlDbType.Binary).Value = null;
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 0;
 
             if (cmd.ExecuteNonQuery() != 1) {
@@ -106,17 +142,31 @@ namespace BD_Application.Repository.DataBaseRepository {
         public bool ChangeTournament(Tournament tournament) {
             connection.Open();
 
-            string sql = "UPDATE tournament SET organizer = @organizer, name_tournament = @name_tournament, start_date = @start_date, " +
-                "end_date = @end_date, prize_pool = @prize_pool, tournament_tree = @tournament_tree WHERE id = @id);";
+            string sql = "UPDATE tournament SET organizer = @organizer, tournament_name = @tournament_name, start_date = @start_date, " +
+                "end_date = @end_date, prize_pool = @prize_pool, tournament_tree = @tournament_tree WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@organizer", MySqlDbType.Int16).Value = tournament.Organizer.Id;
-            cmd.Parameters.Add("@name_tournament", MySqlDbType.VarChar).Value = tournament.Name;
+            cmd.Parameters.Add("@tournament_name", MySqlDbType.VarChar).Value = tournament.Name;
             cmd.Parameters.Add("@start_date", MySqlDbType.Date).Value = tournament.DateStart.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@end_date", MySqlDbType.Date).Value = tournament.DateEnd.ToString("yyyy-MM-dd");
             cmd.Parameters.Add("@prize_pool", MySqlDbType.Double).Value = tournament.PrizePool;
-            cmd.Parameters.Add("@tournament_tree", MySqlDbType.Byte).Value = null;              //serialisible tree
-            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = 0;
+
+            if (string.IsNullOrEmpty(tournament.TournamentTree)) {
+                cmd.Parameters.Add("@tournament_tree", MySqlDbType.Byte).Value = null;
+            } else {
+                BinaryFormatter formatter = new BinaryFormatter();
+                byte[] array;
+
+                using (MemoryStream ms = new MemoryStream()) {
+                    formatter.Serialize(ms, tournament.TournamentTree);
+                    array = ms.ToArray();
+                }
+
+                cmd.Parameters.Add("@tournament_tree", MySqlDbType.Binary).Value = array;
+            }     
+            
+            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = tournament.Id;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -127,14 +177,34 @@ namespace BD_Application.Repository.DataBaseRepository {
             return true;
         }
 
+        //public bool DeleteTournament(Tournament tournament) {
+        //    connection.Open();
+
+        //    string sql = "UPDATE tournament SET isDelete = @isDelete WHERE id = @id;";
+
+        //    MySqlCommand cmd = new MySqlCommand(sql, connection);
+        //    cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;
+        //    cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = tournament.Id;
+
+        //    int res = cmd.ExecuteNonQuery();
+
+        //    if (res != 1) {
+        //        connection.Close();
+        //        return false;
+        //    }
+
+        //    connection.Close();
+        //    return true;
+        //}
+
         public bool DeleteTournament(Tournament tournament) {
             connection.Open();
 
-            string sql = "UPDATE tournament SET isDelete = @isDelete WHERE id = @id);";
+            string sql = "UPDATE tournament SET isDelete = @isDelete WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@isDelete", MySqlDbType.Int16).Value = 1;
-            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = 0;
+            cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = tournament.Id;
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();
@@ -148,7 +218,7 @@ namespace BD_Application.Repository.DataBaseRepository {
         public string GetTournamentTree() {
             connection.Open();
 
-            string sql = "SELECT tournament_tree FROM tournament WHERE id = @id);";
+            string sql = "SELECT tournament_tree FROM tournament WHERE id = @id;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = 0;
@@ -163,5 +233,42 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Close();
             return null;
         }
+        public byte[] ReadBlobData(MySqlDataReader reader) {
+            var colIndex = reader.GetOrdinal("tournament_tree");
+            if (reader.IsDBNull(colIndex)) return null;
+
+            // Size of the BLOB buffer.
+            int bufferSize = 1024;
+            // The BLOB byte[] buffer to be filled by GetBytes.
+            byte[] outByte = new byte[bufferSize];
+            byte[] overallOutByte = null;
+            // The bytes returned from GetBytes.
+            long retval;
+            // The starting position in the BLOB output.
+            long startIndex = 0;
+
+            // Reset the starting byte for the new BLOB.
+            startIndex = 0;
+
+            // Read bytes into outByte[] and retain the number of bytes returned.
+            retval = reader.GetBytes(colIndex, startIndex, outByte, 0, bufferSize);
+
+            overallOutByte = new byte[bufferSize];
+            outByte.CopyTo(overallOutByte, 0);
+
+            // Continue while there are bytes beyond the size of the buffer.
+            while (retval == bufferSize) {
+                startIndex += bufferSize;
+                retval = reader.GetBytes(colIndex, startIndex, outByte, 0, bufferSize);
+                byte[] tmpArr = new byte[overallOutByte.Length];
+                overallOutByte.CopyTo(tmpArr, 0);
+                overallOutByte = new byte[bufferSize + tmpArr.Length];
+                tmpArr.CopyTo(overallOutByte, 0);
+                outByte.CopyTo(overallOutByte, tmpArr.Length);
+            }
+
+            return overallOutByte;
+        }
     }
+
 }

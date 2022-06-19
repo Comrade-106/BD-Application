@@ -24,14 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this._teamsGridView = new System.Windows.Forms.DataGridView();
-            this._worldRankCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._teamNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddTeamButton = new System.Windows.Forms.Button();
-            this._teamsList = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.AddTournamentButton = new System.Windows.Forms.Button();
             this.PrizePoolBox = new System.Windows.Forms.TextBox();
             this.PrizePoolLabel = new System.Windows.Forms.Label();
@@ -44,8 +36,6 @@
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._teamsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,7 +44,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.AddTournamentButton);
             this.panel1.Controls.Add(this.PrizePoolBox);
             this.panel1.Controls.Add(this.PrizePoolLabel);
@@ -68,96 +57,12 @@
             this.panel1.Controls.Add(this.NameLabel);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 329);
+            this.panel1.Size = new System.Drawing.Size(447, 203);
             this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.RemoveButton);
-            this.panel2.Controls.Add(this._teamsGridView);
-            this.panel2.Controls.Add(this.AddTeamButton);
-            this.panel2.Controls.Add(this._teamsList);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(449, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(420, 321);
-            this.panel2.TabIndex = 11;
-            // 
-            // RemoveButton
-            // 
-            this.RemoveButton.Location = new System.Drawing.Point(94, 36);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(225, 27);
-            this.RemoveButton.TabIndex = 8;
-            this.RemoveButton.Text = "Убрать последнюю команду";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
-            // 
-            // _teamsGridView
-            // 
-            this._teamsGridView.AllowUserToAddRows = false;
-            this._teamsGridView.AllowUserToDeleteRows = false;
-            this._teamsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._teamsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this._worldRankCol,
-            this._teamNameCol});
-            this._teamsGridView.Location = new System.Drawing.Point(3, 69);
-            this._teamsGridView.Name = "_teamsGridView";
-            this._teamsGridView.RowHeadersVisible = false;
-            this._teamsGridView.RowHeadersWidth = 51;
-            this._teamsGridView.RowTemplate.Height = 24;
-            this._teamsGridView.Size = new System.Drawing.Size(414, 249);
-            this._teamsGridView.TabIndex = 7;
-            // 
-            // _worldRankCol
-            // 
-            this._worldRankCol.Frozen = true;
-            this._worldRankCol.HeaderText = "World Rank";
-            this._worldRankCol.MinimumWidth = 6;
-            this._worldRankCol.Name = "_worldRankCol";
-            this._worldRankCol.ReadOnly = true;
-            this._worldRankCol.Width = 80;
-            // 
-            // _teamNameCol
-            // 
-            this._teamNameCol.Frozen = true;
-            this._teamNameCol.HeaderText = "Team Name";
-            this._teamNameCol.MinimumWidth = 6;
-            this._teamNameCol.Name = "_teamNameCol";
-            this._teamNameCol.ReadOnly = true;
-            this._teamNameCol.Width = 334;
-            // 
-            // AddTeamButton
-            // 
-            this.AddTeamButton.Location = new System.Drawing.Point(325, 36);
-            this.AddTeamButton.Name = "AddTeamButton";
-            this.AddTeamButton.Size = new System.Drawing.Size(92, 27);
-            this.AddTeamButton.TabIndex = 6;
-            this.AddTeamButton.Text = "Добавить";
-            this.AddTeamButton.UseVisualStyleBackColor = true;
-            this.AddTeamButton.Click += new System.EventHandler(this.AddTeamButton_Click);
-            // 
-            // _teamsList
-            // 
-            this._teamsList.FormattingEnabled = true;
-            this._teamsList.Location = new System.Drawing.Point(102, 3);
-            this._teamsList.Name = "_teamsList";
-            this._teamsList.Size = new System.Drawing.Size(315, 27);
-            this._teamsList.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 22);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Команда";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AddTournamentButton
             // 
-            this.AddTournamentButton.Location = new System.Drawing.Point(3, 239);
+            this.AddTournamentButton.Location = new System.Drawing.Point(3, 166);
             this.AddTournamentButton.Name = "AddTournamentButton";
             this.AddTournamentButton.Size = new System.Drawing.Size(431, 30);
             this.AddTournamentButton.TabIndex = 10;
@@ -256,17 +161,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 353);
+            this.ClientSize = new System.Drawing.Size(471, 227);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddTournamentForm";
             this.Text = "Add Tournament";
-            this.Load += new System.EventHandler(this.AddTournamentForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._teamsGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,13 +187,5 @@
         private System.Windows.Forms.TextBox PrizePoolBox;
         private System.Windows.Forms.Label PrizePoolLabel;
         private System.Windows.Forms.Button AddTournamentButton;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView _teamsGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _worldRankCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _teamNameCol;
-        private System.Windows.Forms.Button AddTeamButton;
-        private System.Windows.Forms.ComboBox _teamsList;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button RemoveButton;
     }
 }

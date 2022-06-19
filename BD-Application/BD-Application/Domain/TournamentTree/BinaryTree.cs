@@ -113,7 +113,7 @@ namespace BD_Application.Domain.TournamentTree {
             return tree;
         }
 
-        private static BinaryTreeNode helper(List<string> data) {
+        private static BinaryTreeNode helper(List<string> data, BinaryTreeNode parent = null) {
             BinaryTreeNode res;
 
             if (data.Count == 0) return null;
@@ -124,8 +124,9 @@ namespace BD_Application.Domain.TournamentTree {
             }
             int tmp = Convert.ToInt32(str);
             res = new BinaryTreeNode(tmp);
-            res.LeftNode = helper(data);
-            res.RightNode = helper(data);
+            res.ParentNode = parent;
+            res.LeftNode = helper(data, res);
+            res.RightNode = helper(data, res);
             return res;
         }
     }

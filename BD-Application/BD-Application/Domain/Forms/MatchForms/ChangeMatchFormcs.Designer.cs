@@ -29,7 +29,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
             this._stageBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this._dataBox = new System.Windows.Forms.DateTimePicker();
+            this._dateBox = new System.Windows.Forms.DateTimePicker();
             this._team1Box = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this._team2Box = new System.Windows.Forms.TextBox();
@@ -87,10 +87,10 @@ namespace BD_Application.Domain.Forms.MatchForms {
             // 
             // _dataBox
             // 
-            this._dataBox.Location = new System.Drawing.Point(96, 65);
-            this._dataBox.Name = "_dataBox";
-            this._dataBox.Size = new System.Drawing.Size(277, 22);
-            this._dataBox.TabIndex = 5;
+            this._dateBox.Location = new System.Drawing.Point(96, 65);
+            this._dateBox.Name = "_dataBox";
+            this._dateBox.Size = new System.Drawing.Size(277, 22);
+            this._dateBox.TabIndex = 5;
             // 
             // _team1Box
             // 
@@ -166,9 +166,11 @@ namespace BD_Application.Domain.Forms.MatchForms {
             this._saveButton.TabIndex = 15;
             this._saveButton.Text = "Сохранить";
             this._saveButton.UseVisualStyleBackColor = true;
+            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
             // 
             // _closeButton
             // 
+            this._closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._closeButton.Location = new System.Drawing.Point(197, 191);
             this._closeButton.Name = "_closeButton";
             this._closeButton.Size = new System.Drawing.Size(93, 42);
@@ -176,7 +178,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
             this._closeButton.Text = "Закрыть";
             this._closeButton.UseVisualStyleBackColor = true;
             // 
-            // ChangeMatchFormcs
+            // ChangeMatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,13 +193,13 @@ namespace BD_Application.Domain.Forms.MatchForms {
             this.Controls.Add(this.label5);
             this.Controls.Add(this._team1Box);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this._dataBox);
+            this.Controls.Add(this._dateBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._stageBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._tournamentBox);
             this.Controls.Add(this.label1);
-            this.Name = "ChangeMatchFormcs";
+            this.Name = "ChangeMatchForm";
             this.Text = "ChangeMatchFormcs";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,7 +213,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
         private System.Windows.Forms.TextBox _stageBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker _dataBox;
+        private System.Windows.Forms.DateTimePicker _dateBox;
         private System.Windows.Forms.TextBox _team1Box;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox _team2Box;

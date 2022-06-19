@@ -24,10 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.ChangeButton = new System.Windows.Forms.Button();
-            this.ViewButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ViewButton = new System.Windows.Forms.Button();
+            this.ChangeButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,36 +46,6 @@
             this.panel1.Size = new System.Drawing.Size(391, 79);
             this.panel1.TabIndex = 0;
             // 
-            // AddButton
-            // 
-            this.AddButton.Location = new System.Drawing.Point(3, 32);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(91, 37);
-            this.AddButton.TabIndex = 0;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
-            // ChangeButton
-            // 
-            this.ChangeButton.Location = new System.Drawing.Point(152, 32);
-            this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(91, 37);
-            this.ChangeButton.TabIndex = 1;
-            this.ChangeButton.Text = "Change";
-            this.ChangeButton.UseVisualStyleBackColor = true;
-            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
-            // 
-            // ViewButton
-            // 
-            this.ViewButton.Location = new System.Drawing.Point(295, 32);
-            this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(91, 37);
-            this.ViewButton.TabIndex = 2;
-            this.ViewButton.Text = "View";
-            this.ViewButton.UseVisualStyleBackColor = true;
-            this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -87,12 +57,42 @@
             "Tournament"});
             this.comboBox1.Location = new System.Drawing.Point(3, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(383, 23);
+            this.comboBox1.Size = new System.Drawing.Size(383, 27);
             this.comboBox1.TabIndex = 3;
+            // 
+            // ViewButton
+            // 
+            this.ViewButton.Location = new System.Drawing.Point(295, 32);
+            this.ViewButton.Name = "ViewButton";
+            this.ViewButton.Size = new System.Drawing.Size(91, 37);
+            this.ViewButton.TabIndex = 2;
+            this.ViewButton.Text = "View";
+            this.ViewButton.UseVisualStyleBackColor = true;
+            this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
+            // 
+            // ChangeButton
+            // 
+            this.ChangeButton.Location = new System.Drawing.Point(152, 32);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(91, 37);
+            this.ChangeButton.TabIndex = 1;
+            this.ChangeButton.Text = "Change";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
+            // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(3, 32);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(91, 37);
+            this.AddButton.TabIndex = 0;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 103);
             this.Controls.Add(this.panel1);
