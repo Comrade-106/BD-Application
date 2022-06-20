@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BD_Application.Domain {
-    internal abstract class Contract {
+    public abstract class Contract {
         private int idTeam;
         private DateTime dateFrom;
         private DateTime dateTo;

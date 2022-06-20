@@ -36,7 +36,34 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetString("name")
                     );
                 if (reader.GetInt32("isDelete") == 1) {
-                    organizer.IsDelete = true;
+                    continue;
+                }
+                list.Add(organizer);
+            }
+
+            connection.Close();
+            return list;
+        }
+
+        public List<Organizer> GetOrganizers(string nameOrLetterFromName) {
+            List<Organizer> list = new List<Organizer>();
+            connection.Open();
+
+            string sql = "SELECT * FROM organizer WHERE LEFT(`name`, @n) = @name;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@n", nameOrLetterFromName.Length);
+            cmd.Parameters.AddWithValue("@name", nameOrLetterFromName);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                var organizer = new Organizer(
+                    reader.GetInt32("id"),
+                    reader.GetString("name")
+                    );
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
                 }
                 list.Add(organizer);
             }

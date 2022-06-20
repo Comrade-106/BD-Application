@@ -1,5 +1,4 @@
 ﻿using BD_Application.Domain;
-using BD_Application.Repository;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -22,6 +21,39 @@ namespace BD_Application.Repository.DataBaseRepository {
             }
         }
 
+        public int GetCoachIdByIdTeam(int id_team) {
+            int id = -1;
+            connection.Open();
+
+            string sql = "SELECT id_coach FROM contract_coach_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            int.TryParse(Convert.ToString(cmd.ExecuteScalar()), out id);
+
+            connection.Close();
+            return id;
+        }
+
+        public bool CheckContractByTeamId(int id_team) {
+            connection.Open();
+
+            string sql = "SELECT id_contract FROM contract_coach_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reder = cmd.ExecuteReader();
+
+            if (reder.HasRows) {
+                return true;
+            }
+
+            connection.Close();
+            return false;
+        }
+
         public bool HaveCoachInTheTeame(int id_team) {
             connection.Open();
 
@@ -41,7 +73,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             return false;
         }
 
-        public ContractCoach GetActiveContract(int id_coach) {
+        public ContractCoach GetActiveContractByCoach(int id_coach) {
             ContractCoach contract = null;
             connection.Open();
 
@@ -66,6 +98,33 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Close();
             return contract;
         }
+
+        public ContractCoach GetActiveContractByTeam(int id_team) {
+            ContractCoach contract = null;
+            connection.Open();
+
+            string sql = "SELECT * FROM contract_coach_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                contract = new ContractCoach(
+                reader.GetInt32("id_contract"),
+                reader.GetInt32("id_coach"),
+                reader.GetInt32("id_team"),
+                reader.GetDateTime("date_start"),
+                reader.GetDateTime("date_end"),
+                reader.GetDouble("salary")
+                );
+            }
+
+            connection.Close();
+            return contract;
+        }
+
 
         public List<Contract> GetAllContracts(int id_coach) {
             List<Contract> list = new List<Contract>();
@@ -145,6 +204,24 @@ namespace BD_Application.Repository.DataBaseRepository {
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = contract.IdCoachContract;
             cmd.Parameters.Add("@isActive", MySqlDbType.Int32).Value = 0;
             cmd.Parameters.Add("@date_end", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd");
+
+            if (cmd.ExecuteNonQuery() != 1) {
+                connection.Close();
+                return false;
+            }
+
+            connection.Close();
+            return true;
+        }
+
+        public bool DeleteContractCoachByTeamId(int id_team) {
+            connection.Open();
+            string sql = "UPDATE contract_coach_team SET isActive = @isActive, date_end = @date_end WHERE id_team = @id;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id", id_team);
+            cmd.Parameters.AddWithValue("@isActive", 0);
+            cmd.Parameters.AddWithValue("@date_end", DateTime.Now.ToString("yyyy-MM-dd"));
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();

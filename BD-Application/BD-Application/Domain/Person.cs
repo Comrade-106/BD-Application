@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace BD_Application.Domain {
-    internal abstract class Person {
+    public abstract class Person {
         private string nickName;
         private string name;
         private DateTime birthDay;

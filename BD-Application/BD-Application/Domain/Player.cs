@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BD_Application.Domain {
-    internal class Player : Person {
+    public class Player : Person {
         private int id;
         private bool isDelete;
 

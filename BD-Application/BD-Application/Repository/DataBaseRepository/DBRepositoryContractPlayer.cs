@@ -21,6 +21,61 @@ namespace BD_Application.Repository.DataBaseRepository {
             }
         }
 
+        public bool CheckContractByTeamId(int id_team) {
+            connection.Open();
+
+            string sql = "SELECT id_contract FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reder = cmd.ExecuteReader();
+
+            if (reder.HasRows) {
+                connection.Close();
+                return true;
+            }
+
+            connection.Close();
+            return false;
+        }
+
+        public List<ContractPlayer> GetPlayersByTeam(int id_team) {
+            List<ContractPlayer> list = new List<ContractPlayer>();
+            connection.Open();
+
+            string sql = "SELECT * FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id_team", id_team);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                if (reader.GetInt32("isActive") == 0) {
+                    continue;
+                }
+
+                var contracr = new ContractPlayer(
+                    reader.GetInt32("id_contract"),
+                    reader.GetInt32("id_player"),
+                    reader.GetInt32("id_team"),
+                    reader.GetDateTime("date_start"),
+                    reader.GetDateTime("date_end"),
+                    reader.GetDouble("salary")
+                    );
+                if (reader.GetInt32("isMain") == 1) {
+                    contracr.IsMain = true;
+                } else {
+                    contracr.IsMain = false;
+                }
+                list.Add(contracr);
+            }
+
+            connection.Close();
+            return list;
+        }
+
         public ContractPlayer GetActiveContract(int id_player) {
             ContractPlayer contract = null;
             connection.Open();
@@ -97,6 +152,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                 list.Add(contract);
             }
 
+            connection.Close();
             return list;
         }
 
@@ -161,6 +217,24 @@ namespace BD_Application.Repository.DataBaseRepository {
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = contract.IdPlayerContract;
             cmd.Parameters.Add("@isActive", MySqlDbType.Int32).Value = 0;
             cmd.Parameters.Add("@date_end", MySqlDbType.Date).Value = DateTime.Now.ToString("yyyy-MM-dd");
+
+            if (cmd.ExecuteNonQuery() != 1) {
+                connection.Close();
+                return false;
+            }
+
+            connection.Close();
+            return true;
+        }
+
+        public bool DeleteAllContractByTeamId(int id_team) {
+            connection.Open();
+            string sql = "UPDATE contract_player_team SET isActive = @isActive, date_end = @date_end WHERE id_team = @id;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id", id_team);
+            cmd.Parameters.AddWithValue("@isActive", 0);
+            cmd.Parameters.AddWithValue("@date_end", DateTime.Now.ToString("yyyy-MM-dd"));
 
             if (cmd.ExecuteNonQuery() != 1) {
                 connection.Close();

@@ -15,7 +15,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private int count;
         private int[] firstStageIndexes = new int[]{ 1, 3, 5, 7, 9, 11, 13, 15 };
 
-        private readonly IRepositoryTournanent repositoryTournanent;
+        private readonly IRepositoryTournament repositoryTournanent;
         private readonly IRepositoryOrganizer repositoryOrganizer;
         private readonly IRepositoryTeam repositoryTeam;
         private readonly IRepositoryMatch matchRepository;

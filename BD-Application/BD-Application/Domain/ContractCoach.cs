@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BD_Application.Domain {
-    internal class ContractCoach : Contract {
+    public class ContractCoach : Contract {
         private int idCoachContract;
         private int idCoach;
 

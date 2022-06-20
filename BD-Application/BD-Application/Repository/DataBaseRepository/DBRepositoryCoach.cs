@@ -48,6 +48,61 @@ namespace BD_Application.Repository.DataBaseRepository {
             return list;
         }
 
+        public List<Coach> GetCoaches(string nicknameOrSomeFirsSymbol) {
+            List<Coach> list = new List<Coach>();
+            connection.Open();
+
+            string sql = "SELECT * FROM coach WHERE LEFT(nickname, @n) = @nickname;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@n", nicknameOrSomeFirsSymbol.Length);
+            cmd.Parameters.AddWithValue("@nickname", nicknameOrSomeFirsSymbol);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                var coach = new Coach(
+                    reader.GetInt32("id"),
+                    reader.GetString("nickname"),
+                    reader.GetString("full_name"),
+                    reader.GetDateTime("birthday")
+                    );
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
+                }
+                list.Add(coach);
+            }
+
+            connection.Close();
+            return list;
+        }
+
+        public Coach GetCoache(int id) {
+            Coach coach = null;
+            connection.Open();
+
+            string sql = "SELECT * FROM coach WHERE id = @id;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("id", id);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                    coach = new Coach(
+                    reader.GetInt32("id"),
+                    reader.GetString("nickname"),
+                    reader.GetString("full_name"),
+                    reader.GetDateTime("birthday")
+                    );
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
+                }
+            }
+
+            connection.Close();
+            return coach;
+        }
+
         public bool AddCoach(Coach coach) {
             connection.Open();
 

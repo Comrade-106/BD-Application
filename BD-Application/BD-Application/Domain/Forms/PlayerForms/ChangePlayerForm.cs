@@ -1,28 +1,19 @@
-﻿using BD_Application.Repository;
-using BD_Application.Repository.DataBaseRepository;
-using BD_Application.Domain.Forms.ContractPlayerTeamForms;
+﻿using BD_Application.Domain.Forms.ContractPlayerTeamForms;
+using BD_Application.Repository;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.PlayerForms {
     public partial class ChangePlayerForm : Form {
-        private List<Player> players;
         private Player currentPlayer;
-        private readonly IRepositoryPlayer repository;
+        private readonly IRepositoryPlayer repositoryPlayers;
         private readonly IRepositoryContractPlayer repositoryContract;
 
-        public ChangePlayerForm() {
+        public ChangePlayerForm(Player player, IRepositoryPlayer repositoryPlayers, IRepositoryContractPlayer repositoryContract) {
             InitializeComponent();
-            repository = new DBRepositoryPlayer();
-            repositoryContract = new DBRepositoryContractPlayer();
-        }
-
-        private void FillPlayerBox() {
-            PlayerBox.DataSource = null;
-            PlayerBox.DataSource = players;
-            PlayerBox.DisplayMember = "nickname";
-            PlayerBox.ValueMember = "id";
+            currentPlayer = player;
+            this.repositoryPlayers = repositoryPlayers;
+            this.repositoryContract = repositoryContract;
         }
 
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
@@ -33,7 +24,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                         currentPlayer.Name = NameBox.Text;
                         currentPlayer.BirthDay = BirthDayBox.Value;
 
-                        repository.ChangePlayer(currentPlayer);
+                        repositoryPlayers.ChangePlayer(currentPlayer);
                         MessageBox.Show("Player`s info changed successfull", "Message!");
                     } catch (Exception) {
                         MessageBox.Show("You entered wrong info", "Message!");
@@ -51,8 +42,8 @@ namespace BD_Application.Domain.Forms.PlayerForms {
 
                 var contract = repositoryContract.GetActiveContract(currentPlayer.Id);
                 if (contract != null) {
-                    DialogResult result =  MessageBox.Show(
-                        "The Player have active contract with team. Determinate this contract?", 
+                    DialogResult result = MessageBox.Show(
+                        "The Player has active contract with team. Determinate this contract?",
                         "Message!",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Information,
@@ -62,6 +53,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                     if (result == DialogResult.Yes) {
                         if (repositoryContract.DeleteContractPlayer(contract)) {
                             MessageBox.Show("The contract deleted successfull", "Message!");
+
                         } else {
                             MessageBox.Show("The contract didn`t delete", "Message!");
                         }
@@ -70,12 +62,9 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                     }
                 }
 
-                if (repository.DeletePlayer(currentPlayer)) {
+                if (repositoryPlayers.DeletePlayer(currentPlayer)) {
                     MessageBox.Show("The player deleted successfull", "Message!");
-                    if ((players = repository.GetAllPlayers()) == null) {
-                        MessageBox.Show("Can`t get info from database", "Error!");
-                        return;
-                    }
+                    this.Close();
                 } else {
                     MessageBox.Show("The player didn`t delete", "Message!");
                 }
@@ -84,32 +73,18 @@ namespace BD_Application.Domain.Forms.PlayerForms {
             }
         }
 
-        private void ChangePlayerForm_Load(object sender, EventArgs e) {
-            if ((players = repository.GetAllPlayers()) == null) {
-                MessageBox.Show("Can`t get info from database", "Error!");
-                return;
-            }
-            FillPlayerBox();
-        }
-
-        private void PlayerBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (PlayerBox.SelectedItem != null) {
-                currentPlayer = (Player)PlayerBox.SelectedItem;
-
-                if (currentPlayer != null) {
-                    panel1.Visible = true;
-                    NickNameBox.Text = currentPlayer.NickName;
-                    NameBox.Text = currentPlayer.Name;
-                    BirthDayBox.Value = currentPlayer.BirthDay;
-                } else {
-                    MessageBox.Show("Can`t found a player", "Error!");
-                }
+        private void ChangePlayerForm_Load(object sender, EventArgs e) { 
+            if (currentPlayer != null) {
+                panel1.Visible = true;
+                NickNameBox.Text = currentPlayer.NickName;
+                NameBox.Text = currentPlayer.Name;
+                BirthDayBox.Value = currentPlayer.BirthDay;
             } else {
-                MessageBox.Show("You didn` choice a player", "Message!");
+                MessageBox.Show("Can`t found a player", "Error!");
             }
         }
 
-        private void AddContractButton_Click(object sender, EventArgs e) {
+        private void AddChangeContractButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {
                 AddPlayerTeamContractForm form = new AddPlayerTeamContractForm(currentPlayer.Id);
                 form.ShowDialog();
@@ -118,7 +93,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
             }
         }
 
-        private void TerminateContractButton_Click(object sender, EventArgs e) {
+        private void TerminateConcractButton_Click(object sender, EventArgs e) {
             if (currentPlayer != null) {
                 var contract = repositoryContract.GetActiveContract(currentPlayer.Id);
                 if (contract != null) {
@@ -130,7 +105,7 @@ namespace BD_Application.Domain.Forms.PlayerForms {
                 } else {
                     MessageBox.Show("The player didn`t have active contract", "Message!");
                 }
-                
+
             } else {
                 MessageBox.Show("You didn` choice a player", "Message!");
             }
