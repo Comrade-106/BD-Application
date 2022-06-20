@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace BD_Application.Domain {
-    internal class Coach : Person {
+    public class Coach : Person {
         private int id;
         private bool isDelete;
 

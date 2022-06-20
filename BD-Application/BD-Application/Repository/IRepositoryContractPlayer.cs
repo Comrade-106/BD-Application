@@ -10,7 +10,7 @@ namespace BD_Application.Repository {
         List<Contract> GetAllContracts(int id_player);
         ContractPlayer GetActiveContract(int id_player);
         int NumberOfMainPlayerInTeam(int id_team);
-        List<string> GetIdPlayerByTeamId(int id_team);
+        List<ContractPlayer> GetPlayersByTeam(int id_team);
         bool CheckContractByTeamId(int id_team);
     }
 }

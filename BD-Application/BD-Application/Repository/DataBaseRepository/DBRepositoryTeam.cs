@@ -50,7 +50,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             List<Team> list = new List<Team>();
             connection.Open();
 
-            string sql = "SELECT * FROM team WHERE LEFT(name, @n) = @name";
+            string sql = "SELECT * FROM team WHERE LEFT(`name`, @n) = @name";
             
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.AddWithValue("@n", letterInName.Length);

@@ -1,35 +1,26 @@
 ﻿using BD_Application.Repository;
-using BD_Application.Repository.DataBaseRepository;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.TeamForms {
     public partial class ChangeTeamForm : Form {
-        private List<Team> teams;
-        private Team currentTeam = null;
-        private readonly IRepositoryTeam repository;
+        private Team team = null;
+        private readonly IRepositoryTeam repositoryTeam;
 
         private readonly IRepositoryContractCoach contractCoach;
-        private readonly IRepositoryContractPlayer contractPlayer;
+        private readonly IRepositoryContractPlayer contractsPlayers;
 
-        public ChangeTeamForm() {
+        public ChangeTeamForm(Team team, IRepositoryTeam repositoryTeam, IRepositoryContractPlayer contractsPlayers, IRepositoryContractCoach contractCoach) {
             InitializeComponent();
-            repository = new DBRepositoryTeam();
-            contractCoach = new DBRepositoryContractCoach();
-            contractPlayer = new DBRepositoryContractPlayer();
-        }
-
-        private void FillTeamBox() {
-            TeamBox.DataSource = null;
-            TeamBox.DataSource = teams;
-            TeamBox.DisplayMember = "name";
-            TeamBox.ValueMember = "id";
+            this.repositoryTeam = repositoryTeam;
+            this.team = team;
+            this.contractsPlayers = contractsPlayers;
+            this.contractCoach = contractCoach;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e) {
-            if (currentTeam != null) {
-                if (contractCoach.CheckContractByTeamId(currentTeam.Id)) {
+            if (team != null) {
+                if (contractCoach.CheckContractByTeamId(team.Id)) {
                     DialogResult result = MessageBox.Show(
                         "The team has active contract with coach. Determinate this contract?",
                         "Message!",
@@ -39,7 +30,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
                          MessageBoxOptions.DefaultDesktopOnly
                     );
                     if (result == DialogResult.Yes) {
-                        if (contractCoach.DeleteContractCoachByTeamId(currentTeam.Id)) {
+                        if (contractCoach.DeleteContractCoachByTeamId(team.Id)) {
                             MessageBox.Show("The coach`s contract determinated", "Message!");
                         } else {
                             MessageBox.Show("The coach`s contract didn`t determinate", "Message!");
@@ -47,9 +38,9 @@ namespace BD_Application.Domain.Forms.TeamForms {
                     } else {
                         return;
                     }
-                } else if (contractPlayer.CheckContractByTeamId(currentTeam.Id)) {
+                } else if (contractsPlayers.CheckContractByTeamId(team.Id)) {
                     DialogResult result = MessageBox.Show(
-                        "The team has active contracts with players. Determinate this contract?",
+                        "The team has active contracts with players. Determinate this contracts?",
                         "Message!",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Information,
@@ -57,7 +48,7 @@ namespace BD_Application.Domain.Forms.TeamForms {
                          MessageBoxOptions.DefaultDesktopOnly
                     );
                     if (result == DialogResult.Yes) {
-                        if (contractPlayer.DeleteAllContractByTeamId(currentTeam.Id)) {
+                        if (contractsPlayers.DeleteAllContractByTeamId(team.Id)) {
                             MessageBox.Show("The contracts of players determinated", "Message!");
                         } else {
                             MessageBox.Show("The contracts of players didn`t determinate", "Message!");
@@ -67,33 +58,11 @@ namespace BD_Application.Domain.Forms.TeamForms {
                     }
                 }
 
-                if (repository.DeleteTeam(currentTeam)) {
+                if (repositoryTeam.DeleteTeam(team)) {
                     MessageBox.Show("The team deleted successfull", "Message!");
-                    if ((teams = repository.GetAllTeams()) == null) {
-                        MessageBox.Show("Can`t get info from repository", "Error!");
-                        return;
-                    }
-                    FillTeamBox();
+                    this.Close();
                 } else {
                     MessageBox.Show("The team didn`t delete", "Message!");
-                }
-
-                //contracts?
-            } else {
-                MessageBox.Show("You didn`t choice a team", "Message!");
-            }
-        }
-
-        private void TeamBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (TeamBox.SelectedItem != null) {
-                currentTeam = (Team)TeamBox.SelectedItem;
-
-                if (currentTeam != null) {
-                    panel1.Visible = true;
-                    NameBox.Text = currentTeam.Name;
-                    WorldRankBox.Text = Convert.ToString(currentTeam.WorldRank);
-                } else {
-                    MessageBox.Show("You entered wrong info", "Error!");
                 }
             } else {
                 MessageBox.Show("You didn`t choice a team", "Message!");
@@ -102,22 +71,22 @@ namespace BD_Application.Domain.Forms.TeamForms {
 
         private void ChangeButton_Click(object sender, EventArgs e) {
             if (NameBox.Text != String.Empty && WorldRankBox.Text != String.Empty) {
-                if (currentTeam != null) {
+                if (team != null) {
 
                     if (int.TryParse(WorldRankBox.Text, out int rank)) {
                         if (rank <= 0) {
                             MessageBox.Show("A rank can`t be less than '1'", "Message!");
                             return;
                         }
-                        currentTeam.WorldRank = rank;
+                        team.WorldRank = rank;
                     } else {
                         MessageBox.Show("You entered wrong info", "Message!");
                         return;
                     }
 
-                    currentTeam.Name = NameBox.Text;
+                    team.Name = NameBox.Text;
 
-                    if (repository.ChangeTeam(currentTeam)) {
+                    if (repositoryTeam.ChangeTeam(team)) {
                         MessageBox.Show("Team`s info changed successfull", "Message!");
                     } else {
                         MessageBox.Show("Team`s info didn`t change", "Message!");
@@ -132,11 +101,13 @@ namespace BD_Application.Domain.Forms.TeamForms {
         }
 
         private void ChangeTeamForm_Load(object sender, EventArgs e) {
-            if ((teams = repository.GetAllTeams()) == null) {
-                MessageBox.Show("Can`t get info from repository", "Error!");
-                return;
+            if (team != null) {
+                panel1.Visible = true;
+                NameBox.Text = team.Name;
+                WorldRankBox.Text = Convert.ToString(team.WorldRank);
+            } else {
+                MessageBox.Show("You didn`t choice a team", "Message!");
             }
-            FillTeamBox();
         }
     }
 }

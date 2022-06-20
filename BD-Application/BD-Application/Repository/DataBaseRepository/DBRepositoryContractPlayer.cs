@@ -40,23 +40,40 @@ namespace BD_Application.Repository.DataBaseRepository {
             return false;
         }
 
-        public List<string> GetIdPlayerByTeamId(int id_team) {
-            List<string> result = new List<string>();
+        public List<ContractPlayer> GetPlayersByTeam(int id_team) {
+            List<ContractPlayer> list = new List<ContractPlayer>();
             connection.Open();
 
-            string sql = "SELECT id_player, isMain FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
+            string sql = "SELECT * FROM contract_player_team WHERE id_team = @id_team AND isActive = 1";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
-            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+            cmd.Parameters.AddWithValue("@id_team", id_team);
 
             var reader = cmd.ExecuteReader();
 
             while (reader.Read()) {
-                result.Add(reader.GetString(0) + ":" + reader.GetString(1));
+                if (reader.GetInt32("isActive") == 0) {
+                    continue;
+                }
+
+                var contracr = new ContractPlayer(
+                    reader.GetInt32("id_contract"),
+                    reader.GetInt32("id_player"),
+                    reader.GetInt32("id_team"),
+                    reader.GetDateTime("date_start"),
+                    reader.GetDateTime("date_end"),
+                    reader.GetDouble("salary")
+                    );
+                if (reader.GetInt32("isMain") == 1) {
+                    contracr.IsMain = true;
+                } else {
+                    contracr.IsMain = false;
+                }
+                list.Add(contracr);
             }
 
             connection.Close();
-            return result;
+            return list;
         }
 
         public ContractPlayer GetActiveContract(int id_player) {

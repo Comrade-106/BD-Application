@@ -126,30 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Forms\CoachForms\ViewAllCoaches.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Domain\Forms\CoachForms\ViewAllCoaches.Designer.cs">
-      <DependentUpon>ViewAllCoaches.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.Designer.cs">
-      <DependentUpon>ViewAllOrganizers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Forms\PlayerForms\ViewAllPlayers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Domain\Forms\PlayerForms\ViewAllPlayers.Designer.cs">
-      <DependentUpon>ViewAllPlayers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Forms\TeamForms\ViewAllTeam.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Domain\Forms\TeamForms\ViewAllTeam.Designer.cs">
-      <DependentUpon>ViewAllTeam.cs</DependentUpon>
-    </Compile>
     <Compile Include="Domain\Forms\TournamentForms\ViewAllTournament.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,9 +264,6 @@
     <EmbeddedResource Include="Domain\Forms\CoachForms\ChangeCoachForm.resx">
       <DependentUpon>ChangeCoachForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\CoachForms\ViewAllCoaches.resx">
-      <DependentUpon>ViewAllCoaches.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\ContractCoachTeamForms\AddCoachTeamContract.resx">
       <DependentUpon>AddCoachTeamContract.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,26 +279,17 @@
     <EmbeddedResource Include="Domain\Forms\OrganizerForms\ChangeOrganizerForm.resx">
       <DependentUpon>ChangeOrganizerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\OrganizerForms\ViewAllOrganizers.resx">
-      <DependentUpon>ViewAllOrganizers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\PlayerForms\AddPlayerForm.resx">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\PlayerForms\ChangePlayerForm.resx">
       <DependentUpon>ChangePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\PlayerForms\ViewAllPlayers.resx">
-      <DependentUpon>ViewAllPlayers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TeamForms\AddTeamForm.resx">
       <DependentUpon>AddTeamForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TeamForms\ChangeTeamForm.resx">
       <DependentUpon>ChangeTeamForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Forms\TeamForms\ViewAllTeam.resx">
-      <DependentUpon>ViewAllTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\TournamentForms\AddTournamentForm.resx">
       <DependentUpon>AddTournamentForm.cs</DependentUpon>

@@ -1,5 +1,5 @@
 ﻿namespace BD_Application.Domain {
-    internal class Organizer {
+    public class Organizer {
         private int id;
         private string name;
         private bool isDelete;

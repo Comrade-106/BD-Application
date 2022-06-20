@@ -20,6 +20,5 @@ namespace BD_Application.Domain {
             this.idPlayerContract = id;
             this.idPlayer = idPlayer;
         }
-
     }
 }

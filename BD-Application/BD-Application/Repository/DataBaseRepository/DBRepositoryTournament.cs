@@ -22,7 +22,6 @@ namespace BD_Application.Repository.DataBaseRepository {
         }
 
         public List<Tournament> GetAllTournament() {
-
             List<Tournament> list = new List<Tournament>();
             connection.Open();
 
@@ -41,6 +40,39 @@ namespace BD_Application.Repository.DataBaseRepository {
                     );
                 
                 int id = reader.GetInt32("id");
+
+                tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+
+                if (reader.GetInt32("isDelete") == 1) {
+                    continue;
+                }
+                list.Add(tournament);
+            }
+
+            connection.Close();
+            return list;
+        }
+
+        public List<Tournament> GetTournaments(string nameOrLetterFromName) {
+            List<Tournament> list = new List<Tournament>();
+            connection.Open();
+
+            string sql = "SELECT * FROM tournament WHERE LEFT(`tournament_name`, @n) = @name;";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@n", nameOrLetterFromName.Length);
+            cmd.Parameters.AddWithValue("@name", nameOrLetterFromName);
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                var tournament = new Tournament(
+                    reader.GetInt32("id"),
+                    reader.GetString("tournament_name"),
+                    reader.GetDateTime("start_date"),
+                    reader.GetDateTime("end_date"),
+                    reader.GetDouble("prize_pool")
+                    );
 
                 tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
 

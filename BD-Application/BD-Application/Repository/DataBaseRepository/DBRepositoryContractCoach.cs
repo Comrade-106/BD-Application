@@ -73,7 +73,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             return false;
         }
 
-        public ContractCoach GetActiveContract(int id_coach) {
+        public ContractCoach GetActiveContractByCoach(int id_coach) {
             ContractCoach contract = null;
             connection.Open();
 
@@ -98,6 +98,33 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Close();
             return contract;
         }
+
+        public ContractCoach GetActiveContractByTeam(int id_team) {
+            ContractCoach contract = null;
+            connection.Open();
+
+            string sql = "SELECT * FROM contract_coach_team WHERE id_team = @id_team AND isActive = 1";
+
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.Add("@id_team", MySqlDbType.Int32).Value = id_team;
+
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read()) {
+                contract = new ContractCoach(
+                reader.GetInt32("id_contract"),
+                reader.GetInt32("id_coach"),
+                reader.GetInt32("id_team"),
+                reader.GetDateTime("date_start"),
+                reader.GetDateTime("date_end"),
+                reader.GetDouble("salary")
+                );
+            }
+
+            connection.Close();
+            return contract;
+        }
+
 
         public List<Contract> GetAllContracts(int id_coach) {
             List<Contract> list = new List<Contract>();

@@ -23,8 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.CoachBox = new System.Windows.Forms.ComboBox();
-            this.CoachLabel = new System.Windows.Forms.Label();
             this.DeleteCoachButton = new System.Windows.Forms.Button();
             this.ChangePlayerButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -38,26 +36,6 @@
             this.NickNameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // CoachBox
-            // 
-            this.CoachBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CoachBox.FormattingEnabled = true;
-            this.CoachBox.Location = new System.Drawing.Point(79, 9);
-            this.CoachBox.Name = "CoachBox";
-            this.CoachBox.Size = new System.Drawing.Size(328, 23);
-            this.CoachBox.TabIndex = 9;
-            this.CoachBox.SelectedIndexChanged += new System.EventHandler(this.CoachBox_SelectedIndexChanged);
-            // 
-            // CoachLabel
-            // 
-            this.CoachLabel.Location = new System.Drawing.Point(12, 9);
-            this.CoachLabel.Name = "CoachLabel";
-            this.CoachLabel.Size = new System.Drawing.Size(48, 23);
-            this.CoachLabel.TabIndex = 8;
-            this.CoachLabel.Text = "Coach";
-            this.CoachLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeleteCoachButton
             // 
@@ -94,16 +72,16 @@
             this.panel1.Controls.Add(this.NameLabel);
             this.panel1.Controls.Add(this.NickNameBox);
             this.panel1.Controls.Add(this.NickNameLabel);
-            this.panel1.Location = new System.Drawing.Point(9, 38);
+            this.panel1.Location = new System.Drawing.Point(9, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 133);
+            this.panel1.Size = new System.Drawing.Size(398, 159);
             this.panel1.TabIndex = 29;
             this.panel1.Visible = false;
             // 
             // AddContractButton
             // 
             this.AddContractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddContractButton.Location = new System.Drawing.Point(6, 94);
+            this.AddContractButton.Location = new System.Drawing.Point(6, 120);
             this.AddContractButton.Name = "AddContractButton";
             this.AddContractButton.Size = new System.Drawing.Size(184, 29);
             this.AddContractButton.TabIndex = 15;
@@ -114,7 +92,7 @@
             // ChangeConcractButton
             // 
             this.ChangeConcractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChangeConcractButton.Location = new System.Drawing.Point(209, 94);
+            this.ChangeConcractButton.Location = new System.Drawing.Point(209, 120);
             this.ChangeConcractButton.Name = "ChangeConcractButton";
             this.ChangeConcractButton.Size = new System.Drawing.Size(184, 29);
             this.ChangeConcractButton.TabIndex = 14;
@@ -188,8 +166,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ChangePlayerButton);
             this.Controls.Add(this.DeleteCoachButton);
-            this.Controls.Add(this.CoachBox);
-            this.Controls.Add(this.CoachLabel);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(435, 275);
@@ -203,8 +179,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox CoachBox;
-        private System.Windows.Forms.Label CoachLabel;
         private System.Windows.Forms.Button DeleteCoachButton;
         private System.Windows.Forms.Button ChangePlayerButton;
         private System.Windows.Forms.Panel panel1;

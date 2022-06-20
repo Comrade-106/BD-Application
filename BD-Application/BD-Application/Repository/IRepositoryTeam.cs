@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace BD_Application.Repository {
-    internal interface IRepositoryTeam {
+    public interface IRepositoryTeam {
         bool AddTeam(Team team);
         bool ChangeTeam(Team team);
         bool DeleteTeam(Team team);

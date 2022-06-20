@@ -28,8 +28,6 @@
             this.WorldRankBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.NameBox = new System.Windows.Forms.TextBox();
-            this.TeamLabel = new System.Windows.Forms.Label();
-            this.TeamBox = new System.Windows.Forms.ComboBox();
             this.ChangeButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -44,9 +42,9 @@
             this.panel1.Controls.Add(this.WorldRankBox);
             this.panel1.Controls.Add(this.NameLabel);
             this.panel1.Controls.Add(this.NameBox);
-            this.panel1.Location = new System.Drawing.Point(8, 45);
+            this.panel1.Location = new System.Drawing.Point(8, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 65);
+            this.panel1.Size = new System.Drawing.Size(400, 89);
             this.panel1.TabIndex = 2;
             this.panel1.Visible = false;
             // 
@@ -88,26 +86,6 @@
             this.NameBox.Size = new System.Drawing.Size(311, 22);
             this.NameBox.TabIndex = 0;
             // 
-            // TeamLabel
-            // 
-            this.TeamLabel.Location = new System.Drawing.Point(12, 9);
-            this.TeamLabel.Name = "TeamLabel";
-            this.TeamLabel.Size = new System.Drawing.Size(75, 22);
-            this.TeamLabel.TabIndex = 3;
-            this.TeamLabel.Text = "Team";
-            this.TeamLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TeamBox
-            // 
-            this.TeamBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeamBox.FormattingEnabled = true;
-            this.TeamBox.Location = new System.Drawing.Point(93, 10);
-            this.TeamBox.Name = "TeamBox";
-            this.TeamBox.Size = new System.Drawing.Size(311, 23);
-            this.TeamBox.TabIndex = 4;
-            this.TeamBox.SelectedIndexChanged += new System.EventHandler(this.TeamBox_SelectedIndexChanged);
-            // 
             // ChangeButton
             // 
             this.ChangeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -137,8 +115,6 @@
             this.ClientSize = new System.Drawing.Size(424, 161);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.ChangeButton);
-            this.Controls.Add(this.TeamBox);
-            this.Controls.Add(this.TeamLabel);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -159,8 +135,6 @@
         private System.Windows.Forms.TextBox WorldRankBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox NameBox;
-        private System.Windows.Forms.Label TeamLabel;
-        private System.Windows.Forms.ComboBox TeamBox;
         private System.Windows.Forms.Button ChangeButton;
         private System.Windows.Forms.Button DeleteButton;
     }

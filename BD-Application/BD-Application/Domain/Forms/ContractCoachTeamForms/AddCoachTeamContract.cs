@@ -69,7 +69,7 @@ namespace BD_Application.Domain.Forms.ContractCoachTeamForms {
             }
             FillTeamBox();
 
-            if ((contract = repositoryContract.GetActiveContract(id_coach)) != null) {
+            if ((contract = repositoryContract.GetActiveContractByCoach(id_coach)) != null) {
                 MessageBox.Show("This Coach already have a contarct with team", "Message!");
                 this.Close();
             }
