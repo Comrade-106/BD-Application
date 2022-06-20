@@ -22,7 +22,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private int _tournamentID;
 
         private IRepositoryMatch matchRepository;
-        private IRepositoryTournanent tournamentRepository;
+        private IRepositoryTournament tournamentRepository;
         private IRepositoryTeam teamRepository;
 
         public ViewTournament(int tournamentID) {

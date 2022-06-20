@@ -6,7 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace BD_Application.Repository.DataBaseRepository {
-    internal class DBRepositoryTournament : IRepositoryTournanent {
+    internal class DBRepositoryTournament : IRepositoryTournament {
         private readonly string serverName = "localhost";
         private readonly int port = 3306;
         private readonly string userName = "root";
@@ -30,6 +30,57 @@ namespace BD_Application.Repository.DataBaseRepository {
 
             string sql = "SELECT * FROM tournament;";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            var reader = cmd.ExecuteReader();
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            MemoryStream ms;
+
+            while (reader.Read()) {
+                var tournament = new Tournament(
+                    reader.GetInt32("id"),
+                    reader.GetString("tournament_name"),
+                    reader.GetDateTime("start_date"),
+                    reader.GetDateTime("end_date"),
+                    reader.GetDouble("prize_pool")
+                    );
+                tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+
+                if (reader.GetInt32("isDelete") == 1) {
+                    tournament.IsDelete = true;
+                    continue;
+                }
+
+                //var col = reader.GetOrdinal("tournament_tree");
+
+                byte[] buf = ReadBlobData(reader);
+                //var len = (int)reader.GetBytes(col, 0, buf, 0, 0);
+                //buf = new byte[len];
+                //reader.GetBytes(6, 0, buf, 0, len);
+                if (buf != null) {
+                    ms = new MemoryStream(buf);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    tournament.TournamentTree = (string)formatter.Deserialize(ms);
+                } else {
+                    tournament.TournamentTree = null;
+                }
+
+                list.Add(tournament);
+            }
+
+            connection.Close();
+            return list;
+        }
+
+        public List<Tournament> GetTournaments(string nameOrLetterFromName) {
+            List<Tournament> list = new List<Tournament>();
+            connection.Open();
+
+            string sql = "SELECT * FROM tournament WHERE LEFT(`tournament_name`, @n) = @name;";
+            
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@n", nameOrLetterFromName.Length);
+            cmd.Parameters.AddWithValue("@name", nameOrLetterFromName);
 
             var reader = cmd.ExecuteReader();
 

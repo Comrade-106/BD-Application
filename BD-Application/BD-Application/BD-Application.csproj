@@ -126,6 +126,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Forms\MatchForms\ChangeMatchFormcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Forms\MatchForms\ChangeMatchFormcs.Designer.cs">
+      <DependentUpon>ChangeMatchFormcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Forms\TournamentForms\ViewAllTournament.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\MatchForms\ChangeMatchFormcs.resx">
+      <DependentUpon>ChangeMatchFormcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Forms\OrganizerForms\AddOrganizerForm.resx">
       <DependentUpon>AddOrganizerForm.cs</DependentUpon>
