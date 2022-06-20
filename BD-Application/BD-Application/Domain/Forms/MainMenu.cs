@@ -180,6 +180,7 @@ namespace BD_Application.Domain.Forms {
             //Call add Tournament form
         }
 
+
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
             if (PlayerBox.SelectedItem is Player player) {
                 ChangePlayerForm form = new ChangePlayerForm(player, repositoryPlayer, contractPlayer);
