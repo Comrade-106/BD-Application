@@ -1,5 +1,6 @@
 ﻿using BD_Application.Domain;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD_Application.Repository {
     public interface IRepositoryPlayer {
@@ -8,7 +9,7 @@ namespace BD_Application.Repository {
         bool DeletePlayer(Player player);
         List<Player> GetAllPlayers();
         List<Player> GetPlayers(string letterInName);
-        List<Player> GetPlayersWithoutContract();
+        DataTable GetPlayersWithoutContract();
         Player GetPlayerById(int id_player);
     }
 }

@@ -3,6 +3,7 @@ using BD_Application.Domain.TournamentTree;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryMatch : IRepositoryMatch {
@@ -20,6 +21,38 @@ namespace BD_Application.Repository.DataBaseRepository {
             if ((connection = new MySqlConnection(connectionInfo)) == null) {
                 throw new Exception("Can`t set connection with server");
             }
+        }
+
+        public DataTable GetAllMatchToday() {
+            DataTable dt = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT * FROM `match_today`;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            
+            adapter.Fill(dt);
+
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable MatchesInPeriod(DateTime start, DateTime end) {
+            DataTable dt = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT * FROM `match_with_team` WHERE @start <= `date` AND `date` <= @end;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@start", start);
+            cmd.Parameters.AddWithValue("end", end);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(dt);
+
+            connection.Close();
+            return dt;
         }
 
         public List<Match> GetAllMatch(int id_tournament) {

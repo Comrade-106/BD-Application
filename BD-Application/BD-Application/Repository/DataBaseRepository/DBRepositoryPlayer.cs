@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryPlayer : IRepositoryPlayer {
@@ -77,31 +78,19 @@ namespace BD_Application.Repository.DataBaseRepository {
             return player;
         }
 
-        public List<Player> GetPlayersWithoutContract() {
-            List<Player> list = new List<Player>();
+        public DataTable GetPlayersWithoutContract() {
+            DataTable data = new DataTable();
 
             connection.Open();
 
-            string sql = "SELECT * FROM playerwithoutteam";
+            string sql = "SELECT * FROM player_without_team";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
 
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read()) {
-                var player = new Player(
-                    reader.GetInt32("id"),
-                    reader.GetString("nickname"),
-                    reader.GetString("full_name"),
-                    reader.GetDateTime("birthday")
-                    );
-                if (reader.GetInt32("isDelete") == 1) {
-                    continue;
-                }
-                list.Add(player);
-            }
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(data);
 
             connection.Close();
-            return list;
+            return data;
         }
 
         public List<Player> GetAllPlayers() {

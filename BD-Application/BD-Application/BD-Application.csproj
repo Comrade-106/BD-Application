@@ -153,6 +153,8 @@
     <Compile Include="Repository\DataBaseRepository\DBRepositoryStage.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryTeam.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryTournament.cs" />
+    <Compile Include="Repository\DataBaseRepository\DBRepositoryTournamentResult.cs" />
+    <Compile Include="Repository\DataBaseRepository\IRepositoryTournamentResult.cs" />
     <Compile Include="Repository\IRepositoryCoach.cs" />
     <Compile Include="Repository\IRepositoryContractCoach.cs" />
     <Compile Include="Repository\IRepositoryContractPlayer.cs" />

@@ -31,6 +31,10 @@
             this.PanelPlayer = new System.Windows.Forms.Panel();
             this.PlayerInfo = new System.Windows.Forms.Label();
             this.PlayersTable = new System.Windows.Forms.DataGridView();
+            this.nickname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.team = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewAllPlayerButton = new System.Windows.Forms.Button();
             this.AddPlayerButton = new System.Windows.Forms.Button();
             this.ChangePlayerButton = new System.Windows.Forms.Button();
@@ -83,19 +87,29 @@
             this.TournamentInfoPanel = new System.Windows.Forms.Panel();
             this.TournamentInfoLabel = new System.Windows.Forms.Label();
             this.TournamentInfoTable = new System.Windows.Forms.DataGridView();
-            this.ViewTournamentsButton = new System.Windows.Forms.Button();
-            this.AddTournamentButton = new System.Windows.Forms.Button();
-            this.ChangeTournamentBox = new System.Windows.Forms.Button();
-            this.TournamentBox = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.nickname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.team = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name_tournament = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.organizer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time_period = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prize_pool = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewTournamentsButton = new System.Windows.Forms.Button();
+            this.AddTournamentButton = new System.Windows.Forms.Button();
+            this.ChangeTournamentBox = new System.Windows.Forms.Button();
+            this.TournamentBox = new System.Windows.Forms.ComboBox();
+            this.info_tab = new System.Windows.Forms.TabPage();
+            this.InfoTable = new System.Windows.Forms.DataGridView();
+            this.FutureTournamentButton = new System.Windows.Forms.Button();
+            this.PastTournamentButton = new System.Windows.Forms.Button();
+            this.CoachWithoutTeamButton = new System.Windows.Forms.Button();
+            this.PlayerWithoutTeamButton = new System.Windows.Forms.Button();
+            this.TournamentsInPeriodButton = new System.Windows.Forms.Button();
+            this.MatchesInPeriodButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TimePeriodEndBox = new System.Windows.Forms.DateTimePicker();
+            this.timePeriodLabel = new System.Windows.Forms.Label();
+            this.TimePeriodStartBox = new System.Windows.Forms.DateTimePicker();
+            this.TournamentsTodayButton = new System.Windows.Forms.Button();
+            this.MatchesTodayButton = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.tabPlayer.SuspendLayout();
@@ -113,6 +127,8 @@
             this.tabTournament.SuspendLayout();
             this.TournamentInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TournamentInfoTable)).BeginInit();
+            this.info_tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InfoTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -125,7 +141,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(720, 437);
+            this.panel1.Size = new System.Drawing.Size(750, 437);
             this.panel1.TabIndex = 0;
             // 
             // Tabs
@@ -138,10 +154,11 @@
             this.Tabs.Controls.Add(this.tabTeam);
             this.Tabs.Controls.Add(this.tabOrganizer);
             this.Tabs.Controls.Add(this.tabTournament);
+            this.Tabs.Controls.Add(this.info_tab);
             this.Tabs.Location = new System.Drawing.Point(3, 3);
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
-            this.Tabs.Size = new System.Drawing.Size(712, 429);
+            this.Tabs.Size = new System.Drawing.Size(742, 429);
             this.Tabs.TabIndex = 5;
             this.Tabs.SelectedIndexChanged += new System.EventHandler(this.Tabs_TabIndexChanged);
             // 
@@ -157,7 +174,7 @@
             this.tabPlayer.Location = new System.Drawing.Point(4, 24);
             this.tabPlayer.Name = "tabPlayer";
             this.tabPlayer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayer.Size = new System.Drawing.Size(704, 401);
+            this.tabPlayer.Size = new System.Drawing.Size(734, 401);
             this.tabPlayer.TabIndex = 0;
             this.tabPlayer.Text = "Player";
             this.tabPlayer.UseVisualStyleBackColor = true;
@@ -229,6 +246,29 @@
             this.PlayersTable.Size = new System.Drawing.Size(686, 305);
             this.PlayersTable.TabIndex = 3;
             // 
+            // nickname
+            // 
+            this.nickname.HeaderText = "Nickname";
+            this.nickname.Name = "nickname";
+            this.nickname.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // birthday
+            // 
+            this.birthday.HeaderText = "Birthday";
+            this.birthday.Name = "birthday";
+            // 
+            // team
+            // 
+            this.team.HeaderText = "Team";
+            this.team.Name = "team";
+            this.team.ReadOnly = true;
+            // 
             // ViewAllPlayerButton
             // 
             this.ViewAllPlayerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -280,7 +320,7 @@
             this.tabCoach.Location = new System.Drawing.Point(4, 24);
             this.tabCoach.Name = "tabCoach";
             this.tabCoach.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoach.Size = new System.Drawing.Size(704, 401);
+            this.tabCoach.Size = new System.Drawing.Size(734, 401);
             this.tabCoach.TabIndex = 1;
             this.tabCoach.Text = "Coach";
             this.tabCoach.UseVisualStyleBackColor = true;
@@ -425,7 +465,7 @@
             this.tabTeam.Controls.Add(this.TeamBox);
             this.tabTeam.Location = new System.Drawing.Point(4, 24);
             this.tabTeam.Name = "tabTeam";
-            this.tabTeam.Size = new System.Drawing.Size(704, 401);
+            this.tabTeam.Size = new System.Drawing.Size(734, 401);
             this.tabTeam.TabIndex = 2;
             this.tabTeam.Text = "Team";
             this.tabTeam.UseVisualStyleBackColor = true;
@@ -574,7 +614,7 @@
             this.tabOrganizer.Controls.Add(this.OrganizerBox);
             this.tabOrganizer.Location = new System.Drawing.Point(4, 24);
             this.tabOrganizer.Name = "tabOrganizer";
-            this.tabOrganizer.Size = new System.Drawing.Size(704, 401);
+            this.tabOrganizer.Size = new System.Drawing.Size(734, 401);
             this.tabOrganizer.TabIndex = 3;
             this.tabOrganizer.Text = "Organizer";
             this.tabOrganizer.UseVisualStyleBackColor = true;
@@ -719,7 +759,7 @@
             this.tabTournament.Controls.Add(this.TournamentBox);
             this.tabTournament.Location = new System.Drawing.Point(4, 24);
             this.tabTournament.Name = "tabTournament";
-            this.tabTournament.Size = new System.Drawing.Size(704, 401);
+            this.tabTournament.Size = new System.Drawing.Size(734, 401);
             this.tabTournament.TabIndex = 4;
             this.tabTournament.Text = "Tournament";
             this.tabTournament.UseVisualStyleBackColor = true;
@@ -729,7 +769,7 @@
             this.FilterTournamentBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FilterTournamentBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FilterTournamentBox.ForeColor = System.Drawing.Color.Silver;
-            this.FilterTournamentBox.Location = new System.Drawing.Point(435, 7);
+            this.FilterTournamentBox.Location = new System.Drawing.Point(465, 7);
             this.FilterTournamentBox.Name = "FilterTournamentBox";
             this.FilterTournamentBox.Size = new System.Drawing.Size(259, 22);
             this.FilterTournamentBox.TabIndex = 20;
@@ -756,7 +796,7 @@
             this.TournamentInfoPanel.Controls.Add(this.TournamentInfoTable);
             this.TournamentInfoPanel.Location = new System.Drawing.Point(6, 99);
             this.TournamentInfoPanel.Name = "TournamentInfoPanel";
-            this.TournamentInfoPanel.Size = new System.Drawing.Size(692, 290);
+            this.TournamentInfoPanel.Size = new System.Drawing.Size(722, 290);
             this.TournamentInfoPanel.TabIndex = 19;
             this.TournamentInfoPanel.Visible = false;
             // 
@@ -788,13 +828,36 @@
             this.TournamentInfoTable.Location = new System.Drawing.Point(3, 3);
             this.TournamentInfoTable.Name = "TournamentInfoTable";
             this.TournamentInfoTable.RowHeadersVisible = false;
-            this.TournamentInfoTable.Size = new System.Drawing.Size(686, 284);
+            this.TournamentInfoTable.Size = new System.Drawing.Size(716, 284);
             this.TournamentInfoTable.TabIndex = 3;
+            // 
+            // name_tournament
+            // 
+            this.name_tournament.HeaderText = "Name";
+            this.name_tournament.Name = "name_tournament";
+            this.name_tournament.ReadOnly = true;
+            // 
+            // organizer
+            // 
+            this.organizer.HeaderText = "Organizer";
+            this.organizer.Name = "organizer";
+            this.organizer.ReadOnly = true;
+            // 
+            // time_period
+            // 
+            this.time_period.HeaderText = "Time period";
+            this.time_period.Name = "time_period";
+            // 
+            // prize_pool
+            // 
+            this.prize_pool.HeaderText = "Prize pool";
+            this.prize_pool.Name = "prize_pool";
+            this.prize_pool.ReadOnly = true;
             // 
             // ViewTournamentsButton
             // 
             this.ViewTournamentsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewTournamentsButton.Location = new System.Drawing.Point(498, 35);
+            this.ViewTournamentsButton.Location = new System.Drawing.Point(528, 35);
             this.ViewTournamentsButton.Name = "ViewTournamentsButton";
             this.ViewTournamentsButton.Size = new System.Drawing.Size(137, 46);
             this.ViewTournamentsButton.TabIndex = 18;
@@ -830,6 +893,163 @@
             this.TournamentBox.Size = new System.Drawing.Size(423, 23);
             this.TournamentBox.TabIndex = 17;
             // 
+            // info_tab
+            // 
+            this.info_tab.Controls.Add(this.InfoTable);
+            this.info_tab.Controls.Add(this.FutureTournamentButton);
+            this.info_tab.Controls.Add(this.PastTournamentButton);
+            this.info_tab.Controls.Add(this.CoachWithoutTeamButton);
+            this.info_tab.Controls.Add(this.PlayerWithoutTeamButton);
+            this.info_tab.Controls.Add(this.TournamentsInPeriodButton);
+            this.info_tab.Controls.Add(this.MatchesInPeriodButton);
+            this.info_tab.Controls.Add(this.label1);
+            this.info_tab.Controls.Add(this.TimePeriodEndBox);
+            this.info_tab.Controls.Add(this.timePeriodLabel);
+            this.info_tab.Controls.Add(this.TimePeriodStartBox);
+            this.info_tab.Controls.Add(this.TournamentsTodayButton);
+            this.info_tab.Controls.Add(this.MatchesTodayButton);
+            this.info_tab.Location = new System.Drawing.Point(4, 24);
+            this.info_tab.Name = "info_tab";
+            this.info_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.info_tab.Size = new System.Drawing.Size(734, 401);
+            this.info_tab.TabIndex = 5;
+            this.info_tab.Text = "Info";
+            this.info_tab.UseVisualStyleBackColor = true;
+            // 
+            // InfoTable
+            // 
+            this.InfoTable.AllowUserToAddRows = false;
+            this.InfoTable.AllowUserToDeleteRows = false;
+            this.InfoTable.AllowUserToResizeColumns = false;
+            this.InfoTable.AllowUserToResizeRows = false;
+            this.InfoTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.InfoTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.InfoTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.InfoTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.InfoTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InfoTable.Location = new System.Drawing.Point(9, 86);
+            this.InfoTable.Name = "InfoTable";
+            this.InfoTable.RowHeadersVisible = false;
+            this.InfoTable.Size = new System.Drawing.Size(717, 252);
+            this.InfoTable.TabIndex = 12;
+            this.InfoTable.Visible = false;
+            // 
+            // FutureTournamentButton
+            // 
+            this.FutureTournamentButton.Location = new System.Drawing.Point(369, 344);
+            this.FutureTournamentButton.Name = "FutureTournamentButton";
+            this.FutureTournamentButton.Size = new System.Drawing.Size(115, 51);
+            this.FutureTournamentButton.TabIndex = 11;
+            this.FutureTournamentButton.Text = "Future tournament";
+            this.FutureTournamentButton.UseVisualStyleBackColor = true;
+            this.FutureTournamentButton.Click += new System.EventHandler(this.FutureTournamentButton_Click);
+            // 
+            // PastTournamentButton
+            // 
+            this.PastTournamentButton.Location = new System.Drawing.Point(248, 344);
+            this.PastTournamentButton.Name = "PastTournamentButton";
+            this.PastTournamentButton.Size = new System.Drawing.Size(115, 51);
+            this.PastTournamentButton.TabIndex = 10;
+            this.PastTournamentButton.Text = "Past tournament";
+            this.PastTournamentButton.UseVisualStyleBackColor = true;
+            this.PastTournamentButton.Click += new System.EventHandler(this.PastTournamentButton_Click);
+            // 
+            // CoachWithoutTeamButton
+            // 
+            this.CoachWithoutTeamButton.Location = new System.Drawing.Point(611, 344);
+            this.CoachWithoutTeamButton.Name = "CoachWithoutTeamButton";
+            this.CoachWithoutTeamButton.Size = new System.Drawing.Size(115, 51);
+            this.CoachWithoutTeamButton.TabIndex = 9;
+            this.CoachWithoutTeamButton.Text = "Coach without team";
+            this.CoachWithoutTeamButton.UseVisualStyleBackColor = true;
+            this.CoachWithoutTeamButton.Click += new System.EventHandler(this.CoachWithoutTeamButton_Click);
+            // 
+            // PlayerWithoutTeamButton
+            // 
+            this.PlayerWithoutTeamButton.Location = new System.Drawing.Point(490, 344);
+            this.PlayerWithoutTeamButton.Name = "PlayerWithoutTeamButton";
+            this.PlayerWithoutTeamButton.Size = new System.Drawing.Size(115, 51);
+            this.PlayerWithoutTeamButton.TabIndex = 8;
+            this.PlayerWithoutTeamButton.Text = "Player without team";
+            this.PlayerWithoutTeamButton.UseVisualStyleBackColor = true;
+            this.PlayerWithoutTeamButton.Click += new System.EventHandler(this.PlayerWithoutTeamButton_Click);
+            // 
+            // TournamentsInPeriodButton
+            // 
+            this.TournamentsInPeriodButton.Location = new System.Drawing.Point(178, 41);
+            this.TournamentsInPeriodButton.Name = "TournamentsInPeriodButton";
+            this.TournamentsInPeriodButton.Size = new System.Drawing.Size(115, 39);
+            this.TournamentsInPeriodButton.TabIndex = 7;
+            this.TournamentsInPeriodButton.Text = "Tournaments in period";
+            this.TournamentsInPeriodButton.UseVisualStyleBackColor = true;
+            this.TournamentsInPeriodButton.Click += new System.EventHandler(this.TournamentsInPeriodButton_Click);
+            // 
+            // MatchesInPeriodButton
+            // 
+            this.MatchesInPeriodButton.Location = new System.Drawing.Point(9, 41);
+            this.MatchesInPeriodButton.Name = "MatchesInPeriodButton";
+            this.MatchesInPeriodButton.Size = new System.Drawing.Size(115, 39);
+            this.MatchesInPeriodButton.TabIndex = 6;
+            this.MatchesInPeriodButton.Text = "Matches in period";
+            this.MatchesInPeriodButton.UseVisualStyleBackColor = true;
+            this.MatchesInPeriodButton.Click += new System.EventHandler(this.MatchesInPeriodButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(188, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 22);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "-";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TimePeriodEndBox
+            // 
+            this.TimePeriodEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePeriodEndBox.Location = new System.Drawing.Point(208, 13);
+            this.TimePeriodEndBox.Name = "TimePeriodEndBox";
+            this.TimePeriodEndBox.Size = new System.Drawing.Size(85, 22);
+            this.TimePeriodEndBox.TabIndex = 4;
+            // 
+            // timePeriodLabel
+            // 
+            this.timePeriodLabel.Location = new System.Drawing.Point(6, 13);
+            this.timePeriodLabel.Name = "timePeriodLabel";
+            this.timePeriodLabel.Size = new System.Drawing.Size(85, 22);
+            this.timePeriodLabel.TabIndex = 3;
+            this.timePeriodLabel.Text = "Time period:";
+            this.timePeriodLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TimePeriodStartBox
+            // 
+            this.TimePeriodStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePeriodStartBox.Location = new System.Drawing.Point(97, 13);
+            this.TimePeriodStartBox.Name = "TimePeriodStartBox";
+            this.TimePeriodStartBox.Size = new System.Drawing.Size(85, 22);
+            this.TimePeriodStartBox.TabIndex = 2;
+            // 
+            // TournamentsTodayButton
+            // 
+            this.TournamentsTodayButton.Location = new System.Drawing.Point(127, 344);
+            this.TournamentsTodayButton.Name = "TournamentsTodayButton";
+            this.TournamentsTodayButton.Size = new System.Drawing.Size(115, 51);
+            this.TournamentsTodayButton.TabIndex = 1;
+            this.TournamentsTodayButton.Text = "Tournaments today";
+            this.TournamentsTodayButton.UseVisualStyleBackColor = true;
+            this.TournamentsTodayButton.Click += new System.EventHandler(this.TournamentsTodayButton_Click);
+            // 
+            // MatchesTodayButton
+            // 
+            this.MatchesTodayButton.Location = new System.Drawing.Point(6, 344);
+            this.MatchesTodayButton.Name = "MatchesTodayButton";
+            this.MatchesTodayButton.Size = new System.Drawing.Size(115, 51);
+            this.MatchesTodayButton.TabIndex = 0;
+            this.MatchesTodayButton.Text = "Matches today";
+            this.MatchesTodayButton.UseVisualStyleBackColor = true;
+            this.MatchesTodayButton.Click += new System.EventHandler(this.MatchesTodayButton_Click);
+            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(285, 242);
@@ -837,57 +1057,11 @@
             this.panel2.Size = new System.Drawing.Size(8, 8);
             this.panel2.TabIndex = 4;
             // 
-            // nickname
-            // 
-            this.nickname.HeaderText = "Nickname";
-            this.nickname.Name = "nickname";
-            this.nickname.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // birthday
-            // 
-            this.birthday.HeaderText = "Birthday";
-            this.birthday.Name = "birthday";
-            // 
-            // team
-            // 
-            this.team.HeaderText = "Team";
-            this.team.Name = "team";
-            this.team.ReadOnly = true;
-            // 
-            // name_tournament
-            // 
-            this.name_tournament.HeaderText = "Name";
-            this.name_tournament.Name = "name_tournament";
-            this.name_tournament.ReadOnly = true;
-            // 
-            // organizer
-            // 
-            this.organizer.HeaderText = "Organizer";
-            this.organizer.Name = "organizer";
-            this.organizer.ReadOnly = true;
-            // 
-            // time_period
-            // 
-            this.time_period.HeaderText = "Time period";
-            this.time_period.Name = "time_period";
-            // 
-            // prize_pool
-            // 
-            this.prize_pool.HeaderText = "Prize pool";
-            this.prize_pool.Name = "prize_pool";
-            this.prize_pool.ReadOnly = true;
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 461);
+            this.ClientSize = new System.Drawing.Size(774, 461);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -917,6 +1091,8 @@
             this.tabTournament.PerformLayout();
             this.TournamentInfoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TournamentInfoTable)).EndInit();
+            this.info_tab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.InfoTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -996,5 +1172,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn organizer;
         private System.Windows.Forms.DataGridViewTextBoxColumn time_period;
         private System.Windows.Forms.DataGridViewTextBoxColumn prize_pool;
+        private System.Windows.Forms.TabPage info_tab;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker TimePeriodEndBox;
+        private System.Windows.Forms.Label timePeriodLabel;
+        private System.Windows.Forms.DateTimePicker TimePeriodStartBox;
+        private System.Windows.Forms.Button TournamentsTodayButton;
+        private System.Windows.Forms.Button MatchesTodayButton;
+        private System.Windows.Forms.Button TournamentsInPeriodButton;
+        private System.Windows.Forms.Button MatchesInPeriodButton;
+        private System.Windows.Forms.Button FutureTournamentButton;
+        private System.Windows.Forms.Button PastTournamentButton;
+        private System.Windows.Forms.Button CoachWithoutTeamButton;
+        private System.Windows.Forms.Button PlayerWithoutTeamButton;
+        private System.Windows.Forms.DataGridView InfoTable;
     }
 }

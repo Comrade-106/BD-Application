@@ -3,6 +3,7 @@ using BD_Application.Repository;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD_Application.Repository.DataBaseRepository {
     internal class DBRepositoryCoach : IRepositoryCoach {
@@ -48,6 +49,22 @@ namespace BD_Application.Repository.DataBaseRepository {
             return list;
         }
 
+        public DataTable GetCoachesWithoutContract() {
+            DataTable data = new DataTable();
+
+            connection.Open();
+
+            string sql = "SELECT * FROM coach_without_contract;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(data);
+
+            connection.Close();
+            return data;
+        }
+
         public List<Coach> GetCoaches(string nicknameOrSomeFirsSymbol) {
             List<Coach> list = new List<Coach>();
             connection.Open();
@@ -77,7 +94,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             return list;
         }
 
-        public Coach GetCoache(int id) {
+        public Coach GetCoach(int id) {
             Coach coach = null;
             connection.Open();
 
