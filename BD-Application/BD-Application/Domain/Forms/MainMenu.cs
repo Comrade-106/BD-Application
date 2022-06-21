@@ -7,6 +7,7 @@ using BD_Application.Repository;
 using BD_Application.Repository.DataBaseRepository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 
@@ -183,6 +184,7 @@ namespace BD_Application.Domain.Forms {
             form.ShowDialog();
         }
 
+
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
             if (PlayerBox.SelectedItem is Player player) {
                 ChangePlayerForm form = new ChangePlayerForm(player, repositoryPlayer, contractPlayer);
@@ -307,7 +309,7 @@ namespace BD_Application.Domain.Forms {
                 ContractCoach coachContract;
                 if ((coachContract = contractCoach.GetActiveContractByTeam(team.Id)) != null) {
                     Coach coach;
-                    if ((coach = repositoryCoach.GetCoache(coachContract.IdCoach)) != null) {
+                    if ((coach = repositoryCoach.GetCoach(coachContract.IdCoach)) != null) {
                         TeamInfoLabel.Text += "\nCoach: " + coach.NickName + " (" + coach.Name + ")";
                     }
                 }
@@ -457,7 +459,7 @@ namespace BD_Application.Domain.Forms {
                 ContractCoach coachContract;
                 if ((coachContract = contractCoach.GetActiveContractByTeam(list[i].Id)) != null) {
                     Coach coach;
-                    if ((coach = repositoryCoach.GetCoache(coachContract.IdCoach)) != null) {
+                    if ((coach = repositoryCoach.GetCoach(coachContract.IdCoach)) != null) {
                         TeamInfoTable.Rows[i].Cells[2].Value = coach.NickName + " (" + coach.Name + ")";
                     }
                 }
@@ -589,5 +591,89 @@ namespace BD_Application.Domain.Forms {
                 FilterTournamentBox.ForeColor = System.Drawing.Color.Silver;
             }
         }
+
+        #region info_tab
+        private void MatchesInPeriodButton_Click(object sender, EventArgs e) {
+            if (TimePeriodStartBox.Value > TimePeriodEndBox.Value) {
+                MessageBox.Show("Start date can`t be more or equals than end date", "Message!");
+                return;
+            }
+
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryMatch.MatchesInPeriod(TimePeriodStartBox.Value, TimePeriodEndBox.Value);
+            InfoTable.Visible = true;
+        }
+
+        private void TournamentsInPeriodButton_Click(object sender, EventArgs e) {
+            if (TimePeriodStartBox.Value > TimePeriodEndBox.Value) {
+                MessageBox.Show("Start date can`t be more or equals end date", "Message!");
+                return;
+            }
+
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryTournament.TournamentsInPeriod(TimePeriodStartBox.Value, TimePeriodEndBox.Value);
+            InfoTable.Visible = true;
+        }
+
+        private void MatchesTodayButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryMatch.GetAllMatchToday();
+            InfoTable.Visible = true;
+        }
+
+        private void TournamentsTodayButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryTournament.GetTournamentsToday();
+            InfoTable.Visible = true;
+        }
+
+        private void PastTournamentButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryTournament.GetPastTournaments();
+            InfoTable.Visible = true;
+        }
+
+        private void FutureTournamentButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryTournament.GetFutureTournaments();
+            InfoTable.Visible = true;
+        }
+
+        private void PlayerWithoutTeamButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryPlayer.GetPlayersWithoutContract();
+            InfoTable.Visible = true;
+        }
+
+        private void CoachWithoutTeamButton_Click(object sender, EventArgs e) {
+            InfoTable.DataSource = null;
+            InfoTable.Rows.Clear();
+            InfoTable.Columns.Clear();
+
+            InfoTable.DataSource = repositoryCoach.GetCoachesWithoutContract();
+            InfoTable.Visible = true;
+        }
+        #endregion
     }
 }

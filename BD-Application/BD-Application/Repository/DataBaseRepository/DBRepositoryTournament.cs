@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -23,12 +24,82 @@ namespace BD_Application.Repository.DataBaseRepository {
             }
         }
 
+        public DataTable GetTournamentsToday() {
+            DataTable data = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT * FROM current_tournament;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(data);
+
+            connection.Close();
+            return data;
+        }
+
+        public DataTable GetPastTournaments() {
+            DataTable data = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT * FROM past_tournament;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(data);
+
+            connection.Close();
+            return data;
+        }
+
+        public DataTable GetFutureTournaments() {
+            DataTable data = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT * FROM `future_tournament`;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(data);
+
+            connection.Close();
+            return data;
+        }
+
+        public DataTable TournamentsInPeriod(DateTime start, DateTime end) {
+            DataTable data = new DataTable();
+            connection.Open();
+
+            string sql = "SELECT" +
+	                        "`tournament_name` 	AS `Tournament`," + 
+	                        "`organizer` 		AS `Organizer`," +
+	                        "`start_date` 		AS `Date start`," +
+	                        "`end_date` 			AS `Date end`," +
+	                        "`prize_pool` 		AS `Prize pool`" +
+                        "FROM `tournament_with_organizer`" + 
+	                        "WHERE((`isDelete` = 0) AND(@start <= `start_date` AND `end_date` <= @end));";
+            
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@start", start);
+            cmd.Parameters.AddWithValue("end", end);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+            adapter.Fill(data);
+
+            connection.Close();
+            return data;
+        }
+
         public List<Tournament> GetAllTournament() {
 
             List<Tournament> list = new List<Tournament>();
             connection.Open();
 
-            string sql = "SELECT * FROM tournament;";
+            string sql = "SELECT * FROM tournament_with_organizer;";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
 
             var reader = cmd.ExecuteReader();
@@ -44,7 +115,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
                     );
-                tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+                tournament.Organizer = new Organizer(reader.GetInt32("id_organizer"), reader.GetString("organizer"));
 
                 if (reader.GetInt32("isDelete") == 1) {
                     tournament.IsDelete = true;
@@ -76,7 +147,7 @@ namespace BD_Application.Repository.DataBaseRepository {
             List<Tournament> list = new List<Tournament>();
             connection.Open();
 
-            string sql = "SELECT * FROM tournament WHERE LEFT(`tournament_name`, @n) = @name;";
+            string sql = "SELECT * FROM tournament_with_organizer WHERE LEFT(`tournament_name`, @n) = @name;";
             
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.AddWithValue("@n", nameOrLetterFromName.Length);
@@ -95,7 +166,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                     reader.GetDateTime("end_date"),
                     reader.GetDouble("prize_pool")
                     );
-                tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+                tournament.Organizer = new Organizer(reader.GetInt32("id_organizer"), reader.GetString("organizer"));
 
                 if (reader.GetInt32("isDelete") == 1) {
                     tournament.IsDelete = true;
@@ -126,7 +197,7 @@ namespace BD_Application.Repository.DataBaseRepository {
         public Tournament GetTournament(int id) {
             connection.Open();
 
-            string sql = "SELECT * FROM tournament WHERE id = @id;";
+            string sql = "SELECT * FROM tournament_with_organizer WHERE id = @id;";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
 
@@ -143,7 +214,7 @@ namespace BD_Application.Repository.DataBaseRepository {
                         reader.GetDateTime("end_date"),
                         reader.GetDouble("prize_pool")
                         );
-                    tournament.Organizer = new Organizer(reader.GetInt32("organizer"));
+                    tournament.Organizer = new Organizer(reader.GetInt32("id_organizer"), reader.GetString("organizer"));
 
                     if (reader.GetInt32("isDelete") == 1) {
                         tournament.IsDelete = true;

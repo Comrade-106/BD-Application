@@ -1,5 +1,6 @@
 ﻿using BD_Application.Domain;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD_Application.Repository {
     public interface IRepositoryCoach {
@@ -7,7 +8,8 @@ namespace BD_Application.Repository {
         bool ChangeCoach(Coach coach);
         bool DeleteCoach(Coach coach);
         List<Coach> GetAllCoaches();
+        DataTable GetCoachesWithoutContract();
         List<Coach> GetCoaches(string nicnameOrSomeFirsSymbol);
-        Coach GetCoache(int id);
+        Coach GetCoach(int id);
     }
 }
