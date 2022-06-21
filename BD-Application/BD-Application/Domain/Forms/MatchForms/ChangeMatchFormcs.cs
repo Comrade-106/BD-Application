@@ -1,6 +1,7 @@
 ﻿using BD_Application.Domain.Forms.TournamentForms;
 using BD_Application.Repository;
 using BD_Application.Repository.DataBaseRepository;
+using System;
 using System.Windows.Forms;
 
 namespace BD_Application.Domain.Forms.MatchForms {
@@ -31,7 +32,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
             _stageBox.Text = match.MatchStage.ToString();
             _tournamentBox.Text = tournament.Name;
 
-            if(team1 == null || team2 == null) {
+            if(team1 == null || team2 == null || match.DateTimeMatch == default) {
                 _score1Box.ReadOnly = true;
                 _score2Box.ReadOnly = true;
             }
@@ -56,18 +57,27 @@ namespace BD_Application.Domain.Forms.MatchForms {
                 MessageBox.Show("You have not filled in the Score field!");
                 return;
             }
+            
+            if ((!string.IsNullOrEmpty(_score1Box.Text) && !Int32.TryParse(_score1Box.Text, out int r1)) ||
+                (string.IsNullOrEmpty(_score2Box.Text) && !Int32.TryParse(_score2Box.Text, out int r2))) {
+                MessageBox.Show("Incorrect input in the Score field!");
+                return;
+            }
 
-            if(_dateBox.Value < _tournament.DateStart || _dateBox.Value > _tournament.DateEnd) {
+            if (_dateBox.Value < _tournament.DateStart || _dateBox.Value > _tournament.DateEnd) {
                 MessageBox.Show("You input incorrect date!");
                 return;
             }
 
-            var res = MessageBox.Show("Are you sure? \nThe following changes will not be removed", "Warning", MessageBoxButtons.YesNo);
-
-            if (res == DialogResult.No) return;
-
             _match.DateTimeMatch = _dateBox.Value;
-            _match.MatchResult = _score1Box.Text + ":" + _score2Box.Text;
+
+
+            if (!string.IsNullOrEmpty(_score1Box.Text) && !string.IsNullOrEmpty(_score2Box.Text)) {
+                _match.MatchResult = _score1Box.Text + ":" + _score2Box.Text;
+
+                var res = MessageBox.Show("Are you sure? \nThe following changes will not be removed", "Warning", MessageBoxButtons.YesNo);
+                if (res == DialogResult.No) return;
+            }
 
             if ((Owner as ViewTournament).UpdateMatch(_match))
                 MessageBox.Show("Изменения успешно внесены!");

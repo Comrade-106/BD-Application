@@ -1,5 +1,5 @@
 ﻿namespace BD_Application.Domain.TournamentTree {
-    enum Stage {
+    public enum Stage {
         EighthFinals,
         QuaterFinals,
         Semifinals,

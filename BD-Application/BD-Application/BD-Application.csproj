@@ -312,6 +312,9 @@
     <EmbeddedResource Include="Domain\Forms\TournamentForms\ViewTournamenrResult.resx">
       <DependentUpon>ViewTournamenrResult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Forms\TournamentForms\ViewTournament.resx">
+      <DependentUpon>ViewTournament.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

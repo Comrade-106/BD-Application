@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace BD_Application.Repository {
-    internal interface IRepositoryMatch {
+    public interface IRepositoryMatch {
         bool AddMatch(Match match);
         bool AddMatches(List<Match> matches);
         bool ChangeMatch(Match match);

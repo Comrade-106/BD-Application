@@ -9,35 +9,47 @@ using System.Drawing;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class ViewTournament : Form {
-        private Dictionary<Stage, int[]> _stages = new Dictionary<Stage, int[]> {
-                { Stage.EighthFinals, new int[]{ 1, 3, 5, 7, 9, 11, 13, 15 }},
-                { Stage.QuaterFinals, new int[] { 2, 6, 10, 14 } },
-                { Stage.Semifinals, new int[] { 4, 12 } },
-                { Stage.Final, new int[] { 8 } }
-            };
+        //private Dictionary<Stage, int[]> _stages = new Dictionary<Stage, int[]> {
+        //        { Stage.EighthFinals, new int[]{ 1, 3, 5, 7, 9, 11, 13, 15 }},
+        //        { Stage.QuaterFinals, new int[] { 2, 6, 10, 14 } },
+        //        { Stage.Semifinals, new int[] { 4, 12 } },
+        //        { Stage.Final, new int[] { 8 } }
+        //    };
 
         private Dictionary<int, MatchDataView> _matchesView;
         private List<Match> _matches;
+        private List<Match> _selectedMatches;
         private Tournament _tournament;
         private int _tournamentID;
 
-        private IRepositoryMatch matchRepository;
-        private IRepositoryTournament tournamentRepository;
-        private IRepositoryTeam teamRepository;
+        private IRepositoryMatch _matchRepository;
+        private IRepositoryTournament _tournamentRepository;
+        private IRepositoryTeam _teamRepository;
 
-        public ViewTournament(int tournamentID) {
+        public ViewTournament(int tournamentID, IRepositoryMatch matchRepository, 
+                                IRepositoryTournament tournamentRepository, IRepositoryTeam teamRepository) {
             InitializeComponent();
             GetDataFields();
 
-            matchRepository = new DBRepositoryMatch();
-            tournamentRepository = new DBRepositoryTournament();
-            teamRepository = new DBRepositoryTeam();
+            _matchRepository = matchRepository;
+            _tournamentRepository = tournamentRepository;
+            _teamRepository = teamRepository;
 
-            _matches = matchRepository.GetAllMatch(tournamentID);
-            _tournament = tournamentRepository.GetTournament(tournamentID);
+            _matches = _matchRepository.GetAllMatch(tournamentID);
+            _tournament = _tournamentRepository.GetTournament(tournamentID);
 
             _tournamentID = tournamentID;
-            FillForm(tournamentID);
+        }
+
+        private void ViewTournament_Load(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(_tournament.TournamentTree)) {
+                this.Close();
+                MessageBox.Show("Tournament is not filled!", "Message");
+                return;
+            }
+
+            _selectedMatches = new List<Match>();
+            FillForm(_tournamentID);
         }
 
         private void GetDataFields() {
@@ -60,31 +72,58 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             };
         }
 
+        //private void FillForm(int id) {
+
+        //    var tree = BinaryTree.Deserialize(_tournament.TournamentTree);
+        //    int i = 1; // посмотреть индексы
+
+        //    foreach (var item in _stages) {
+        //        foreach (var index in item.Value) {
+
+        //            Match temp = _matches.Find(x => x.Id == index);
+
+        //            _matchesView[i].MatchID = temp.Id;
+
+        //            if (temp.IdFirstTeam != -1)
+        //                _matchesView[i].FirstTeam.Text = _teamRepository.GetTeam(temp.IdFirstTeam).Name;
+
+        //            if (temp.IdSecondTeam != -1)
+        //                _matchesView[i].SecondTeam.Text = _teamRepository.GetTeam(temp.IdSecondTeam).Name;
+
+        //            if (IsMatchComplited(temp, out int winner)) {
+        //                if(winner == temp.IdFirstTeam) {
+        //                    _matchesView[i].SecondTeam.BackColor = SystemColors.ControlDark;
+        //                } else {
+        //                    _matchesView[i].FirstTeam.BackColor = SystemColors.ControlDark;
+        //                }
+        //            }
+                    
+        //            i++;
+        //        }
+        //    }
+        //}
+
         private void FillForm(int id) {
-            var tree = BinaryTree.Deserialize(_tournament.TournamentTree);
             int i = 1; // посмотреть индексы
 
-            foreach (var item in _stages) {
-                foreach (var index in item.Value) {
-
-                    Match temp = _matches.Find(x => x.Id == index);
-
+            foreach(Stage e in Enum.GetValues(typeof(Stage))) {
+                foreach (var temp in _matches.FindAll(x => x.MatchStage == e)) {
                     _matchesView[i].MatchID = temp.Id;
 
                     if (temp.IdFirstTeam != -1)
-                        _matchesView[i].FirstTeam.Text = teamRepository.GetTeam(temp.IdFirstTeam).Name;
+                        _matchesView[i].FirstTeam.Text = _teamRepository.GetTeam(temp.IdFirstTeam).Name;
 
                     if (temp.IdSecondTeam != -1)
-                        _matchesView[i].SecondTeam.Text = teamRepository.GetTeam(temp.IdSecondTeam).Name;
+                        _matchesView[i].SecondTeam.Text = _teamRepository.GetTeam(temp.IdSecondTeam).Name;
 
                     if (IsMatchComplited(temp, out int winner)) {
-                        if(winner == temp.IdFirstTeam) {
+                        if (winner == temp.IdFirstTeam) {
                             _matchesView[i].SecondTeam.BackColor = SystemColors.ControlDark;
                         } else {
                             _matchesView[i].FirstTeam.BackColor = SystemColors.ControlDark;
                         }
                     }
-                    
+
                     i++;
                 }
             }
@@ -143,7 +182,21 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             var nextMatchNode = tree.FindNode(match.Id).ParentNode;
 
             if(nextMatchNode == null) {
+                int i = 1;
+                foreach (Stage e in Enum.GetValues(typeof(Stage))) {
+                    foreach (var m in _matches.FindAll(x => x.MatchStage == e)) {
 
+                        if (IsMatchComplited(m, out int winner)) {
+                            if (winner == m.IdFirstTeam) {
+                                _matchesView[i].SecondTeam.BackColor = SystemColors.ControlDark;
+                            } else {
+                                _matchesView[i].FirstTeam.BackColor = SystemColors.ControlDark;
+                            }
+                        }
+
+                        i++;
+                    }
+                }
 
                 return true;
             }
@@ -163,7 +216,8 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                     nextMatch.IdSecondTeam = winnerId;
             }
 
-            return matchRepository.ChangeMatch(match) && matchRepository.ChangeMatch(nextMatch);
+            return _matchRepository.ChangeMatch(match) && _matchRepository.ChangeMatch(nextMatch);
         }
+
     }
 }

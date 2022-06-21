@@ -35,7 +35,6 @@ namespace BD_Application.Domain.TournamentTree {
 
             var tempMatches = new List<Match>();
             foreach (var id in _stages[Stage.EighthFinals]) {
-                //Console.WriteLine($"index: {index}\tCount: {teams.Count}");
                 var team1 = teams[gen.Next(0, teams.Count)];
                 teams.Remove(team1);
 
@@ -52,12 +51,11 @@ namespace BD_Application.Domain.TournamentTree {
                 if (stage.Key == Stage.EighthFinals) continue;
 
                 tempMatches = new List<Match>();
-                foreach(var id in stage.Value) {
+                foreach (var id in stage.Value) {
                     var match = CreateMatch(id, -1, -1, stage.Key);
                     tempMatches.Add(match);
                 }
 
-                //Console.WriteLine("Name: " + stage.Key);
                 matches.Add(stage.Key, tempMatches);
             }
 
@@ -70,7 +68,7 @@ namespace BD_Application.Domain.TournamentTree {
         private Match CreateMatch(int id, int team1, int team2, Stage stage) {
             var match = new Match();
             match.Id = id;
-            match.DateTimeMatch = RandomDay();
+            match.DateTimeMatch = default;
             match.IdFirstTeam = team1;
             match.IdSecondTeam = team2;
             match.MatchStage = stage;

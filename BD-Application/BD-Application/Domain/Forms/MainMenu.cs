@@ -2,6 +2,7 @@
 using BD_Application.Domain.Forms.OrganizerForms;
 using BD_Application.Domain.Forms.PlayerForms;
 using BD_Application.Domain.Forms.TeamForms;
+using BD_Application.Domain.Forms.TournamentForms;
 using BD_Application.Repository;
 using BD_Application.Repository.DataBaseRepository;
 using System;
@@ -178,6 +179,8 @@ namespace BD_Application.Domain.Forms {
 
         private void AddTournamentButton_Click(object sender, EventArgs e) {
             //Call add Tournament form
+            var form = new AddTournamentForm();
+            form.ShowDialog();
         }
 
         private void ChangePlayerButton_Click(object sender, EventArgs e) {
@@ -232,6 +235,15 @@ namespace BD_Application.Domain.Forms {
 
         private void ChangeTournamentBox_Click(object sender, EventArgs e) {
             //Call change tournament form with parameter Tournament and repository tournament
+            if(TournamentBox.SelectedItem is Tournament tournament) {
+                var form = new ChangeTournamentForm(repositoryTournament, repositoryOrganizer, repositoryTeam, repositoryMatch);
+                form.ShowDialog();
+                if((tournaments = repositoryTournament.GetAllTournament()) == null) {
+                    MessageBox.Show("Can`t get info from repository", "Message!");
+                }
+                FillTournamentBox();
+                TournamentBox.SelectedItem = tournament;
+            }
         }
 
         private void ViewPlayerButton_Click(object sender, EventArgs e) {
@@ -344,6 +356,9 @@ namespace BD_Application.Domain.Forms {
                     "\nOrganizer: " + tournament.Organizer.Name +
                     "\nTime period: " + tournament.DateStart.ToString("yyyy-MM-dd") + " - " + tournament.DateEnd.ToString("yyyy-MM-dd") +
                     "\nPrize pool: " + tournament.PrizePool;
+
+                var form = new ViewTournament(tournament.Id, repositoryMatch, repositoryTournament, repositoryTeam);
+                form.ShowDialog();
             }
         }
 

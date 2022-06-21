@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using BD_Application.Domain.TournamentTree;
 using BD_Application.Repository;
-using BD_Application.Repository.DataBaseRepository;
 
 namespace BD_Application.Domain.Forms.TournamentForms {
     public partial class ChangeTournamentForm : Form {
@@ -15,17 +14,18 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private int count;
         private int[] firstStageIndexes = new int[]{ 1, 3, 5, 7, 9, 11, 13, 15 };
 
-        private readonly IRepositoryTournament repositoryTournanent;
-        private readonly IRepositoryOrganizer repositoryOrganizer;
-        private readonly IRepositoryTeam repositoryTeam;
-        private readonly IRepositoryMatch matchRepository;
+        private readonly IRepositoryTournament _repositoryTournanent;
+        private readonly IRepositoryOrganizer _repositoryOrganizer;
+        private readonly IRepositoryTeam _repositoryTeam;
+        private readonly IRepositoryMatch _matchRepository;
 
-        public ChangeTournamentForm() {
+        public ChangeTournamentForm(IRepositoryTournament repositoryTournanent, IRepositoryOrganizer repositoryOrganizer,
+                                    IRepositoryTeam repositoryTeam, IRepositoryMatch matchRepository) {
             InitializeComponent();
-            repositoryTournanent = new DBRepositoryTournament();
-            repositoryOrganizer = new DBRepositoryOrganizer();
-            repositoryTeam = new DBRepositoryTeam();
-            matchRepository = new DBRepositoryMatch();
+            _repositoryTournanent = repositoryTournanent;
+            _repositoryOrganizer = repositoryOrganizer;
+            _repositoryTeam = repositoryTeam;
+            _matchRepository = matchRepository;
             selectedTeams = new List<Team>();
 
             if ((teams = repositoryTeam.GetAllTeams()) == null) {
@@ -59,7 +59,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             if (TournamentBox.SelectedItem != null) {
                 currentTournament = (Tournament) TournamentBox.SelectedItem;
 
-                if (currentTournament != null && (organizers = repositoryOrganizer.GetAllOrganizers()) != null) {
+                if (currentTournament != null && (organizers = _repositoryOrganizer.GetAllOrganizers()) != null) {
                     panel1.Visible = true;
                     NameBox.Text = currentTournament.Name;
                     _teamsGridView.Rows.Clear();
@@ -88,12 +88,12 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                         _teamsList.Enabled = false;
 
                         var teams = new List<Team>();
-                        var matches = matchRepository.GetAllMatch(currentTournament.Id);
+                        var matches = _matchRepository.GetAllMatch(currentTournament.Id);
 
                         foreach (var index in firstStageIndexes) {
                             var match = matches.Find(x => x.Id == index);
-                            teams.Add(repositoryTeam.GetTeam(match.IdFirstTeam));
-                            teams.Add(repositoryTeam.GetTeam(match.IdSecondTeam));
+                            teams.Add(_repositoryTeam.GetTeam(match.IdFirstTeam));
+                            teams.Add(_repositoryTeam.GetTeam(match.IdSecondTeam));
                         }
 
                         foreach (var team in teams) {
@@ -123,7 +123,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
 
         private void DeleteButton_Click(object sender, EventArgs e) {
             if (currentTournament != null) {
-                repositoryTournanent.DeleteTournament(currentTournament);
+                _repositoryTournanent.DeleteTournament(currentTournament);
                 tournaments.Remove(currentTournament);
             } else {
                 MessageBox.Show("You didn`t choice tournament", "Message!");
@@ -153,7 +153,7 @@ namespace BD_Application.Domain.Forms.TournamentForms {
                                     }
 
 
-                                    if (repositoryTournanent.ChangeTournament(currentTournament)) {
+                                    if (_repositoryTournanent.ChangeTournament(currentTournament)) {
                                         MessageBox.Show("Tournament`s info changed successfull", "Message!");
                                     } else {
                                         MessageBox.Show("Tournament`s info didn`t change", "Message!");
@@ -180,12 +180,12 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         }
 
         private void ChangeTournamentForm_Load(object sender, EventArgs e) {
-            if ((tournaments = repositoryTournanent.GetAllTournament()) == null) {
+            if ((tournaments = _repositoryTournanent.GetAllTournament()) == null) {
                 MessageBox.Show("Can`t get info about tournament", "Error!");
                 return;
             }
 
-            if ((teams = repositoryTeam.GetAllTeams()) == null) {
+            if ((teams = _repositoryTeam.GetAllTeams()) == null) {
                 MessageBox.Show("Can`t get info about teams from DB", "Error!");
                 return;
             }
