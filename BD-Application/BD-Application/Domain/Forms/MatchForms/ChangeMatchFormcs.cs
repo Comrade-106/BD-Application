@@ -24,11 +24,14 @@ namespace BD_Application.Domain.Forms.MatchForms {
             var team1 = teamRepository.GetTeam(match.IdFirstTeam);
             var team2 = teamRepository.GetTeam(match.IdSecondTeam);
 
-            //MessageBox.Show(((int)match.MatchStage).ToString());
+            //MessageBox.Show(match.DateTimeMatch.ToString());
+            if (match.DateTimeMatch == default)
+                _dateBox.Value = _dateBox.MinDate;
+            else
+                _dateBox.Value = match.DateTimeMatch;
 
-            _dateBox.Value = match.DateTimeMatch;
-            _team1Box.Text = team1?.Name ?? "";
-            _team2Box.Text = team2?.Name ?? "";
+            _team1Box.Text = team1?.Name ?? null;
+            _team2Box.Text = team2?.Name ?? null;
             _stageBox.Text = match.MatchStage.ToString();
             _tournamentBox.Text = tournament.Name;
 
@@ -59,7 +62,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
             }
             
             if ((!string.IsNullOrEmpty(_score1Box.Text) && !Int32.TryParse(_score1Box.Text, out int r1)) ||
-                (string.IsNullOrEmpty(_score2Box.Text) && !Int32.TryParse(_score2Box.Text, out int r2))) {
+                (!string.IsNullOrEmpty(_score2Box.Text) && !Int32.TryParse(_score2Box.Text, out int r2))) {
                 MessageBox.Show("Incorrect input in the Score field!");
                 return;
             }

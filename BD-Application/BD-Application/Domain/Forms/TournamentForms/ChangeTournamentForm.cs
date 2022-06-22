@@ -196,13 +196,15 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private void AddTeamButton_Click(object sender, EventArgs e) {
             if (teams.Count == 0) return;
 
-            count++;
-
             Team temp = teams.Find(x => x.Id == Convert.ToInt32(_teamsList.SelectedValue));
+            if (temp == null) return;
             selectedTeams.Add(temp);
             teams.Remove(temp);
 
+
             _teamsGridView.Rows.Add(new object[] { temp.WorldRank, temp.Name });
+
+            count++;
 
             _teamsList.DataSource = null;
             FillTeamsBox();
