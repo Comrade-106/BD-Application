@@ -30,6 +30,7 @@ namespace BD_Application.Domain.Forms {
 
         private readonly IRepositoryTournament repositoryTournament;
         private readonly IRepositoryMatch repositoryMatch;
+        private readonly IRepositoryTournamentResult repositoryTournamentResult;
 
         public MainMenu() {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace BD_Application.Domain.Forms {
 
             repositoryTournament = new DBRepositoryTournament();
             repositoryMatch = new DBRepositoryMatch();
+            repositoryTournamentResult = new DBRepositoryTournamentResult();
         }
 
         private bool LoadData() {
@@ -359,7 +361,7 @@ namespace BD_Application.Domain.Forms {
                     "\nTime period: " + tournament.DateStart.ToString("yyyy-MM-dd") + " - " + tournament.DateEnd.ToString("yyyy-MM-dd") +
                     "\nPrize pool: " + tournament.PrizePool;
 
-                var form = new ViewTournament(tournament.Id, repositoryMatch, repositoryTournament, repositoryTeam);
+                var form = new ViewTournament(tournament.Id, repositoryMatch, repositoryTournament, repositoryTeam, repositoryTournamentResult);
                 form.ShowDialog();
             }
         }
@@ -529,6 +531,17 @@ namespace BD_Application.Domain.Forms {
                 TournamentInfoTable.Rows[i].Cells[1].Value = list[i].Organizer.Name;
                 TournamentInfoTable.Rows[i].Cells[2].Value = list[i].DateStart.ToString("yyyy-MM-dd") + " - " + list[i].DateEnd.ToString("yyyy-MM-dd");
                 TournamentInfoTable.Rows[i].Cells[3].Value = list[i].PrizePool;
+            }
+        }
+
+        private void ViewTournamentResultsButton_Click(object sender, EventArgs e) {
+            if (TournamentBox.SelectedItem is Tournament tournament) {
+                var results = repositoryTournamentResult.GetResultTournamen(tournament.Id);
+
+                var form = new ViewTournamenrResult(results);
+                form.ShowDialog();
+
+                TournamentBox.SelectedItem = tournament;
             }
         }
 

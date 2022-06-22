@@ -110,6 +110,7 @@
             this.TournamentsTodayButton = new System.Windows.Forms.Button();
             this.MatchesTodayButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ViewTournamentResultButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.tabPlayer.SuspendLayout();
@@ -171,10 +172,10 @@
             this.tabPlayer.Controls.Add(this.AddPlayerButton);
             this.tabPlayer.Controls.Add(this.ChangePlayerButton);
             this.tabPlayer.Controls.Add(this.PlayerBox);
-            this.tabPlayer.Location = new System.Drawing.Point(4, 24);
+            this.tabPlayer.Location = new System.Drawing.Point(4, 28);
             this.tabPlayer.Name = "tabPlayer";
             this.tabPlayer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayer.Size = new System.Drawing.Size(734, 401);
+            this.tabPlayer.Size = new System.Drawing.Size(734, 397);
             this.tabPlayer.TabIndex = 0;
             this.tabPlayer.Text = "Player";
             this.tabPlayer.UseVisualStyleBackColor = true;
@@ -186,7 +187,7 @@
             this.FilterPlayerBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterPlayerBox.Location = new System.Drawing.Point(435, 7);
             this.FilterPlayerBox.Name = "FilterPlayerBox";
-            this.FilterPlayerBox.Size = new System.Drawing.Size(259, 22);
+            this.FilterPlayerBox.Size = new System.Drawing.Size(259, 26);
             this.FilterPlayerBox.TabIndex = 6;
             this.FilterPlayerBox.Text = "Enter player nickname to filter info";
             this.FilterPlayerBox.Click += new System.EventHandler(this.FilterPlayerBox_Click);
@@ -243,29 +244,34 @@
             this.PlayersTable.Location = new System.Drawing.Point(3, 3);
             this.PlayersTable.Name = "PlayersTable";
             this.PlayersTable.RowHeadersVisible = false;
+            this.PlayersTable.RowHeadersWidth = 51;
             this.PlayersTable.Size = new System.Drawing.Size(686, 305);
             this.PlayersTable.TabIndex = 3;
             // 
             // nickname
             // 
             this.nickname.HeaderText = "Nickname";
+            this.nickname.MinimumWidth = 6;
             this.nickname.Name = "nickname";
             this.nickname.ReadOnly = true;
             // 
             // name
             // 
             this.name.HeaderText = "Name";
+            this.name.MinimumWidth = 6;
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
             // birthday
             // 
             this.birthday.HeaderText = "Birthday";
+            this.birthday.MinimumWidth = 6;
             this.birthday.Name = "birthday";
             // 
             // team
             // 
             this.team.HeaderText = "Team";
+            this.team.MinimumWidth = 6;
             this.team.Name = "team";
             this.team.ReadOnly = true;
             // 
@@ -305,7 +311,7 @@
             this.PlayerBox.FormattingEnabled = true;
             this.PlayerBox.Location = new System.Drawing.Point(6, 6);
             this.PlayerBox.Name = "PlayerBox";
-            this.PlayerBox.Size = new System.Drawing.Size(423, 23);
+            this.PlayerBox.Size = new System.Drawing.Size(423, 27);
             this.PlayerBox.TabIndex = 3;
             // 
             // tabCoach
@@ -317,10 +323,10 @@
             this.tabCoach.Controls.Add(this.AddCoachButton);
             this.tabCoach.Controls.Add(this.ChangeCoachButton);
             this.tabCoach.Controls.Add(this.CoachBox);
-            this.tabCoach.Location = new System.Drawing.Point(4, 24);
+            this.tabCoach.Location = new System.Drawing.Point(4, 28);
             this.tabCoach.Name = "tabCoach";
             this.tabCoach.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoach.Size = new System.Drawing.Size(734, 401);
+            this.tabCoach.Size = new System.Drawing.Size(734, 397);
             this.tabCoach.TabIndex = 1;
             this.tabCoach.Text = "Coach";
             this.tabCoach.UseVisualStyleBackColor = true;
@@ -332,7 +338,7 @@
             this.FilterCoachBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterCoachBox.Location = new System.Drawing.Point(435, 7);
             this.FilterCoachBox.Name = "FilterCoachBox";
-            this.FilterCoachBox.Size = new System.Drawing.Size(259, 22);
+            this.FilterCoachBox.Size = new System.Drawing.Size(259, 26);
             this.FilterCoachBox.TabIndex = 13;
             this.FilterCoachBox.Text = "Enter coach nickname to filter info";
             this.FilterCoachBox.Click += new System.EventHandler(this.FilterCoachBox_Click);
@@ -389,29 +395,34 @@
             this.CoachesTable.Location = new System.Drawing.Point(3, 3);
             this.CoachesTable.Name = "CoachesTable";
             this.CoachesTable.RowHeadersVisible = false;
+            this.CoachesTable.RowHeadersWidth = 51;
             this.CoachesTable.Size = new System.Drawing.Size(686, 305);
             this.CoachesTable.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Nickname";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Birthday";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Team";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
@@ -451,7 +462,7 @@
             this.CoachBox.FormattingEnabled = true;
             this.CoachBox.Location = new System.Drawing.Point(6, 6);
             this.CoachBox.Name = "CoachBox";
-            this.CoachBox.Size = new System.Drawing.Size(423, 23);
+            this.CoachBox.Size = new System.Drawing.Size(423, 27);
             this.CoachBox.TabIndex = 10;
             // 
             // tabTeam
@@ -463,9 +474,9 @@
             this.tabTeam.Controls.Add(this.AddTeamButton);
             this.tabTeam.Controls.Add(this.ChangeTeamButton);
             this.tabTeam.Controls.Add(this.TeamBox);
-            this.tabTeam.Location = new System.Drawing.Point(4, 24);
+            this.tabTeam.Location = new System.Drawing.Point(4, 28);
             this.tabTeam.Name = "tabTeam";
-            this.tabTeam.Size = new System.Drawing.Size(734, 401);
+            this.tabTeam.Size = new System.Drawing.Size(734, 397);
             this.tabTeam.TabIndex = 2;
             this.tabTeam.Text = "Team";
             this.tabTeam.UseVisualStyleBackColor = true;
@@ -477,7 +488,7 @@
             this.FilterTeamBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterTeamBox.Location = new System.Drawing.Point(435, 7);
             this.FilterTeamBox.Name = "FilterTeamBox";
-            this.FilterTeamBox.Size = new System.Drawing.Size(259, 22);
+            this.FilterTeamBox.Size = new System.Drawing.Size(259, 26);
             this.FilterTeamBox.TabIndex = 20;
             this.FilterTeamBox.Text = "Enter team`s name to filter info";
             this.FilterTeamBox.Click += new System.EventHandler(this.FilterTeamBox_Click);
@@ -534,35 +545,40 @@
             this.TeamInfoTable.Location = new System.Drawing.Point(3, 3);
             this.TeamInfoTable.Name = "TeamInfoTable";
             this.TeamInfoTable.RowHeadersVisible = false;
+            this.TeamInfoTable.RowHeadersWidth = 51;
             this.TeamInfoTable.Size = new System.Drawing.Size(686, 311);
             this.TeamInfoTable.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 62;
+            this.dataGridViewTextBoxColumn6.Width = 78;
             // 
             // world_rank
             // 
             this.world_rank.HeaderText = "World Rank";
+            this.world_rank.MinimumWidth = 6;
             this.world_rank.Name = "world_rank";
             this.world_rank.ReadOnly = true;
-            this.world_rank.Width = 95;
+            this.world_rank.Width = 119;
             // 
             // coach
             // 
             this.coach.HeaderText = "Coach";
+            this.coach.MinimumWidth = 6;
             this.coach.Name = "coach";
-            this.coach.Width = 66;
+            this.coach.Width = 81;
             // 
             // players_column
             // 
             this.players_column.HeaderText = "Players";
+            this.players_column.MinimumWidth = 6;
             this.players_column.Name = "players_column";
             this.players_column.ReadOnly = true;
-            this.players_column.Width = 71;
+            this.players_column.Width = 89;
             // 
             // ViewTeamsButton
             // 
@@ -600,7 +616,7 @@
             this.TeamBox.FormattingEnabled = true;
             this.TeamBox.Location = new System.Drawing.Point(6, 6);
             this.TeamBox.Name = "TeamBox";
-            this.TeamBox.Size = new System.Drawing.Size(423, 23);
+            this.TeamBox.Size = new System.Drawing.Size(423, 27);
             this.TeamBox.TabIndex = 17;
             // 
             // tabOrganizer
@@ -612,9 +628,9 @@
             this.tabOrganizer.Controls.Add(this.AddOrganizerButton);
             this.tabOrganizer.Controls.Add(this.ChangeOrganizerButton);
             this.tabOrganizer.Controls.Add(this.OrganizerBox);
-            this.tabOrganizer.Location = new System.Drawing.Point(4, 24);
+            this.tabOrganizer.Location = new System.Drawing.Point(4, 28);
             this.tabOrganizer.Name = "tabOrganizer";
-            this.tabOrganizer.Size = new System.Drawing.Size(734, 401);
+            this.tabOrganizer.Size = new System.Drawing.Size(734, 397);
             this.tabOrganizer.TabIndex = 3;
             this.tabOrganizer.Text = "Organizer";
             this.tabOrganizer.UseVisualStyleBackColor = true;
@@ -626,7 +642,7 @@
             this.FilterOrganizerBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterOrganizerBox.Location = new System.Drawing.Point(435, 7);
             this.FilterOrganizerBox.Name = "FilterOrganizerBox";
-            this.FilterOrganizerBox.Size = new System.Drawing.Size(259, 22);
+            this.FilterOrganizerBox.Size = new System.Drawing.Size(259, 26);
             this.FilterOrganizerBox.TabIndex = 13;
             this.FilterOrganizerBox.Text = "Enter organizer name to filter info";
             this.FilterOrganizerBox.Click += new System.EventHandler(this.FilterOrganizerBox_Click);
@@ -683,29 +699,34 @@
             this.OrganizerInfoTable.Location = new System.Drawing.Point(3, 3);
             this.OrganizerInfoTable.Name = "OrganizerInfoTable";
             this.OrganizerInfoTable.RowHeadersVisible = false;
+            this.OrganizerInfoTable.RowHeadersWidth = 51;
             this.OrganizerInfoTable.Size = new System.Drawing.Size(686, 284);
             this.OrganizerInfoTable.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.HeaderText = "Nickname";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "Birthday";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.HeaderText = "Team";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
@@ -745,11 +766,12 @@
             this.OrganizerBox.FormattingEnabled = true;
             this.OrganizerBox.Location = new System.Drawing.Point(6, 6);
             this.OrganizerBox.Name = "OrganizerBox";
-            this.OrganizerBox.Size = new System.Drawing.Size(423, 23);
+            this.OrganizerBox.Size = new System.Drawing.Size(423, 27);
             this.OrganizerBox.TabIndex = 10;
             // 
             // tabTournament
             // 
+            this.tabTournament.Controls.Add(this.ViewTournamentResultButton);
             this.tabTournament.Controls.Add(this.FilterTournamentBox);
             this.tabTournament.Controls.Add(this.ViewTournamentButton);
             this.tabTournament.Controls.Add(this.TournamentInfoPanel);
@@ -757,9 +779,9 @@
             this.tabTournament.Controls.Add(this.AddTournamentButton);
             this.tabTournament.Controls.Add(this.ChangeTournamentBox);
             this.tabTournament.Controls.Add(this.TournamentBox);
-            this.tabTournament.Location = new System.Drawing.Point(4, 24);
+            this.tabTournament.Location = new System.Drawing.Point(4, 28);
             this.tabTournament.Name = "tabTournament";
-            this.tabTournament.Size = new System.Drawing.Size(734, 401);
+            this.tabTournament.Size = new System.Drawing.Size(734, 397);
             this.tabTournament.TabIndex = 4;
             this.tabTournament.Text = "Tournament";
             this.tabTournament.UseVisualStyleBackColor = true;
@@ -771,7 +793,7 @@
             this.FilterTournamentBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterTournamentBox.Location = new System.Drawing.Point(465, 7);
             this.FilterTournamentBox.Name = "FilterTournamentBox";
-            this.FilterTournamentBox.Size = new System.Drawing.Size(259, 22);
+            this.FilterTournamentBox.Size = new System.Drawing.Size(259, 26);
             this.FilterTournamentBox.TabIndex = 20;
             this.FilterTournamentBox.Text = "Enter tournament`s name to filter info";
             this.FilterTournamentBox.Click += new System.EventHandler(this.FilterTournamentBox_Click);
@@ -779,9 +801,9 @@
             // 
             // ViewTournamentButton
             // 
-            this.ViewTournamentButton.Location = new System.Drawing.Point(292, 35);
+            this.ViewTournamentButton.Location = new System.Drawing.Point(221, 35);
             this.ViewTournamentButton.Name = "ViewTournamentButton";
-            this.ViewTournamentButton.Size = new System.Drawing.Size(137, 46);
+            this.ViewTournamentButton.Size = new System.Drawing.Size(107, 46);
             this.ViewTournamentButton.TabIndex = 16;
             this.ViewTournamentButton.Text = "View tournament`s info";
             this.ViewTournamentButton.UseVisualStyleBackColor = true;
@@ -828,29 +850,34 @@
             this.TournamentInfoTable.Location = new System.Drawing.Point(3, 3);
             this.TournamentInfoTable.Name = "TournamentInfoTable";
             this.TournamentInfoTable.RowHeadersVisible = false;
+            this.TournamentInfoTable.RowHeadersWidth = 51;
             this.TournamentInfoTable.Size = new System.Drawing.Size(716, 284);
             this.TournamentInfoTable.TabIndex = 3;
             // 
             // name_tournament
             // 
             this.name_tournament.HeaderText = "Name";
+            this.name_tournament.MinimumWidth = 6;
             this.name_tournament.Name = "name_tournament";
             this.name_tournament.ReadOnly = true;
             // 
             // organizer
             // 
             this.organizer.HeaderText = "Organizer";
+            this.organizer.MinimumWidth = 6;
             this.organizer.Name = "organizer";
             this.organizer.ReadOnly = true;
             // 
             // time_period
             // 
             this.time_period.HeaderText = "Time period";
+            this.time_period.MinimumWidth = 6;
             this.time_period.Name = "time_period";
             // 
             // prize_pool
             // 
             this.prize_pool.HeaderText = "Prize pool";
+            this.prize_pool.MinimumWidth = 6;
             this.prize_pool.Name = "prize_pool";
             this.prize_pool.ReadOnly = true;
             // 
@@ -869,7 +896,7 @@
             // 
             this.AddTournamentButton.Location = new System.Drawing.Point(6, 35);
             this.AddTournamentButton.Name = "AddTournamentButton";
-            this.AddTournamentButton.Size = new System.Drawing.Size(137, 46);
+            this.AddTournamentButton.Size = new System.Drawing.Size(95, 46);
             this.AddTournamentButton.TabIndex = 14;
             this.AddTournamentButton.Text = "Add tournament";
             this.AddTournamentButton.UseVisualStyleBackColor = true;
@@ -877,9 +904,9 @@
             // 
             // ChangeTournamentBox
             // 
-            this.ChangeTournamentBox.Location = new System.Drawing.Point(153, 35);
+            this.ChangeTournamentBox.Location = new System.Drawing.Point(107, 35);
             this.ChangeTournamentBox.Name = "ChangeTournamentBox";
-            this.ChangeTournamentBox.Size = new System.Drawing.Size(137, 46);
+            this.ChangeTournamentBox.Size = new System.Drawing.Size(108, 46);
             this.ChangeTournamentBox.TabIndex = 15;
             this.ChangeTournamentBox.Text = "Change tournament`s info";
             this.ChangeTournamentBox.UseVisualStyleBackColor = true;
@@ -890,7 +917,7 @@
             this.TournamentBox.FormattingEnabled = true;
             this.TournamentBox.Location = new System.Drawing.Point(6, 6);
             this.TournamentBox.Name = "TournamentBox";
-            this.TournamentBox.Size = new System.Drawing.Size(423, 23);
+            this.TournamentBox.Size = new System.Drawing.Size(423, 27);
             this.TournamentBox.TabIndex = 17;
             // 
             // info_tab
@@ -908,10 +935,10 @@
             this.info_tab.Controls.Add(this.TimePeriodStartBox);
             this.info_tab.Controls.Add(this.TournamentsTodayButton);
             this.info_tab.Controls.Add(this.MatchesTodayButton);
-            this.info_tab.Location = new System.Drawing.Point(4, 24);
+            this.info_tab.Location = new System.Drawing.Point(4, 28);
             this.info_tab.Name = "info_tab";
             this.info_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.info_tab.Size = new System.Drawing.Size(734, 401);
+            this.info_tab.Size = new System.Drawing.Size(734, 397);
             this.info_tab.TabIndex = 5;
             this.info_tab.Text = "Info";
             this.info_tab.UseVisualStyleBackColor = true;
@@ -932,6 +959,7 @@
             this.InfoTable.Location = new System.Drawing.Point(9, 86);
             this.InfoTable.Name = "InfoTable";
             this.InfoTable.RowHeadersVisible = false;
+            this.InfoTable.RowHeadersWidth = 51;
             this.InfoTable.Size = new System.Drawing.Size(717, 252);
             this.InfoTable.TabIndex = 12;
             this.InfoTable.Visible = false;
@@ -1010,7 +1038,7 @@
             this.TimePeriodEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TimePeriodEndBox.Location = new System.Drawing.Point(208, 13);
             this.TimePeriodEndBox.Name = "TimePeriodEndBox";
-            this.TimePeriodEndBox.Size = new System.Drawing.Size(85, 22);
+            this.TimePeriodEndBox.Size = new System.Drawing.Size(85, 26);
             this.TimePeriodEndBox.TabIndex = 4;
             // 
             // timePeriodLabel
@@ -1027,7 +1055,7 @@
             this.TimePeriodStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TimePeriodStartBox.Location = new System.Drawing.Point(97, 13);
             this.TimePeriodStartBox.Name = "TimePeriodStartBox";
-            this.TimePeriodStartBox.Size = new System.Drawing.Size(85, 22);
+            this.TimePeriodStartBox.Size = new System.Drawing.Size(85, 26);
             this.TimePeriodStartBox.TabIndex = 2;
             // 
             // TournamentsTodayButton
@@ -1057,9 +1085,19 @@
             this.panel2.Size = new System.Drawing.Size(8, 8);
             this.panel2.TabIndex = 4;
             // 
+            // ViewTournamentResultButton
+            // 
+            this.ViewTournamentResultButton.Location = new System.Drawing.Point(334, 35);
+            this.ViewTournamentResultButton.Name = "ViewTournamentResultButton";
+            this.ViewTournamentResultButton.Size = new System.Drawing.Size(107, 46);
+            this.ViewTournamentResultButton.TabIndex = 21;
+            this.ViewTournamentResultButton.Text = "View tournament`s result";
+            this.ViewTournamentResultButton.UseVisualStyleBackColor = true;
+            this.ViewTournamentResultButton.Click += new System.EventHandler(this.ViewTournamentResultsButton_Click);
+            // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 461);
             this.Controls.Add(this.panel1);
@@ -1186,5 +1224,6 @@
         private System.Windows.Forms.Button CoachWithoutTeamButton;
         private System.Windows.Forms.Button PlayerWithoutTeamButton;
         private System.Windows.Forms.DataGridView InfoTable;
+        private System.Windows.Forms.Button ViewTournamentResultButton;
     }
 }

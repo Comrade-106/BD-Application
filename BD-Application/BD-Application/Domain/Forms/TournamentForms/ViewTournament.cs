@@ -25,15 +25,18 @@ namespace BD_Application.Domain.Forms.TournamentForms {
         private IRepositoryMatch _matchRepository;
         private IRepositoryTournament _tournamentRepository;
         private IRepositoryTeam _teamRepository;
+        private IRepositoryTournamentResult _repositoryTournamentResult;
 
         public ViewTournament(int tournamentID, IRepositoryMatch matchRepository, 
-                                IRepositoryTournament tournamentRepository, IRepositoryTeam teamRepository) {
+                                IRepositoryTournament tournamentRepository, IRepositoryTeam teamRepository,
+                                IRepositoryTournamentResult repositoryTournamentResult) {
             InitializeComponent();
             GetDataFields();
 
             _matchRepository = matchRepository;
             _tournamentRepository = tournamentRepository;
             _teamRepository = teamRepository;
+            _repositoryTournamentResult = repositoryTournamentResult;
 
             _matches = _matchRepository.GetAllMatch(tournamentID);
             _tournament = _tournamentRepository.GetTournament(tournamentID);
@@ -182,23 +185,48 @@ namespace BD_Application.Domain.Forms.TournamentForms {
             var nextMatchNode = tree.FindNode(match.Id).ParentNode;
 
             if(nextMatchNode == null) {
-                int i = 1;
+                var results = new List<ResultTournament>();
                 foreach (Stage e in Enum.GetValues(typeof(Stage))) {
                     foreach (var m in _matches.FindAll(x => x.MatchStage == e)) {
+                        var t = new ResultTournament();
+                        t.TournamentId = _tournamentID;
 
                         if (IsMatchComplited(m, out int winner)) {
                             if (winner == m.IdFirstTeam) {
-                                _matchesView[i].SecondTeam.BackColor = SystemColors.ControlDark;
+                                t.IdTeam = m.IdSecondTeam;
                             } else {
-                                _matchesView[i].FirstTeam.BackColor = SystemColors.ControlDark;
+                                t.IdTeam = m.IdFirstTeam;
                             }
                         }
 
-                        i++;
+                        if(e == Stage.EighthFinals) {
+                            t.Place = "9-16";
+                            t.Prize = _tournament.PrizePool * 0.00875;
+                        } else if(e == Stage.QuaterFinals) {
+                            t.Place = "5-8";
+                            t.Prize = _tournament.PrizePool * 0.035;
+                        } else if(e == Stage.Semifinals) {
+                            t.Place = "3-4";
+                            t.Prize = _tournament.PrizePool * 0.07;
+                        } else {
+                            t.Place = "2";
+                            t.Prize = _tournament.PrizePool * 0.15;
+
+                            results.Add(new ResultTournament() {
+                                TournamentId = _tournamentID,
+                                Place = "1",
+                                IdTeam = t.IdTeam == m.IdFirstTeam ? m.IdSecondTeam : m.IdFirstTeam,
+                                Prize = _tournament.PrizePool * 0.5
+                            });
+
+                        }
+
+                        results.Add(t);
                     }
                 }
 
-                return true;
+                return _matchRepository.ChangeMatch(match) &&
+                _repositoryTournamentResult.AddTournamentResult(results);
             }
 
             var nextMatch = _matches.Find(x => x.Id == nextMatchNode.Data);

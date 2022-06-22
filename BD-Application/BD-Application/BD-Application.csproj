@@ -144,6 +144,7 @@
     <Compile Include="Domain\Forms\TournamentForms\ViewTournamenrResult.Designer.cs">
       <DependentUpon>ViewTournamenrResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\ResultTournament.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryCoach.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryContractCoach.cs" />
     <Compile Include="Repository\DataBaseRepository\DBRepositoryContractPlayer.cs" />
@@ -344,7 +345,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

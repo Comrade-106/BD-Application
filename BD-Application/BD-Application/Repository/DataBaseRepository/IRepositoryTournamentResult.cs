@@ -1,9 +1,7 @@
-﻿using System;
+﻿using BD_Application.Domain;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BD_Application.Repository.DataBaseRepository {
     public interface IRepositoryTournamentResult {

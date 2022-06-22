@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BD_Application.Domain;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,10 +26,10 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Open();
 
             foreach (ResultTournament result in list) {
-                string sql = "INSERT INTO tournament_result VALUES(@tournament, @place, @team, @prize);";
+                string sql = "INSERT INTO tournament_result VALUES(NULL, @tournament, @place, @team, @prize);";
 
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
-                cmd.Parameters.AddWithValue("@tournament", result.IdTournament);
+                cmd.Parameters.AddWithValue("@tournament", result.TournamentId);
                 cmd.Parameters.AddWithValue("@place", result.Place);
                 cmd.Parameters.AddWithValue("@team", result.IdTeam);
                 cmd.Parameters.AddWithValue("@prize", result.Prize);
@@ -48,13 +49,13 @@ namespace BD_Application.Repository.DataBaseRepository {
             connection.Open();
 
             string sql = "SELECT " +
-                            "id_tournament  AS `Tournament`, " +
                             "place          AS `Place`, " +
                             "`team`.name    AS `Team`," +
                             "prize          AS `Prize`" +
                          "FROM `tournament_result` " +
                             "INNER JOIN `team` ON team = id" +
-                         "WHERE (id_tournament = @id)";
+                         " WHERE (id_tournament = @id)" +
+                         " ORDER BY 1;";
 
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             cmd.Parameters.AddWithValue("@id", id_tournament);
