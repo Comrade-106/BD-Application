@@ -82,6 +82,7 @@
             this.ChangeOrganizerButton = new System.Windows.Forms.Button();
             this.OrganizerBox = new System.Windows.Forms.ComboBox();
             this.tabTournament = new System.Windows.Forms.TabPage();
+            this.ViewTournamentResultButton = new System.Windows.Forms.Button();
             this.FilterTournamentBox = new System.Windows.Forms.TextBox();
             this.ViewTournamentButton = new System.Windows.Forms.Button();
             this.TournamentInfoPanel = new System.Windows.Forms.Panel();
@@ -110,7 +111,6 @@
             this.TournamentsTodayButton = new System.Windows.Forms.Button();
             this.MatchesTodayButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ViewTournamentResultButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.tabPlayer.SuspendLayout();
@@ -172,10 +172,10 @@
             this.tabPlayer.Controls.Add(this.AddPlayerButton);
             this.tabPlayer.Controls.Add(this.ChangePlayerButton);
             this.tabPlayer.Controls.Add(this.PlayerBox);
-            this.tabPlayer.Location = new System.Drawing.Point(4, 28);
+            this.tabPlayer.Location = new System.Drawing.Point(4, 24);
             this.tabPlayer.Name = "tabPlayer";
             this.tabPlayer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayer.Size = new System.Drawing.Size(734, 397);
+            this.tabPlayer.Size = new System.Drawing.Size(734, 401);
             this.tabPlayer.TabIndex = 0;
             this.tabPlayer.Text = "Player";
             this.tabPlayer.UseVisualStyleBackColor = true;
@@ -187,7 +187,7 @@
             this.FilterPlayerBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterPlayerBox.Location = new System.Drawing.Point(435, 7);
             this.FilterPlayerBox.Name = "FilterPlayerBox";
-            this.FilterPlayerBox.Size = new System.Drawing.Size(259, 26);
+            this.FilterPlayerBox.Size = new System.Drawing.Size(259, 22);
             this.FilterPlayerBox.TabIndex = 6;
             this.FilterPlayerBox.Text = "Enter player nickname to filter info";
             this.FilterPlayerBox.Click += new System.EventHandler(this.FilterPlayerBox_Click);
@@ -311,7 +311,7 @@
             this.PlayerBox.FormattingEnabled = true;
             this.PlayerBox.Location = new System.Drawing.Point(6, 6);
             this.PlayerBox.Name = "PlayerBox";
-            this.PlayerBox.Size = new System.Drawing.Size(423, 27);
+            this.PlayerBox.Size = new System.Drawing.Size(423, 23);
             this.PlayerBox.TabIndex = 3;
             // 
             // tabCoach
@@ -323,10 +323,10 @@
             this.tabCoach.Controls.Add(this.AddCoachButton);
             this.tabCoach.Controls.Add(this.ChangeCoachButton);
             this.tabCoach.Controls.Add(this.CoachBox);
-            this.tabCoach.Location = new System.Drawing.Point(4, 28);
+            this.tabCoach.Location = new System.Drawing.Point(4, 24);
             this.tabCoach.Name = "tabCoach";
             this.tabCoach.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoach.Size = new System.Drawing.Size(734, 397);
+            this.tabCoach.Size = new System.Drawing.Size(734, 401);
             this.tabCoach.TabIndex = 1;
             this.tabCoach.Text = "Coach";
             this.tabCoach.UseVisualStyleBackColor = true;
@@ -338,7 +338,7 @@
             this.FilterCoachBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterCoachBox.Location = new System.Drawing.Point(435, 7);
             this.FilterCoachBox.Name = "FilterCoachBox";
-            this.FilterCoachBox.Size = new System.Drawing.Size(259, 26);
+            this.FilterCoachBox.Size = new System.Drawing.Size(259, 22);
             this.FilterCoachBox.TabIndex = 13;
             this.FilterCoachBox.Text = "Enter coach nickname to filter info";
             this.FilterCoachBox.Click += new System.EventHandler(this.FilterCoachBox_Click);
@@ -462,7 +462,7 @@
             this.CoachBox.FormattingEnabled = true;
             this.CoachBox.Location = new System.Drawing.Point(6, 6);
             this.CoachBox.Name = "CoachBox";
-            this.CoachBox.Size = new System.Drawing.Size(423, 27);
+            this.CoachBox.Size = new System.Drawing.Size(423, 23);
             this.CoachBox.TabIndex = 10;
             // 
             // tabTeam
@@ -474,9 +474,9 @@
             this.tabTeam.Controls.Add(this.AddTeamButton);
             this.tabTeam.Controls.Add(this.ChangeTeamButton);
             this.tabTeam.Controls.Add(this.TeamBox);
-            this.tabTeam.Location = new System.Drawing.Point(4, 28);
+            this.tabTeam.Location = new System.Drawing.Point(4, 24);
             this.tabTeam.Name = "tabTeam";
-            this.tabTeam.Size = new System.Drawing.Size(734, 397);
+            this.tabTeam.Size = new System.Drawing.Size(734, 401);
             this.tabTeam.TabIndex = 2;
             this.tabTeam.Text = "Team";
             this.tabTeam.UseVisualStyleBackColor = true;
@@ -488,7 +488,7 @@
             this.FilterTeamBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterTeamBox.Location = new System.Drawing.Point(435, 7);
             this.FilterTeamBox.Name = "FilterTeamBox";
-            this.FilterTeamBox.Size = new System.Drawing.Size(259, 26);
+            this.FilterTeamBox.Size = new System.Drawing.Size(259, 22);
             this.FilterTeamBox.TabIndex = 20;
             this.FilterTeamBox.Text = "Enter team`s name to filter info";
             this.FilterTeamBox.Click += new System.EventHandler(this.FilterTeamBox_Click);
@@ -555,7 +555,7 @@
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 78;
+            this.dataGridViewTextBoxColumn6.Width = 62;
             // 
             // world_rank
             // 
@@ -563,14 +563,14 @@
             this.world_rank.MinimumWidth = 6;
             this.world_rank.Name = "world_rank";
             this.world_rank.ReadOnly = true;
-            this.world_rank.Width = 119;
+            this.world_rank.Width = 95;
             // 
             // coach
             // 
             this.coach.HeaderText = "Coach";
             this.coach.MinimumWidth = 6;
             this.coach.Name = "coach";
-            this.coach.Width = 81;
+            this.coach.Width = 66;
             // 
             // players_column
             // 
@@ -578,7 +578,7 @@
             this.players_column.MinimumWidth = 6;
             this.players_column.Name = "players_column";
             this.players_column.ReadOnly = true;
-            this.players_column.Width = 89;
+            this.players_column.Width = 71;
             // 
             // ViewTeamsButton
             // 
@@ -616,7 +616,7 @@
             this.TeamBox.FormattingEnabled = true;
             this.TeamBox.Location = new System.Drawing.Point(6, 6);
             this.TeamBox.Name = "TeamBox";
-            this.TeamBox.Size = new System.Drawing.Size(423, 27);
+            this.TeamBox.Size = new System.Drawing.Size(423, 23);
             this.TeamBox.TabIndex = 17;
             // 
             // tabOrganizer
@@ -628,9 +628,9 @@
             this.tabOrganizer.Controls.Add(this.AddOrganizerButton);
             this.tabOrganizer.Controls.Add(this.ChangeOrganizerButton);
             this.tabOrganizer.Controls.Add(this.OrganizerBox);
-            this.tabOrganizer.Location = new System.Drawing.Point(4, 28);
+            this.tabOrganizer.Location = new System.Drawing.Point(4, 24);
             this.tabOrganizer.Name = "tabOrganizer";
-            this.tabOrganizer.Size = new System.Drawing.Size(734, 397);
+            this.tabOrganizer.Size = new System.Drawing.Size(734, 401);
             this.tabOrganizer.TabIndex = 3;
             this.tabOrganizer.Text = "Organizer";
             this.tabOrganizer.UseVisualStyleBackColor = true;
@@ -642,7 +642,7 @@
             this.FilterOrganizerBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterOrganizerBox.Location = new System.Drawing.Point(435, 7);
             this.FilterOrganizerBox.Name = "FilterOrganizerBox";
-            this.FilterOrganizerBox.Size = new System.Drawing.Size(259, 26);
+            this.FilterOrganizerBox.Size = new System.Drawing.Size(259, 22);
             this.FilterOrganizerBox.TabIndex = 13;
             this.FilterOrganizerBox.Text = "Enter organizer name to filter info";
             this.FilterOrganizerBox.Click += new System.EventHandler(this.FilterOrganizerBox_Click);
@@ -766,7 +766,7 @@
             this.OrganizerBox.FormattingEnabled = true;
             this.OrganizerBox.Location = new System.Drawing.Point(6, 6);
             this.OrganizerBox.Name = "OrganizerBox";
-            this.OrganizerBox.Size = new System.Drawing.Size(423, 27);
+            this.OrganizerBox.Size = new System.Drawing.Size(423, 23);
             this.OrganizerBox.TabIndex = 10;
             // 
             // tabTournament
@@ -779,12 +779,22 @@
             this.tabTournament.Controls.Add(this.AddTournamentButton);
             this.tabTournament.Controls.Add(this.ChangeTournamentBox);
             this.tabTournament.Controls.Add(this.TournamentBox);
-            this.tabTournament.Location = new System.Drawing.Point(4, 28);
+            this.tabTournament.Location = new System.Drawing.Point(4, 24);
             this.tabTournament.Name = "tabTournament";
-            this.tabTournament.Size = new System.Drawing.Size(734, 397);
+            this.tabTournament.Size = new System.Drawing.Size(734, 401);
             this.tabTournament.TabIndex = 4;
             this.tabTournament.Text = "Tournament";
             this.tabTournament.UseVisualStyleBackColor = true;
+            // 
+            // ViewTournamentResultButton
+            // 
+            this.ViewTournamentResultButton.Location = new System.Drawing.Point(334, 35);
+            this.ViewTournamentResultButton.Name = "ViewTournamentResultButton";
+            this.ViewTournamentResultButton.Size = new System.Drawing.Size(95, 58);
+            this.ViewTournamentResultButton.TabIndex = 21;
+            this.ViewTournamentResultButton.Text = "View tournament`s result";
+            this.ViewTournamentResultButton.UseVisualStyleBackColor = true;
+            this.ViewTournamentResultButton.Click += new System.EventHandler(this.ViewTournamentResultsButton_Click);
             // 
             // FilterTournamentBox
             // 
@@ -793,7 +803,7 @@
             this.FilterTournamentBox.ForeColor = System.Drawing.Color.Silver;
             this.FilterTournamentBox.Location = new System.Drawing.Point(465, 7);
             this.FilterTournamentBox.Name = "FilterTournamentBox";
-            this.FilterTournamentBox.Size = new System.Drawing.Size(259, 26);
+            this.FilterTournamentBox.Size = new System.Drawing.Size(259, 22);
             this.FilterTournamentBox.TabIndex = 20;
             this.FilterTournamentBox.Text = "Enter tournament`s name to filter info";
             this.FilterTournamentBox.Click += new System.EventHandler(this.FilterTournamentBox_Click);
@@ -803,7 +813,7 @@
             // 
             this.ViewTournamentButton.Location = new System.Drawing.Point(221, 35);
             this.ViewTournamentButton.Name = "ViewTournamentButton";
-            this.ViewTournamentButton.Size = new System.Drawing.Size(107, 46);
+            this.ViewTournamentButton.Size = new System.Drawing.Size(107, 58);
             this.ViewTournamentButton.TabIndex = 16;
             this.ViewTournamentButton.Text = "View tournament`s info";
             this.ViewTournamentButton.UseVisualStyleBackColor = true;
@@ -896,7 +906,7 @@
             // 
             this.AddTournamentButton.Location = new System.Drawing.Point(6, 35);
             this.AddTournamentButton.Name = "AddTournamentButton";
-            this.AddTournamentButton.Size = new System.Drawing.Size(95, 46);
+            this.AddTournamentButton.Size = new System.Drawing.Size(95, 58);
             this.AddTournamentButton.TabIndex = 14;
             this.AddTournamentButton.Text = "Add tournament";
             this.AddTournamentButton.UseVisualStyleBackColor = true;
@@ -906,7 +916,7 @@
             // 
             this.ChangeTournamentBox.Location = new System.Drawing.Point(107, 35);
             this.ChangeTournamentBox.Name = "ChangeTournamentBox";
-            this.ChangeTournamentBox.Size = new System.Drawing.Size(108, 46);
+            this.ChangeTournamentBox.Size = new System.Drawing.Size(108, 58);
             this.ChangeTournamentBox.TabIndex = 15;
             this.ChangeTournamentBox.Text = "Change tournament`s info";
             this.ChangeTournamentBox.UseVisualStyleBackColor = true;
@@ -917,7 +927,7 @@
             this.TournamentBox.FormattingEnabled = true;
             this.TournamentBox.Location = new System.Drawing.Point(6, 6);
             this.TournamentBox.Name = "TournamentBox";
-            this.TournamentBox.Size = new System.Drawing.Size(423, 27);
+            this.TournamentBox.Size = new System.Drawing.Size(423, 23);
             this.TournamentBox.TabIndex = 17;
             // 
             // info_tab
@@ -935,10 +945,10 @@
             this.info_tab.Controls.Add(this.TimePeriodStartBox);
             this.info_tab.Controls.Add(this.TournamentsTodayButton);
             this.info_tab.Controls.Add(this.MatchesTodayButton);
-            this.info_tab.Location = new System.Drawing.Point(4, 28);
+            this.info_tab.Location = new System.Drawing.Point(4, 24);
             this.info_tab.Name = "info_tab";
             this.info_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.info_tab.Size = new System.Drawing.Size(734, 397);
+            this.info_tab.Size = new System.Drawing.Size(734, 401);
             this.info_tab.TabIndex = 5;
             this.info_tab.Text = "Info";
             this.info_tab.UseVisualStyleBackColor = true;
@@ -949,8 +959,7 @@
             this.InfoTable.AllowUserToDeleteRows = false;
             this.InfoTable.AllowUserToResizeColumns = false;
             this.InfoTable.AllowUserToResizeRows = false;
-            this.InfoTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.InfoTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.InfoTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
@@ -966,6 +975,7 @@
             // 
             // FutureTournamentButton
             // 
+            this.FutureTournamentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.FutureTournamentButton.Location = new System.Drawing.Point(369, 344);
             this.FutureTournamentButton.Name = "FutureTournamentButton";
             this.FutureTournamentButton.Size = new System.Drawing.Size(115, 51);
@@ -976,6 +986,7 @@
             // 
             // PastTournamentButton
             // 
+            this.PastTournamentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PastTournamentButton.Location = new System.Drawing.Point(248, 344);
             this.PastTournamentButton.Name = "PastTournamentButton";
             this.PastTournamentButton.Size = new System.Drawing.Size(115, 51);
@@ -986,6 +997,7 @@
             // 
             // CoachWithoutTeamButton
             // 
+            this.CoachWithoutTeamButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CoachWithoutTeamButton.Location = new System.Drawing.Point(611, 344);
             this.CoachWithoutTeamButton.Name = "CoachWithoutTeamButton";
             this.CoachWithoutTeamButton.Size = new System.Drawing.Size(115, 51);
@@ -996,6 +1008,7 @@
             // 
             // PlayerWithoutTeamButton
             // 
+            this.PlayerWithoutTeamButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PlayerWithoutTeamButton.Location = new System.Drawing.Point(490, 344);
             this.PlayerWithoutTeamButton.Name = "PlayerWithoutTeamButton";
             this.PlayerWithoutTeamButton.Size = new System.Drawing.Size(115, 51);
@@ -1038,7 +1051,7 @@
             this.TimePeriodEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TimePeriodEndBox.Location = new System.Drawing.Point(208, 13);
             this.TimePeriodEndBox.Name = "TimePeriodEndBox";
-            this.TimePeriodEndBox.Size = new System.Drawing.Size(85, 26);
+            this.TimePeriodEndBox.Size = new System.Drawing.Size(85, 22);
             this.TimePeriodEndBox.TabIndex = 4;
             // 
             // timePeriodLabel
@@ -1055,11 +1068,12 @@
             this.TimePeriodStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TimePeriodStartBox.Location = new System.Drawing.Point(97, 13);
             this.TimePeriodStartBox.Name = "TimePeriodStartBox";
-            this.TimePeriodStartBox.Size = new System.Drawing.Size(85, 26);
+            this.TimePeriodStartBox.Size = new System.Drawing.Size(85, 22);
             this.TimePeriodStartBox.TabIndex = 2;
             // 
             // TournamentsTodayButton
             // 
+            this.TournamentsTodayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TournamentsTodayButton.Location = new System.Drawing.Point(127, 344);
             this.TournamentsTodayButton.Name = "TournamentsTodayButton";
             this.TournamentsTodayButton.Size = new System.Drawing.Size(115, 51);
@@ -1070,6 +1084,7 @@
             // 
             // MatchesTodayButton
             // 
+            this.MatchesTodayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.MatchesTodayButton.Location = new System.Drawing.Point(6, 344);
             this.MatchesTodayButton.Name = "MatchesTodayButton";
             this.MatchesTodayButton.Size = new System.Drawing.Size(115, 51);
@@ -1085,19 +1100,9 @@
             this.panel2.Size = new System.Drawing.Size(8, 8);
             this.panel2.TabIndex = 4;
             // 
-            // ViewTournamentResultButton
-            // 
-            this.ViewTournamentResultButton.Location = new System.Drawing.Point(334, 35);
-            this.ViewTournamentResultButton.Name = "ViewTournamentResultButton";
-            this.ViewTournamentResultButton.Size = new System.Drawing.Size(107, 46);
-            this.ViewTournamentResultButton.TabIndex = 21;
-            this.ViewTournamentResultButton.Text = "View tournament`s result";
-            this.ViewTournamentResultButton.UseVisualStyleBackColor = true;
-            this.ViewTournamentResultButton.Click += new System.EventHandler(this.ViewTournamentResultsButton_Click);
-            // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 461);
             this.Controls.Add(this.panel1);
