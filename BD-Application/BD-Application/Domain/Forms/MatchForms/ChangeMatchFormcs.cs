@@ -52,7 +52,7 @@ namespace BD_Application.Domain.Forms.MatchForms {
             }
         }
 
-        private void _saveButton_Click(object sender, System.EventArgs e) {
+        private void _saveButton_Click(object sender, EventArgs e) {
             if (string.IsNullOrEmpty(_score1Box.Text) && string.IsNullOrEmpty(_score2Box.Text) && _match.DateTimeMatch == _dateBox.Value) return;
 
             if((!string.IsNullOrEmpty(_score1Box.Text) && string.IsNullOrEmpty(_score2Box.Text)) ||
@@ -60,9 +60,11 @@ namespace BD_Application.Domain.Forms.MatchForms {
                 MessageBox.Show("You have not filled in the Score field!");
                 return;
             }
-            
-            if ((!string.IsNullOrEmpty(_score1Box.Text) && !Int32.TryParse(_score1Box.Text, out int r1)) ||
-                (!string.IsNullOrEmpty(_score2Box.Text) && !Int32.TryParse(_score2Box.Text, out int r2))) {
+
+            int r1 = -1, r2 = -1;
+            if ((!string.IsNullOrEmpty(_score1Box.Text) && !Int32.TryParse(_score1Box.Text, out r1)) ||
+                (!string.IsNullOrEmpty(_score2Box.Text) && !Int32.TryParse(_score2Box.Text, out r2)) ||
+                  r1 <= 0 || r2 <= 0) {
                 MessageBox.Show("Incorrect input in the Score field!");
                 return;
             }
