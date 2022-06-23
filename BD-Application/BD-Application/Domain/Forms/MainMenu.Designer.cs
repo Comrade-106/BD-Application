@@ -73,10 +73,6 @@
             this.OrganizerInfoPanel = new System.Windows.Forms.Panel();
             this.OrganizerInfoLabel = new System.Windows.Forms.Label();
             this.OrganizerInfoTable = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewOrganizersButton = new System.Windows.Forms.Button();
             this.AddOrganizerButton = new System.Windows.Forms.Button();
             this.ChangeOrganizerButton = new System.Windows.Forms.Button();
@@ -111,6 +107,7 @@
             this.TournamentsTodayButton = new System.Windows.Forms.Button();
             this.MatchesTodayButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.tabPlayer.SuspendLayout();
@@ -692,43 +689,13 @@
             this.OrganizerInfoTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.OrganizerInfoTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrganizerInfoTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9});
+            this.dataGridViewTextBoxColumn7});
             this.OrganizerInfoTable.Location = new System.Drawing.Point(3, 3);
             this.OrganizerInfoTable.Name = "OrganizerInfoTable";
             this.OrganizerInfoTable.RowHeadersVisible = false;
             this.OrganizerInfoTable.RowHeadersWidth = 51;
             this.OrganizerInfoTable.Size = new System.Drawing.Size(686, 284);
             this.OrganizerInfoTable.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Nickname";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Birthday";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Team";
-            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // ViewOrganizersButton
             // 
@@ -1100,6 +1067,13 @@
             this.panel2.Size = new System.Drawing.Size(8, 8);
             this.panel2.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1190,10 +1164,6 @@
         private System.Windows.Forms.Panel OrganizerInfoPanel;
         private System.Windows.Forms.Label OrganizerInfoLabel;
         private System.Windows.Forms.DataGridView OrganizerInfoTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.Button ViewOrganizersButton;
         private System.Windows.Forms.Button AddOrganizerButton;
         private System.Windows.Forms.Button ChangeOrganizerButton;
@@ -1230,5 +1200,6 @@
         private System.Windows.Forms.Button PlayerWithoutTeamButton;
         private System.Windows.Forms.DataGridView InfoTable;
         private System.Windows.Forms.Button ViewTournamentResultButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

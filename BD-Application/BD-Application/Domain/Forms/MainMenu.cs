@@ -163,27 +163,47 @@ namespace BD_Application.Domain.Forms {
         private void AddPlayerButton_Click(object sender, EventArgs e) {
             AddPlayerForm form = new AddPlayerForm();
             form.ShowDialog();
+            if ((players = repositoryPlayer.GetAllPlayers()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Message!");
+            }
+            FillPlayerBox();
         }
 
         private void AddCoachButton_Click(object sender, EventArgs e) {
             AddCoachForm form = new AddCoachForm();
             form.ShowDialog();
+            if ((coaches = repositoryCoach.GetAllCoaches()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Message!");
+            }
+            FillCoachBox();
         }
 
         private void AddTeamButton_Click(object sender, EventArgs e) {
             AddTeamForm form = new AddTeamForm();
             form.ShowDialog();
+            if ((teams = repositoryTeam.GetAllTeams()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Message!");
+            }
+            FillTeamBox();
         }
 
         private void AddOrganizerButton_Click(object sender, EventArgs e) {
             AddOrganizerForm form = new AddOrganizerForm();
             form.ShowDialog();
+            if ((organizers = repositoryOrganizer.GetAllOrganizers()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Message!");
+            }
+            FillOrganizerBox();
         }
 
         private void AddTournamentButton_Click(object sender, EventArgs e) {
             //Call add Tournament form
             var form = new AddTournamentForm();
             form.ShowDialog();
+            if ((tournaments = repositoryTournament.GetAllTournament()) == null) {
+                MessageBox.Show("Can`t get info from repository", "Message!");
+            }
+            FillTournamentBox();
         }
 
 
@@ -281,6 +301,7 @@ namespace BD_Application.Domain.Forms {
             if (CoachBox.SelectedItem is Coach coach) {
 
                 CoachInfoPanel.Visible = true;
+                CoachInfoLabel.Visible = true;
                 CoachesTable.Visible = false;
 
                 CoachInfoLabel.Text =
